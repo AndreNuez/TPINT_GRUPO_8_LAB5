@@ -3,6 +3,7 @@ package resources;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import daoImpl.Conexion;
 import daoImpl.daoEspecialidad;
 import daoImpl.daoMedico;
 import daoImpl.daoPaciente;
@@ -21,6 +22,13 @@ import negocioImpl.UsuarioNegocio;
 
 @Configuration
 public class AppConfig {
+	
+	// BEAN CONEXION
+	@Bean
+	public Conexion beanConexion() { 
+		Conexion conexion = new Conexion();
+		return conexion;
+	}
 	
 	// BEANS ENTIDADES
     @Bean
