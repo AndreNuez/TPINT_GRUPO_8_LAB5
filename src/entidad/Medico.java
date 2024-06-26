@@ -153,7 +153,7 @@ public class Medico implements Serializable {
 		return this.telefono;
 	}
 
-	public void setTeléfono(String telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
@@ -195,8 +195,8 @@ public class Medico implements Serializable {
 	@Override
 	public String toString() {
 		return "Medico [Legajo=" + legajo + ", Nombre=" + nombre + ", Apellido=" + apellido + ", Sexo=" + sexo
-				+ ", FNac=" + fNac + ", Dirección=" + direccion + ", Localidad=" + localidad + ", Correo=" + correo
-				+ ", Teléfono=" + telefono + ", Activo: " + activo + " Jornada:" + jornada + "]";
+				+ ", FNac=" + fNac + ", DirecciÃ³n=" + direccion + ", Localidad=" + localidad + ", Correo=" + correo
+				+ ", TelÃ©fono=" + telefono + ", Activo: " + activo + " Jornada:" + jornada + "]";
 	}
 
 }
