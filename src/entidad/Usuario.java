@@ -18,52 +18,54 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(name = "Nombre")
-    private String nombre;
+	@Column(name = "Nombre")
+	private String nombre;
 
-    @Column(name = "Password")
-    private String password;
+	@Column(name = "Password")
+	private String password;
 
-    
-    //Agregamos Medico
-    @OneToOne(mappedBy="usuario", fetch= FetchType.EAGER)
-    private Medico medico;
-    
-    // Constructor en blanco
-    public Usuario() {
-        // Puedes inicializar atributos aquí si es necesario
-    }
-    
-    // Getters y setters
-    public Long getId() {
-        return id;
-    }
+	@Column(name = "Perfil")
+	private int perfil;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	// Agregamos Medico
+	@OneToOne(mappedBy = "usuario", fetch = FetchType.EAGER)
+	private Medico medico;
 
-    public String getNombre() {
-        return nombre;
-    }
+	// Constructor en blanco
+	public Usuario() {
+		// Puedes inicializar atributos aquí si es necesario
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	// Getters y setters
+	public Long getId() {
+		return id;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    
-    //Agregamos getters y setters para Medico   
-    public Medico getMedico() {
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	// Agregamos getters y setters para Medico
+	public Medico getMedico() {
 		return medico;
 	}
 
@@ -71,12 +73,19 @@ public class Usuario implements Serializable {
 		this.medico = medico;
 	}
 
-	
+	public int getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(int perfil) {
+		this.perfil = perfil;
+	}
+
 	@Override
 	public String toString() {
-		String mensaje = "Usuario [id=" + id + ", nombre=" + nombre + ", password=" + password + ", medico=" ;
-		if(medico != null)
-			mensaje+= medico.getNombre() + ", " + medico.getApellido() + " - " + medico.getEspecialidad() +"]";
+		String mensaje = "Usuario [id=" + id + ", nombre=" + nombre + ", password=" + password + ", medico=";
+		if (medico != null)
+			mensaje += medico.getNombre() + ", " + medico.getApellido() + " - " + medico.getEspecialidad() + "]";
 		return mensaje;
 	}
 }
