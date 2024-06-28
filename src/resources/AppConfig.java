@@ -36,7 +36,8 @@ public class AppConfig {
         Medico medic = new Medico();
         return medic;
     }
-    @Bean Usuario beanUsuario() {
+    @Bean 
+    Usuario beanUsuario() {
         Usuario user = new Usuario();
         return user;
     }

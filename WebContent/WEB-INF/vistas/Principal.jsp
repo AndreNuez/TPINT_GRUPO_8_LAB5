@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Menú</title>
+<title>Menu</title>
 </head>
 <body>
-	PÁGINA PRINCIPAL =D
+	PÃGINA PRINCIPAL =D
 </body>
 </html>
