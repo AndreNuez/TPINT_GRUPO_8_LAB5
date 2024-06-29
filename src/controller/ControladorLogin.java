@@ -23,9 +23,13 @@ public class ControladorLogin {
 		Usuario user = (Usuario)appContext.getBean("beanUsuario");
 		user.setNombre(txtUsuario);
 		user.setPassword(txtPass);
-		controlLoginUser(user);
+		if (controlLoginUser(user))
+		{
 		MV.addObject("userLogin", user);
 		MV.setViewName("Principal");
+		}
+		else 
+			MV.setViewName("Login");
 		//System.out.println(user.getNombre());
 		return MV;
 	}
