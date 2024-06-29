@@ -6,12 +6,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ControladorInicio {
-	
-	@RequestMapping("Principal.html")
-	public ModelAndView eventoRedireccionarPrincipal()
+
+	@RequestMapping("login.do")
+	public ModelAndView eventoRedireccionarPag1()
 	{
 		ModelAndView MV = new ModelAndView();
-		MV.setViewName("Principal");
+		MV.setViewName("Login");
 		return MV;
 	}
 }

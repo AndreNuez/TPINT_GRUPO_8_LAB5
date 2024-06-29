@@ -42,7 +42,19 @@ public class UsuarioNegocio implements IUsuarioNegocio {
 		
 		return daoUsuario.ReadAll();
 	}
-	
-	
 
+	@Override
+	public boolean IsAccessOK(Usuario usuario) {
+		List<Usuario> listUsers = daoUsuario.ReadAll();
+		boolean isAccess = false;
+		for (Usuario user : listUsers) {
+			  if (user.getNombre().equals(usuario.getNombre()) && user.getPassword().equals(usuario.getPassword())) { // Reemplace 123 con el ID real
+			    isAccess = true;
+			    break; // Salir del bucle una vez encontrado
+			  }
+			}
+		return isAccess; // daoUsuario.getAccess(usuario);
+	}
+	
+	
 }

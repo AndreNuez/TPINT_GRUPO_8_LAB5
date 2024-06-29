@@ -3,7 +3,7 @@
   <display-name>TPINT_GRUPO_8_LAB5</display-name>
   
   <welcome-file-list>
-    <welcome-file>Principal.html</welcome-file>
+    <welcome-file>login.do</welcome-file>
   </welcome-file-list>
   
   <servlet>
@@ -14,7 +14,7 @@
   
   <servlet-mapping>
     <servlet-name>spring</servlet-name>
-    <url-pattern>*.html</url-pattern>
+    <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   
   <listener>

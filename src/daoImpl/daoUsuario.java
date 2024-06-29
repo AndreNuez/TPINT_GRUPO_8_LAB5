@@ -49,4 +49,18 @@ public class daoUsuario implements IDaoUsuario {
 		
 		return list;
 	}
+	
+	public Usuario getUserById(int idUser) {
+		
+		Session session = conexion.abrirConexion();
+		
+		session.beginTransaction();
+		@SuppressWarnings({ "unchecked" })
+		List<Usuario> listUsers = (List<Usuario>)session.createQuery("from Usuario where id = " + idUser).list();
+		Usuario user = listUsers.size() > 0 ? (Usuario) listUsers.get(0) : null;
+		conexion.cerrarConexion();
+		
+		return user;
+	}
+
 }
