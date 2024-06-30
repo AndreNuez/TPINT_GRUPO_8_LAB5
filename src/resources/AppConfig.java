@@ -7,16 +7,19 @@ import org.springframework.context.annotation.Configuration;
 import daoImpl.Conexion;
 import daoImpl.daoEspecialidad;
 import daoImpl.daoMedico;
+import daoImpl.daoNacionalidad;
 import daoImpl.daoPaciente;
 import daoImpl.daoTurno;
 import daoImpl.daoUsuario;
 import entidad.Especialidad;
 import entidad.Medico;
+import entidad.Nacionalidad;
 import entidad.Paciente;
 import entidad.Turno;
 import entidad.Usuario;
 import negocioImpl.EspecialidadNegocio;
 import negocioImpl.MedicoNegocio;
+import negocioImpl.NacionalidadNegocio;
 import negocioImpl.PacienteNegocio;
 import negocioImpl.TurnoNegocio;
 import negocioImpl.UsuarioNegocio;
@@ -59,6 +62,12 @@ public class AppConfig {
         return turn;
     }
     
+    @Bean
+    public Nacionalidad beanNacionalidad() {
+    	Nacionalidad nac = new Nacionalidad();
+        return nac;
+    }
+    
     //BEANS DAO
     @Bean
     public daoMedico beanDaoMedico() {
@@ -84,6 +93,11 @@ public class AppConfig {
     public daoUsuario beanDaoUsuario() {
         daoUsuario daoUser = new daoUsuario();
         return daoUser;
+    }
+    @Bean
+    public daoNacionalidad beanDaoNacionalidad() {
+        daoNacionalidad daoNacionalidad = new daoNacionalidad();
+        return daoNacionalidad;
     }
     
     // BEANS NEGOCIO
@@ -115,6 +129,11 @@ public class AppConfig {
     public UsuarioNegocio beanUsuarioNegocio() {
         UsuarioNegocio userNeg = new UsuarioNegocio();
         return userNeg;
+    }
+    @Bean
+    public NacionalidadNegocio beanNacionalidadNegocio() {
+        NacionalidadNegocio nacionalidadNeg = new NacionalidadNegocio();
+        return nacionalidadNeg;
     }
     
 }

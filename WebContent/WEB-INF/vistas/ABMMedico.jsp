@@ -1,71 +1,69 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="entidad.Medico"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<style>
-	<%@include file="estilo.css" %>
-</style>
-<title>Medico</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <style>
+        <%@include file="estilo.css" %>
+    </style>
+    <title>Medico</title>
 </head>
 <body>
-	<%@include file="Menu.jsp"%>
-	
-	<form id="formPpal" action="ABMMedico.do" method="post">
+    <%@include file="Menu.jsp"%>
+    
+    <form id="formPpal" action="ABMMedico.do" method="post">
 
-		<h2 class="title">Alta y Modificacion de Medicos</h2>
-		<br>
-		
-		<div class="formulario">
-		
-		<div>
-		<table>
+        <h2 class="title">Alta y Modificacion de Medicos</h2>
+        <br>
+        
+        <div class="formulario">
+        
+            <div>
+                <table>
+                    <tr>
+                        <td><label>DNI</label></td>
+                        <td><input type="number" min="1000000" min="0" name="txtDni" value=""></td>
+                    </tr>           
+                    <tr>
+                        <td><label>Nombre</label></td>
+                        <td><input type="text" name="txtNombre" pattern="[a-z A-Z]+" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label>Apellido</label></td>
+                        <td><input type="text" name="txtApellido" pattern="[a-z A-Z]+" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label>Especialidad</label></td>
+                        <td>
+                            <select name="selEspecialidad" style="width: 233px;">
+                                <option value="">Seleccione una especialidad</option>
+                                <!-- Iterar sobre la lista de especialidades desde el controlador -->
+                                <c:forEach items="${especialidades}" var="especialidad">
+                                    <option value="${especialidad.id}">${especialidad.nombre}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                    </tr>
 			<tr>
-                <td><label>DNI</label></td>
-                <td><input type="number" min=1000000 min=0 name="txtDni" value="" ></td>
-            </tr>			
-			<tr>
-				<td><label>Nombre</label></td>
-				<td><input type="text" name="txtNombre" pattern="[a-z A-Z]+" value="" ></td>
-			</tr>
-			<tr>
-				<td><label>Apellido</label></td>
-				<td><input type="text" name="txtApellido"  pattern="[a-z A-Z]+" value="" ></td>
-			</tr>
-			<tr>
-				<td><label>Especialidad</label></td>
-				<td><select name="selEspecialidad" style="width: 233px;">
-						<%
-						%>
-						<option  value="">
-							
-						</option>
-						
-						<%
-						%>
-				</select></td>
-			</tr>
-			<tr>
-				<td><label>Nacionalidad</label></td>
-				<td><select name="selNacionalidad" style="width: 233px;">
-						<%
-						%>
-						<option  value="">
-							
-						</option>
-						
-						<%
-						%>
-				</select></td>
+				 <td><label>Nacionalidad</label></td>
+                        <td>
+                            <select name="selNacionalidad" style="width: 233px;">
+                                <option value="">Seleccione una nacionalidad</option>
+                                <!-- Iterar sobre la lista de nacionalidades desde el controlador -->
+                                <c:forEach items="${nacionalidades}" var="nacionalidad">
+                                    <option value="${nacionalidad.idNacionalidad}">${nacionalidad.nacionalidad}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
 			</tr>
 			<tr>
 				<td><label>Sexo</label></td>
 				<td><select name="selSexo" style="width: 233px;">
-						<option value="No indica"  >>No indica</option>
+						<option value="No indica" >No indica</option>
 						<option value="Femenino"  >Femenino</option>
-						<option value="Masculino" >>Masculino</option>
+						<option value="Masculino" >Masculino</option>
 				</select></td>
 			</tr>
 			<tr>
