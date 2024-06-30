@@ -17,8 +17,8 @@
 		<form action="Access.do" method=post>
 		
 			<table>
-				<tr><td>Usuario: </td><td><input type=text name= txtUsuario></td></tr>
-			    <tr><td>Password: </td><td><input type=password name= txtPass></td></tr>
+				<tr><td>Usuario: </td><td><input type=text name= nombre></td></tr>
+			    <tr><td>Password: </td><td><input type=password name= password></td></tr>
 			</table>
 			<%  %>
 			<div class="pt-4 d-flex justify-content-between" >
@@ -27,6 +27,7 @@
 			</div>
 		</form>
 	</div>
+			${cartelError}
 
 </body>
 </html>

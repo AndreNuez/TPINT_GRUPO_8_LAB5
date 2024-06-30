@@ -1,6 +1,7 @@
 package resources;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import daoImpl.Conexion;
@@ -21,6 +22,7 @@ import negocioImpl.TurnoNegocio;
 import negocioImpl.UsuarioNegocio;
 
 @Configuration
+@ComponentScan(basePackages = {"controller", "entidad", "daoImpl", "negocioImpl"})
 public class AppConfig {
 	
 	// BEAN CONEXION
@@ -108,10 +110,11 @@ public class AppConfig {
         PacienteNegocio pacienteNeg = new PacienteNegocio();
         return pacienteNeg;
     }
- 
+    
     @Bean
     public UsuarioNegocio beanUsuarioNegocio() {
         UsuarioNegocio userNeg = new UsuarioNegocio();
         return userNeg;
     }
+    
 }
