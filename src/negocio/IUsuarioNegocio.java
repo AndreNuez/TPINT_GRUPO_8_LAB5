@@ -8,6 +8,6 @@ public interface IUsuarioNegocio {
 	
 	public boolean Add(Usuario usuario);
 	public List<Usuario> ReadAll();
-	public boolean IsAccessOK(Usuario usuario);
-	
+	public Usuario getUsuarioDB(Usuario usuario);
+	public Usuario getPerfilInvitado(Usuario usuario);
 }
