@@ -40,7 +40,7 @@
 				<li class="navbar navbar-dark bg-mynav"><a
 					class="nav-link dropdown-toggle" href="#" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false">
-						${UsuarioLogeado} </a>
+						${NombreUsuario} </a>
 					<ul class="dropdown-menu">
 						<li><input class="btn btn-outline-dark" type=submit
 							value="Cerrar Session"></li>

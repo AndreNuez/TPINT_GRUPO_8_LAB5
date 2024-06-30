@@ -16,13 +16,7 @@
 	<div class="inicio">
 		<h1 class="inicio-content ">Portal de inicio</h1>
 	</div>
-
-	<%
-		Usuario user = (Usuario) request.getAttribute("userLogin");
-	%>
-
-	El Usuario:
-	<input type="text" value=<%=user.getNombre()%> name="id">
+	
 
 </body>
 </html>
