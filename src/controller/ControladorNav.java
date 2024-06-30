@@ -18,13 +18,6 @@ import negocio.INacionalidadNegocio;
 @Controller
 public class ControladorNav {
 
-    @Autowired
-    @Qualifier("servicioEspecialidad")
-    private IEspecialidadNegocio especialidadNegocio;
-    
-    @Autowired
-    @Qualifier("servicioNacionalidad")
-    private INacionalidadNegocio nacionalidadNegocio;
 
     @RequestMapping("navPages.do")
     public ModelAndView eventoRedireccionarPages(String inicioJsp, String medicosJsp, String pacientesJsp,
@@ -34,12 +27,8 @@ public class ControladorNav {
         if (inicioJsp != null && inicioJsp.equals("Inicio"))
             MV.setViewName("Principal");
         else if (medicosJsp != null && medicosJsp.equals("Medicos")) {
-            MV.setViewName("ABMMedico");
-            List<Especialidad> especialidades = especialidadNegocio.ReadAll();
-            List<Nacionalidad> nacionalidades = nacionalidadNegocio.ReadAll();
-            
-            MV.addObject("especialidades", especialidades);
-            MV.addObject("nacionalidades", nacionalidades);
+            MV.setViewName("ListarMedicos");
+           
 
         } else if (pacientesJsp != null && pacientesJsp.equals("Pacientes"))
             MV.setViewName("ABMPaciente");
