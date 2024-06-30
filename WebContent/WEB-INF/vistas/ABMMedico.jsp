@@ -1,3 +1,4 @@
+<%@page import="entidad.Medico"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,9 +11,9 @@
 <title>Medico</title>
 </head>
 <body>
-	<%@include file="Nav.html"%>
+	<%@include file="Menu.jsp"%>
 	
-	<form id="formPpal" action="ServletMedico" method="post">
+	<form id="formPpal" action="ABMMedico.do" method="post">
 
 		<h2 class="title">Alta y Modificacion de Medicos</h2>
 		<br>
@@ -23,23 +24,23 @@
 		<table>
 			<tr>
                 <td><label>DNI</label></td>
-                <td><input type="number" min=1000000 min=0 name="txtDni" value="<%= %>" required></td>
+                <td><input type="number" min=1000000 min=0 name="txtDni" value="" ></td>
             </tr>			
 			<tr>
 				<td><label>Nombre</label></td>
-				<td><input type="text" name="txtNombre" pattern="[a-z A-Z]+" value="<%= %>" required></td>
+				<td><input type="text" name="txtNombre" pattern="[a-z A-Z]+" value="" ></td>
 			</tr>
 			<tr>
 				<td><label>Apellido</label></td>
-				<td><input type="text" name="txtApellido"  pattern="[a-z A-Z]+" value="<%= %>" required></td>
+				<td><input type="text" name="txtApellido"  pattern="[a-z A-Z]+" value="" ></td>
 			</tr>
 			<tr>
 				<td><label>Especialidad</label></td>
 				<td><select name="selEspecialidad" style="width: 233px;">
 						<%
 						%>
-						<option  value="<%=%>">
-							<%=%>
+						<option  value="">
+							
 						</option>
 						
 						<%
@@ -52,7 +53,7 @@
 						<%
 						%>
 						<option  value="">
-							<%=%>
+							
 						</option>
 						
 						<%
@@ -74,7 +75,7 @@
 						
 						%>
 							<option value="">
-								<%=%>
+								
 							</option>
 						<%
 						%>
@@ -108,7 +109,7 @@
                        
                         %>
                         <option value="" provincias="" >
-                        	<%=%>
+                        	
                         </option>
 						
                         <%

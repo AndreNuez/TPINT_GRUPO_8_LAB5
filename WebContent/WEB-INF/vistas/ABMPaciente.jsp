@@ -10,7 +10,7 @@
 <title>Paciente</title>
 </head>
 <body>
-	<%@include file="Nav.html"%>
+	<%@include file="Menu.jsp"%>
 
 	<form id="formPpal" action="servletPaciente" method="post">
 
@@ -40,7 +40,7 @@
 						
 						%>
 						<option  value=""  >
-							<%=%>
+							
 						</option>
 						
 						<%
@@ -68,7 +68,7 @@
 						
 						%>
 							<option value="" >
-								<%=%>
+								
 							</option>
 						<%
 						
@@ -83,7 +83,7 @@
                         
                         %>
                         <option value="" provincias="" >
-                        	<%=%>
+                        	
                         </option>
 						
                         <%

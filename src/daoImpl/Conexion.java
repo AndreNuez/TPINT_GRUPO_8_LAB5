@@ -7,31 +7,32 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 public class Conexion {
-	
+
 	private SessionFactory sessionFactory;
 	private Session session;
-	
+
 	public Conexion() {
 		Configuration configuration = new Configuration();
 		configuration.configure();
-		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties())
+				.buildServiceRegistry();
 		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 	}
-	
+
 	public Session abrirConexion() {
-		
+
 		session = sessionFactory.openSession();
 		return session;
 	}
-	
+
 	public void cerrarConexion() {
-		
+
 		session.close();
-		cerrarSessionFactory();
+		//cerrarSessionFactory();
 	}
-	
+
 	public void cerrarSessionFactory() {
-		
+
 		sessionFactory.close();
 	}
 

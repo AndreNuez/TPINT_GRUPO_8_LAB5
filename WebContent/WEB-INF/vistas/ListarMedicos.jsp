@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<%@include file="Nav.html"%>
+	<%@include file="Menu.jsp"%>
 	
 	<link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">

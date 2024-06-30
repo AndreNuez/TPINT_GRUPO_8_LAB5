@@ -14,7 +14,7 @@
 </head>
 <body>
 	
-	<%@include file="Nav.html"%>
+	<%@include file="Menu.jsp"%>
 
 	<h1  class="title">Listado de pacientes</h1>
  
