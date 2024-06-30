@@ -21,11 +21,11 @@
  	<%
 		
 	%>	
-	
+<form action="AddPaciente.do" method=post>	
 	<a href=""class="p-2 bd-highlight">
 		<input class="btn btn-outline-dark" type="submit" name="btnAgregarPaciente" value="Agregar Paciente" style="margin-left: 730px;">
 	</a>
-	
+</form>	
 	<%
 		
 	%>
@@ -55,16 +55,10 @@
                 <td>25/07/1998</td>
                 <td>tomasmate@gmail.com</td>
                 <td>Direccion Tomas</td>
-	<%
-	
-			
-	%>	
+
                 <td><a href=""><i class="fa fa-edit"></i></a></td>            
             </tr>
-    <%
-		
-	%>
-          <% %>
+
 	</tbody>
 
 	</table>

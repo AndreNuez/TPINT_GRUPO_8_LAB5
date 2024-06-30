@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,15 +37,11 @@
 			<tr>
 				<td><label>Nacionalidad</label></td>
 				<td><select name="selNacionalidad" style="width: 233px;">
-						<%
+				  <option value="">Seleccione una nacionalidad</option>
+							<c:forEach items="${nacionalidades}" var="nacionalidad">
+                                    <option value="${nacionalidad.idNacionalidad}">${nacionalidad.nacionalidad}</option>
+                                </c:forEach>
 						
-						%>
-						<option  value=""  >
-							
-						</option>
-						
-						<%
-						%>
 				</select></td>
 			</tr>
 			<tr>
@@ -62,6 +59,7 @@
 			</tr>
 
 			<tr>
+<!-- 
 				<td><label>Provincia</label></td>
 				<td><select name="selProvincia"  style="width: 233px;" Id="selProvincia">
 						<%
@@ -75,8 +73,8 @@
 						%>
 				</select></td>
 			</tr>
-
-			<tr>
+-->	
+<!--  		<tr>
                 <td><label>Localidad</label></td>
                 <td><select name="selLocalidad"  style="width: 233px;" Id="selLocalidad">
                         <%
@@ -90,6 +88,7 @@
                   
                         %>
                 </select></td>
+-->	
             </tr>
 			<tr>
 				<td><label>Direccion</label></td>

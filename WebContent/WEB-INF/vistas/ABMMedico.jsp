@@ -67,7 +67,7 @@
 				</select></td>
 			</tr>
 			<tr>
-				<td><label>Jornada</label></td>
+<!-- 			<td><label>Jornada</label></td>
 				<td><select name="selJornada">
 						<%
 						
@@ -79,6 +79,7 @@
 						%>
 				</select></td>
 			</tr>
+ -->	
 			<tr>
 				<td><label>Fecha Nacimiento</label></td>
 				<td><input type="date" name="txtFecNacimiento" value=""
@@ -86,6 +87,7 @@
 			</tr>
 
 			<tr>
+<!--  
 				<td><label>Provincia</label></td>
 				<td><select name="selProvincia" Id="selProvincia" style="width: 233px;">
 						<%
@@ -98,6 +100,7 @@
 
 						%>
 				</select></td>
+
 			</tr>
 
 			<tr>
@@ -114,6 +117,7 @@
 
                         %>
                 </select></td>
+-->
             </tr>
 			<tr>
 				<td><label>Direccion</label></td>

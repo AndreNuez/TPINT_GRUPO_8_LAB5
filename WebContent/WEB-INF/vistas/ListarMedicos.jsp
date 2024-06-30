@@ -33,11 +33,9 @@
 <body>
 
 	<h1 class="title">Listado de medicos</h1>
-
-	<a href="ServletMedico?op=add" class="p-2 bd-highlight">
+<form action="AddMedico.do" method=post>
 		<input class="btn btn-outline-dark" type="submit" name="btnAgregarMedico" value="Agregar Medico" style="margin-left: 730px;">
-	</a>
-
+</form>
 	<br>
 	<br>
 	<br>
