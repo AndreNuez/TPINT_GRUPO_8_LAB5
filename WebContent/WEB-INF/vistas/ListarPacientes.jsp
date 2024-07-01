@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -41,27 +42,27 @@
 				<td><b>DNI</b></td>
 				<td><b>Nombre</b></td>
 				<td><b>Apellido</b></td>
-				<td><b>Sexo</b></td>
+				<td><b>Direccion</b></td>
 				<td><b>Fecha Nacimiento </b></td>
 				<td><b>Correo Electronico</b></td>
-				<td><b>Direccion</b></td>
+				<td><b>Localidad</b></td>
 				<td><b></b></td>
 			</tr>
 		</thead>
 		<tbody>
-			<%  %>
-			<tr>
-				<td>42589741</td>
-				<td>Tomas</td>
-				<td>Mate</td>
-				<td>Masculino</td>
-				<td>25/07/1998</td>
-				<td>tomasmate@gmail.com</td>
-				<td>Direccion Tomas</td>
-
-				<td><a href=""><i class="fa fa-edit"></i></a></td>
-			</tr>
-
+			<c:forEach items="${pacientes}" var="paciente">
+				<tr>
+					<td>${paciente.dni}</td>
+					<td>${paciente.nombre}</td>
+					<td>${paciente.apellido}</td>
+					<td>${paciente.direccion}</td>
+					<td>${paciente.fechaNacimiento}</td>
+					<td>${paciente.correoElectronico}</td>
+					<td>${paciente.localidad}</td>
+					<td><a href="editarPaciente.do?id=${paciente.dni}"><i
+							class="fa fa-edit"></i></a></td>
+				</tr>
+			</c:forEach>
 		</tbody>
 
 	</table>

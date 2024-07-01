@@ -19,9 +19,7 @@ import negocioImpl.MedicoNegocio;
 @Controller
 public class ControladorListarMedicos {
 
-	@Autowired
-	@Qualifier("servicioMedico")
-	private MedicoNegocio medicoNg;
+	
 	
     @Autowired
     @Qualifier("servicioEspecialidad")

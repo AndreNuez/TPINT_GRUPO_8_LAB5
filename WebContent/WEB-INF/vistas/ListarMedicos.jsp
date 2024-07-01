@@ -1,6 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -55,19 +60,19 @@
 		</thead>
 		<tbody>
 
-			<tr>
-				<td>35698742</td>
-				<td>Juan%></td>
-				<td>Perez</td>
-				<td>Masculino</td>
-				<td>Cardiologia</td>
-				<td>juanperez@intramed.com</td>
-				<td>Direccion</td>
-				<td><a href=""><i class="fa fa-edit"></i></a></td>
-			</tr>
-			<%
-				
-			%>
+			<c:forEach items="${medicos}" var="medico">
+				<tr>
+					<td>${medico.legajo}</td>
+					<td>${medico.nombre}</td>
+					<td>${medico.apellido}</td>
+					<td>${medico.sexo}</td>
+					<td>${medico.especialidad.nombre}</td>
+					<td>${medico.correo}</td>
+					<td>${medico.direccion}</td>
+					<td><a href="editarMedico.do?id=${medico.legajo}"><i
+							class="fa fa-edit"></i></a></td>
+				</tr>
+			</c:forEach>
 		</tbody>
 
 	</table>

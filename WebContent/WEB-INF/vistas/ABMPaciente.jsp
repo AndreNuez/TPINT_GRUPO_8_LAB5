@@ -13,7 +13,7 @@
 <body>
 	<%@include file="Menu.jsp"%>
 
-	<form id="formPpal" action="servletPaciente" method="post">
+	<form id="formPpal" action="ABMPaciente.do" method="post">
 
 		<h2 class="title">Alta y Modificacion de Pacientes</h2>
 		<br>
@@ -24,22 +24,22 @@
 				<table>
 					<tr>
 						<td><label>DNI</label></td>
-						<td><input type="number" min=1000000 name="txtDni" value=""
+						<td><input type="number" min=1000000 name="dni" value=""
 							required></td>
 					</tr>
 					<tr>
 						<td><label>Nombre</label></td>
-						<td><input type="text" name="txtNombre" pattern="[a-z A-Z]+"
+						<td><input type="text" name="nombre" pattern="[a-z A-Z]+"
 							value="" required></td>
 					</tr>
 					<tr>
 						<td><label>Apellido</label></td>
-						<td><input type="text" name="txtApellido"
+						<td><input type="text" name="apellido"
 							pattern="[a-z A-Z]+" value="" required></td>
 					</tr>
 					<tr>
-						<td><label>Nacionalidad</label></td>
-						<td><select name="selNacionalidad" style="width: 233px;">
+<!-- 					<td><label>Nacionalidad</label></td>
+						<td><select name="Nacionalidad" style="width: 233px;">
 								<option value="">Seleccione una nacionalidad</option>
 								<c:forEach items="${nacionalidades}" var="nacionalidad">
 									<option value="${nacionalidad.idNacionalidad}">${nacionalidad.nacionalidad}</option>
@@ -55,9 +55,10 @@
 								<option value="Masculino">Masculino</option>
 						</select></td>
 					</tr>
+ -->
 					<tr>
-						<td><label>Fecha Nacimiento</label></td>
-						<td><input type="date" name="txtFecNacimiento" value=""
+					<td><label>Fecha Nacimiento</label></td>
+						<td><input type="date" name="fechaNacimiento" value=""
 							max="" required style="width: 233px;"></td>
 					</tr>
 
@@ -83,20 +84,30 @@
 						
                         <%%>
                 </select></td>
--->
+
 					</tr>
+-->
+					
 					<tr>
 						<td><label>Direccion</label></td>
-						<td><input type="text" name="txtDireccion" value="" required></td>
+						<td><input type="text" name="direccion" value="" required></td>
+					</tr>
+					<tr>
+						<td><label>Localidad</label></td>
+						<td><input type="text" name="localidad" value="" required></td>
+					</tr>
+					<tr>
+						<td><label>Provincia</label></td>
+						<td><input type="text" name="provincia" value="" required></td>
 					</tr>
 					<tr>
 						<td><label>Correo Electronico</label></td>
-						<td><input type="email" name="txtEmail"
+						<td><input type="email" name="correoElectronico"
 							pattern=".{1,}@.{1,}\.com.{0,}$" value="" required></td>
 					</tr>
 					<tr>
 						<td><label>Telefono</label></td>
-						<td><input type="number" min=10000000 name="txtTelefono"
+						<td><input type="number" min=10000000 name="telefono"
 							value="" required></td>
 					</tr>
 				</table>
@@ -113,7 +124,7 @@
 					
 				%>
 				<input class="btn btn-outline-primary" type="submit"
-					name="btnActualizar" value="Grabar"> <input
+					name="btnActualizar" value="Actualizar"> <input
 					class="btn btn-outline-danger" type="submit" name="btnEliminar"
 					value="Eliminar">
 				<%
@@ -122,13 +133,9 @@
 
 			</div>
 
-			<%
-				
-			%>
+	
 			<div class="success"></div>
-			<%
-				
-			%>
+		
 			<%
 				
 			%>

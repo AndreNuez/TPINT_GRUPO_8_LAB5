@@ -38,7 +38,7 @@ public class Medico implements Serializable {
 	private char sexo;
 
 	@Column(name = "FNac")
-	private LocalDate fNac;
+	private String fNac;
 
 	@Column(name = "Direccion")
 	private String direccion;
@@ -117,11 +117,11 @@ public class Medico implements Serializable {
 		this.sexo = sexo;
 	}
 
-	public LocalDate getFNac() {
+	public String getFNac() {
 		return this.fNac;
 	}
 
-	public void setFNac(LocalDate fNac) {
+	public void setFNac(String fNac) {
 		this.fNac = fNac;
 	}
 

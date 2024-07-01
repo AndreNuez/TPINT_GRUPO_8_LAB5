@@ -24,7 +24,7 @@ public class daoUsuario implements IDaoUsuario {
 		
 		try {
 			
-			session.save(usuario);
+			int ultimoId =(int) session.save(usuario);
 			tx = session.getTransaction();
 			tx.commit();
 			
