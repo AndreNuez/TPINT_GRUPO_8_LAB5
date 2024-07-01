@@ -13,4 +13,6 @@ public interface IDaoPaciente {
 	public boolean Update(Paciente paciente);
 	
 	public boolean Delete(Paciente paciente);
+	
+	public Paciente obtenerPacientePorId(String dni);
 }

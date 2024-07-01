@@ -13,5 +13,7 @@ public interface IDaoMedico {
 	public boolean Update(Medico medico);
 	
 	public boolean Delete(Medico medico);
+	
+	public Medico obtenerMedicoPorLegajo(int legajo);
 
 }

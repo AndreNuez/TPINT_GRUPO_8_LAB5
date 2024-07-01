@@ -54,4 +54,10 @@ public class MedicoNegocio implements IMedicoNegocio {
 		return daoMedico.Delete(medico);
 	}
 
+	@Override
+	public Medico obtenerMedicoPorLegajo(int legajo) {
+		
+		return daoMedico.obtenerMedicoPorLegajo(legajo);
+	}
+
 }

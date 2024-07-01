@@ -47,6 +47,7 @@
 				<td><b>Correo Electronico</b></td>
 				<td><b>Localidad</b></td>
 				<td><b></b></td>
+				<td><b></b></td>
 			</tr>
 		</thead>
 		<tbody>
@@ -59,8 +60,14 @@
 					<td>${paciente.fechaNacimiento}</td>
 					<td>${paciente.correoElectronico}</td>
 					<td>${paciente.localidad}</td>
-					<td><a href="editarPaciente.do?id=${paciente.dni}"><i
-							class="fa fa-edit"></i></a></td>
+					<td><form action="editarPaciente.do" method="get">
+                        <input type="hidden" name="id" value="${paciente.dni}">
+                        <button type="submit"><i class="fa fa-edit"></i></button>
+                    </form></td>
+                    <td><form action="EliminarPaciente.do" method="get">
+                        <input name="dni" type="hidden" value="${paciente.dni}">
+                        <button type="submit"><i class="fa fa-delete"></i></button>
+                    </form></td>
 				</tr>
 			</c:forEach>
 		</tbody>

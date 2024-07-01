@@ -58,7 +58,7 @@ public class Medico implements Serializable {
 	private Usuario usuario;
 
 	// Agregamos atributo del tipo Especialidad
-	@ManyToOne(cascade = { CascadeType.ALL })
+	@ManyToOne
 	@JoinColumn(name = "Id_Especialidad")
 	private Especialidad especialidad;
 

@@ -56,6 +56,7 @@
 				<td><b>Correo Electronico</b></td>
 				<td><b>Direccion</b></td>
 				<td><b></b></td>
+				<td><b></b></td>
 			</tr>
 		</thead>
 		<tbody>
@@ -71,6 +72,10 @@
 					<td>${medico.direccion}</td>
 					<td><a href="editarMedico.do?id=${medico.legajo}"><i
 							class="fa fa-edit"></i></a></td>
+					<td><form action="EliminarMedico.do" method="get">
+                        <input name="legajo" type="hidden" value="${medico.legajo}">
+                        <button type="submit"><i class="fa fa-delete"></i></button>
+                    </form></td>
 				</tr>
 			</c:forEach>
 		</tbody>

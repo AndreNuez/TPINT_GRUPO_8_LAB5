@@ -45,7 +45,7 @@ public class daoPaciente implements IDaoPaciente {
 		
 		session.beginTransaction();
 		@SuppressWarnings({ "unchecked" })
-		List<Paciente> list = (List<Paciente>)session.createQuery("from Paciente").list();
+		List<Paciente> list = (List<Paciente>)session.createQuery("from Paciente where Activo = 1").list();
 		
 		conexion.cerrarConexion();
 		
@@ -81,9 +81,11 @@ public class daoPaciente implements IDaoPaciente {
 		Transaction tx= session.beginTransaction();
 		boolean aux = true;
 		
+		paciente.setActivo(false);
+		
 		try {
 			
-			session.delete(paciente);
+			session.update(paciente);
 			tx = session.getTransaction();
 			tx.commit();
 			
@@ -96,6 +98,20 @@ public class daoPaciente implements IDaoPaciente {
 		conexion.cerrarConexion();
 		
 		return aux;
+	}
+
+	@Override
+	public Paciente obtenerPacientePorId(String dni) {
+		
+		Session session = conexion.abrirConexion();
+		
+		session.beginTransaction();
+		@SuppressWarnings({ "unchecked" })
+		Paciente paciente = (Paciente) session.createQuery("from Paciente where dni = :dni").setParameter("dni", dni).uniqueResult();
+		
+		conexion.cerrarConexion();
+		
+		return paciente;
 	}
 
 }

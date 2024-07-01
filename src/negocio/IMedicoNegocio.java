@@ -12,4 +12,6 @@ public interface IMedicoNegocio {
 	public boolean Update(Medico medico);
 	
 	public boolean Delete(Medico medico);
+	
+	public Medico obtenerMedicoPorLegajo(int legajo);
 }

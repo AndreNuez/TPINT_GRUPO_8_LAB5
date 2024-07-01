@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import dao.IDaoMedico;
 import daoImpl.Conexion;
 import entidad.Medico;
+import entidad.Paciente;
 
 @Repository("daoMedico")
 public class daoMedico implements IDaoMedico {
@@ -45,7 +46,7 @@ public class daoMedico implements IDaoMedico {
 		
 		session.beginTransaction();
 		@SuppressWarnings({ "unchecked" })
-		List<Medico> list = (List<Medico>)session.createQuery("from Medico").list();
+		List<Medico> list = (List<Medico>)session.createQuery("from Medico where Activo = 1").list();
 		
 		conexion.cerrarConexion();
 		
@@ -81,9 +82,11 @@ public class daoMedico implements IDaoMedico {
 		Transaction tx= session.beginTransaction();
 		boolean aux = true;
 		
+		medico.setActivo(false);
+		
 		try {
 			
-			session.delete(medico);
+			session.update(medico);
 			tx = session.getTransaction();
 			tx.commit();
 			
@@ -174,5 +177,19 @@ public class daoMedico implements IDaoMedico {
 		    conexion.cerrarConexion();
 			
 			return listaTurnos;
+		}
+
+		@Override
+		public Medico obtenerMedicoPorLegajo(int legajo) {
+			
+			Session session = conexion.abrirConexion();
+			
+			session.beginTransaction();
+			@SuppressWarnings({ "unchecked" })
+			Medico medico = (Medico) session.createQuery("from Medico where legajo = :legajo").setParameter("legajo", legajo).uniqueResult();
+			
+			conexion.cerrarConexion();
+			
+			return medico;
 		}
 }

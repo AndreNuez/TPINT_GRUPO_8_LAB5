@@ -56,4 +56,10 @@ public class PacienteNegocio implements IPacienteNegocio {
 		return daoPaciente.Delete(paciente);
 	}
 
+
+	@Override
+	public Paciente obtenerPacientePorId(String dni) {
+		return daoPaciente.obtenerPacientePorId(dni);
+	}
+
 }
