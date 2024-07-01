@@ -48,7 +48,7 @@
 
 		<thead>
 			<tr>
-				<td><b>DNI</b></td>
+				<td><b>Legajo</b></td>
 				<td><b>Nombre</b></td>
 				<td><b>Apellido</b></td>
 				<td><b>Sexo</b></td>
