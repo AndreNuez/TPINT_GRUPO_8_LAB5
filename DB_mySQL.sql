@@ -70,5 +70,27 @@ CREATE TABLE `turnos` (
   CONSTRAINT `FK95FD4F41BB6C029F` FOREIGN KEY (`Paciente_id`) REFERENCES `pacientes` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `jornadas` (
+  `IdJornada` int NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(50) NOT NULL,
+  `Estado` bit(1) NOT NULL,
+  `InicioLunes` int NOT NULL,
+  `FinLunes` int NOT NULL,
+  `InicioMartes` int NOT NULL,
+  `FinMartes` int NOT NULL,
+  `InicioMiercoles` int NOT NULL,
+  `FinMiercoles` int NOT NULL,
+  `InicioJueves` int NOT NULL,
+  `FinJueves` int NOT NULL,
+  `InicioViernes` int NOT NULL,
+  `FinViernes` int NOT NULL,
+  `InicioSabado` int NOT NULL,
+  `FinSabado` int NOT NULL,
+  `InicioDomingo` int NOT NULL,
+  `FinDomingo` int NOT NULL,
+  PRIMARY KEY (`IdJornada`),
+  UNIQUE KEY `UK_InicioFin` (`InicioLunes`,`FinLunes`,`InicioMartes`,`FinMartes`,`InicioMiercoles`,`FinMiercoles`,`InicioJueves`,`FinJueves`,`InicioViernes`,`FinViernes`,`InicioSabado`,`FinSabado`,`InicioDomingo`,`FinDomingo`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 INSERT INTO `dbhibernate`.`usuarios` (`Nombre`,`Password`,`medico`)
 VALUES('admin','admin',null);
