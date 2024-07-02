@@ -9,9 +9,9 @@ CREATE TABLE `especialidad` (
 
 CREATE TABLE `usuarios` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(255) DEFAULT NULL,
-  `Password` varchar(255) DEFAULT NULL,
-  `medico` tinyblob,
+  `Nombre` varchar(255) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `perfil` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=169 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -29,7 +29,7 @@ CREATE TABLE `medicos` (
   `Id_Especialidad` bigint DEFAULT NULL,
   `Id_Usuario` bigint DEFAULT NULL,
   `Activo` tinyint DEFAULT NULL,
-  `Jornada` varchar(45) DEFAULT NULL,
+  `Jornada` int DEFAULT NULL,
   PRIMARY KEY (`Legajo`),
   KEY `FK9B4BB42A7415813` (`Id_Usuario`),
   KEY `FK9B4BB42A756D7B0D` (`Id_Especialidad`),
@@ -92,8 +92,8 @@ CREATE TABLE `jornadas` (
   UNIQUE KEY `UK_InicioFin` (`InicioLunes`,`FinLunes`,`InicioMartes`,`FinMartes`,`InicioMiercoles`,`FinMiercoles`,`InicioJueves`,`FinJueves`,`InicioViernes`,`FinViernes`,`InicioSabado`,`FinSabado`,`InicioDomingo`,`FinDomingo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `dbhibernate`.`usuarios` (`Nombre`,`Password`,`medico`)
-VALUES('admin','admin',null);
+INSERT INTO `usuarios` (`Nombre`,`Password`,`perfil`)
+VALUES('admin','admin',1);
 
 INSERT INTO `jornadas` (`Descripcion`,`Estado`,`InicioLunes`,`FinLunes`,`InicioMartes`,`FinMartes`,`InicioMiercoles`,`FinMiercoles`,`InicioJueves`,`FinJueves`,`InicioViernes`,`FinViernes`,`InicioSabado`,`FinSabado`,`InicioDomingo`,`FinDomingo`) 
 VALUES ('Lunes a viernes, 8 a 12',1,8,12,8,12,8,12,8,12,8,12,0,0,0,0);
