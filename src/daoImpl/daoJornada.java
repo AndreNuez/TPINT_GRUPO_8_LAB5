@@ -3,9 +3,12 @@ package daoImpl;
 import java.util.ArrayList;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import dao.IDaoJornada;
 import entidad.Jornada;
 
+@Repository("daoJornada")
 public class daoJornada implements IDaoJornada {
 
 	@Autowired

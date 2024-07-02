@@ -68,15 +68,15 @@ public class Medico implements Serializable {
 	
 	@Column(name = "Activo")
 	private boolean activo;
-
+	
 	@Column(name = "Jornada")
-	private String jornada;	
+	private int jornada;	
 
-	public String getJornada() {
+	public int getJornada() {
 		return jornada;
 	}
 
-	public void setJornada(String jornada) {
+	public void setJornada(int jornada) {
 		this.jornada = jornada;
 	}
 

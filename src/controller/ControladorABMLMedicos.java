@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import entidad.Especialidad;
 import entidad.Medico;
 import negocio.IEspecialidadNegocio;
+import negocio.IJornadaNegocio;
 import negocioImpl.MedicoNegocio;
 
 
@@ -27,6 +28,10 @@ public class ControladorABMLMedicos {
     @Autowired
     @Qualifier("servicioEspecialidad")
     private IEspecialidadNegocio especialidadNegocio;
+    
+    @Autowired
+    @Qualifier("servicioJornada")
+    private IJornadaNegocio jornadaNegocio;
 	
 	@RequestMapping("ABMMedico.do")
 	public ModelAndView eventoAMBMedico(Medico medico, HttpSession session)

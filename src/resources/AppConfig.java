@@ -6,18 +6,21 @@ import org.springframework.context.annotation.Configuration;
 
 import daoImpl.Conexion;
 import daoImpl.daoEspecialidad;
+import daoImpl.daoJornada;
 import daoImpl.daoMedico;
 import daoImpl.daoNacionalidad;
 import daoImpl.daoPaciente;
 import daoImpl.daoTurno;
 import daoImpl.daoUsuario;
 import entidad.Especialidad;
+import entidad.Jornada;
 import entidad.Medico;
 import entidad.Nacionalidad;
 import entidad.Paciente;
 import entidad.Turno;
 import entidad.Usuario;
 import negocioImpl.EspecialidadNegocio;
+import negocioImpl.JornadaNegocio;
 import negocioImpl.MedicoNegocio;
 import negocioImpl.NacionalidadNegocio;
 import negocioImpl.PacienteNegocio;
@@ -68,6 +71,12 @@ public class AppConfig {
         return nac;
     }
     
+    @Bean
+    public Jornada beanJornada() {
+    	Jornada jor = new Jornada();
+        return jor;
+    }
+    
     //BEANS DAO
     @Bean
     public daoMedico beanDaoMedico() {
@@ -98,6 +107,11 @@ public class AppConfig {
     public daoNacionalidad beanDaoNacionalidad() {
         daoNacionalidad daoNacionalidad = new daoNacionalidad();
         return daoNacionalidad;
+    }
+    @Bean
+    public daoJornada beanDaoJornada() {
+        daoJornada daoJornada = new daoJornada();
+        return daoJornada;
     }
     
     // BEANS NEGOCIO
@@ -134,6 +148,11 @@ public class AppConfig {
     public NacionalidadNegocio beanNacionalidadNegocio() {
         NacionalidadNegocio nacionalidadNeg = new NacionalidadNegocio();
         return nacionalidadNeg;
+    }
+    @Bean
+    public JornadaNegocio beanJornadaNegocio() {
+    	JornadaNegocio jornadaNeg = new JornadaNegocio();
+        return jornadaNeg;
     }
     
 }
