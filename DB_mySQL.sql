@@ -94,3 +94,10 @@ CREATE TABLE `jornadas` (
 
 INSERT INTO `dbhibernate`.`usuarios` (`Nombre`,`Password`,`medico`)
 VALUES('admin','admin',null);
+
+INSERT INTO `jornadas` (`Descripcion`,`Estado`,`InicioLunes`,`FinLunes`,`InicioMartes`,`FinMartes`,`InicioMiercoles`,`FinMiercoles`,`InicioJueves`,`FinJueves`,`InicioViernes`,`FinViernes`,`InicioSabado`,`FinSabado`,`InicioDomingo`,`FinDomingo`) 
+VALUES ('Lunes a viernes, 8 a 12',1,8,12,8,12,8,12,8,12,8,12,0,0,0,0);
+INSERT INTO `jornadas` (`Descripcion`,`Estado`,`InicioLunes`,`FinLunes`,`InicioMartes`,`FinMartes`,`InicioMiercoles`,`FinMiercoles`,`InicioJueves`,`FinJueves`,`InicioViernes`,`FinViernes`,`InicioSabado`,`FinSabado`,`InicioDomingo`,`FinDomingo`) 
+VALUES ('Lunes a miercoles, 15 a 19',1,15,19,15,19,15,19,0,0,0,0,0,0,0,0);
+INSERT INTO `jornadas` (`Descripcion`,`Estado`,`InicioLunes`,`FinLunes`,`InicioMartes`,`FinMartes`,`InicioMiercoles`,`FinMiercoles`,`InicioJueves`,`FinJueves`,`InicioViernes`,`FinViernes`,`InicioSabado`,`FinSabado`,`InicioDomingo`,`FinDomingo`) 
+VALUES ('Viernes, sábado y domingo, 18 a 21',1,0,0,0,0,0,0,0,0,18,21,18,21,18,21);
