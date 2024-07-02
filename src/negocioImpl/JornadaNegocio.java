@@ -12,6 +12,9 @@ public class JornadaNegocio implements IJornadaNegocio {
 
 	@Autowired
 	private IDaoJornada daoJornada;
+
+	public JornadaNegocio() {		
+	}
 	
 	@Override
 	public ArrayList<Jornada> readAll(int estado) {
