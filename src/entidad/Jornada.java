@@ -1,5 +1,7 @@
 package entidad;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,10 +11,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Jornadas")
-public class Jornada {
-	
+public class Jornada implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@Column(name = "IdJornada")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	

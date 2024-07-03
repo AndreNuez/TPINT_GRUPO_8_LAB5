@@ -69,14 +69,15 @@ public class Medico implements Serializable {
 	@Column(name = "Activo")
 	private boolean activo;
 	
-	@Column(name = "Jornada")
-	private int jornada;	
+	@ManyToOne
+	@JoinColumn(name = "IdJornada")
+	private Jornada jornada;	
 
-	public int getJornada() {
+	public Jornada getJornada() {
 		return jornada;
 	}
 
-	public void setJornada(int jornada) {
+	public void setJornada(Jornada jornada) {
 		this.jornada = jornada;
 	}
 
@@ -193,9 +194,11 @@ public class Medico implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Medico [Legajo=" + legajo + ", Nombre=" + nombre + ", Apellido=" + apellido + ", Sexo=" + sexo
-				+ ", FNac=" + fNac + ", Dirección=" + direccion + ", Localidad=" + localidad + ", Correo=" + correo
-				+ ", Teléfono=" + telefono + ", Activo: " + activo + " Jornada:" + jornada + "]";
+		return "Medico [legajo=" + legajo + ", nombre=" + nombre + ", apellido=" + apellido + ", sexo=" + sexo
+				+ ", fNac=" + fNac + ", direccion=" + direccion + ", localidad=" + localidad + ", correo=" + correo
+				+ ", telefono=" + telefono + ", usuario=" + usuario + ", especialidad=" + especialidad
+				+ ", listaTurnos=" + listaTurnos + ", activo=" + activo + ", jornada=" + jornada + "]";
 	}
+
 
 }
