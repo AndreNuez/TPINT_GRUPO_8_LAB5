@@ -16,29 +16,29 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB AUTO_INCREMENT=169 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
+CREATE TABLE `medicos` (
+  `Legajo` int(11) NOT NULL AUTO_INCREMENT,
+  `Activo` tinyint(1) DEFAULT NULL,
+  `Apellido` varchar(255) DEFAULT NULL,
+  `Correo` varchar(255) DEFAULT NULL,
+  `Direccion` varchar(255) DEFAULT NULL,
+  `FNac` varchar(255) DEFAULT NULL,
+  `Localidad` varchar(255) DEFAULT NULL,
+  `Nombre` varchar(255) DEFAULT NULL,
+  `Sexo` char(1) DEFAULT NULL,
+  `Telefono` varchar(255) DEFAULT NULL,
+  `Id_Especialidad` bigint(20) DEFAULT NULL,
+  `IdJornada` int(11) DEFAULT NULL,
+  `Id_Usuario` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`Legajo`),
+  KEY `FK9B4BB42A7415813` (`Id_Usuario`),
+  KEY `FK9B4BB42A756D7B0D` (`Id_Especialidad`),
+  KEY `FK9B4BB42A2824E4DA` (`IdJornada`),
+  CONSTRAINT `FK9B4BB42A2824E4DA` FOREIGN KEY (`IdJornada`) REFERENCES `jornadas` (`id`),
+  CONSTRAINT `FK9B4BB42A7415813` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `FK9B4BB42A756D7B0D` FOREIGN KEY (`Id_Especialidad`) REFERENCES `especialidad` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-CREATE TABLE medicos (
-  Legajo int(11) NOT NULL AUTO_INCREMENT,
-  Activo tinyint(1) DEFAULT NULL,
-  Apellido varchar(255) DEFAULT NULL,
-  Correo varchar(255) DEFAULT NULL,
-  Direccion varchar(255) DEFAULT NULL,
-  FNac varchar(255) DEFAULT NULL,
-  Localidad varchar(255) DEFAULT NULL,
-  Nombre varchar(255) DEFAULT NULL,
-  Sexo char(1) DEFAULT NULL,
-  Telefono varchar(255) DEFAULT NULL,
-  Id_Especialidad bigint(20) DEFAULT NULL,
-  IdJornada int(11) DEFAULT NULL,
-  Id_Usuario bigint(20) DEFAULT NULL,
-  PRIMARY KEY (Legajo),
-  KEY FK9B4BB42A7415813 (Id_Usuario),
-  KEY FK9B4BB42A756D7B0D (Id_Especialidad),
-  KEY FK9B4BB42A2824E4DA (IdJornada),
-  CONSTRAINT FK9B4BB42A2824E4DA FOREIGN KEY (IdJornada) REFERENCES jornadas (id),
-  CONSTRAINT FK9B4BB42A7415813 FOREIGN KEY (Id_Usuario) REFERENCES usuarios (id),
-  CONSTRAINT FK9B4BB42A756D7B0D FOREIGN KEY (Id_Especialidad) REFERENCES especialidad (id)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
 
 CREATE TABLE `pacientes` (
   `id` bigint NOT NULL AUTO_INCREMENT,
