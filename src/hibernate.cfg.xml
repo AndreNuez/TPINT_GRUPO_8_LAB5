@@ -5,12 +5,14 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.password">root</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/TPINT_GRUPO_8_LAB5?createDatabaseIfNotExist=true</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/TPINT_GRUPO_8_LAB5?createDatabaseIfNotExist=true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">true</property>
+        <property name="log4j.logger.org.hibernate.type">trace</property>
         
         <mapping class="entidad.Medico"/>
         <mapping class="entidad.Especialidad"/>
@@ -18,6 +20,6 @@
         <mapping class="entidad.Turno"/>
         <mapping class="entidad.Usuario"/>
         <mapping class="entidad.Nacionalidad"/>
-	<mapping class="entidad.Jornada"/>
+        <mapping class="entidad.Jornada"/>
     </session-factory>
 </hibernate-configuration>

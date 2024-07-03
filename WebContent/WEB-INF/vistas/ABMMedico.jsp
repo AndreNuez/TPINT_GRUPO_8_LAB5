@@ -34,7 +34,7 @@
 							value="" required></td>
 					</tr>
 					<tr>
-			        <td><label>Especialidad</label></td>
+						<td><label>Especialidad</label></td>
 						<td><select name="especialidad.id" style="width: 233px;">
 								<option value="">Seleccione una Especialidad</option>
 								<c:forEach items="${especialidades}" var="especialidad">
@@ -43,7 +43,16 @@
 
 						</select></td>
 					</tr>
- 
+					<tr>
+						<td><label>Jornada</label></td>
+						<td><select name="jornada.id" style="width: 233px;">
+								<option value="">Seleccione una Jornada</option>
+								<c:forEach items="${jornadas}" var="jornada">
+									<option value="${jornada.id}">${jornada.descripcion}</option>
+								</c:forEach>
+
+						</select></td>
+					</tr>
 					<tr>
 						<td><label>Sexo</label></td>
 						<td><select name="sexo" style="width: 233px;">

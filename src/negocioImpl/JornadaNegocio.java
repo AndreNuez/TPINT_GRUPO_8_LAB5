@@ -19,7 +19,7 @@ public class JornadaNegocio implements IJornadaNegocio {
 	}
 	
 	@Override
-	public ArrayList<Jornada> readAll(int estado) {
-		return daoJornada.readAll(estado);
+	public ArrayList<Jornada> ReadAll() {
+		return daoJornada.ReadAll();
 	}
 }

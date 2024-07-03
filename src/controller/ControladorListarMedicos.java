@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import entidad.Especialidad;
+import entidad.Jornada;
 import entidad.Medico;
 import entidad.Nacionalidad;
 import entidad.Paciente;
 import negocio.IEspecialidadNegocio;
+import negocio.IJornadaNegocio;
 import negocio.INacionalidadNegocio;
 import negocioImpl.MedicoNegocio;
 
@@ -33,6 +35,10 @@ public class ControladorListarMedicos {
     @Autowired
     @Qualifier("servicioNacionalidad")
     private INacionalidadNegocio nacionalidadNegocio;
+    
+	@Autowired
+	@Qualifier("servicioJornada")
+	private IJornadaNegocio jornadaNegocio;
 
 	@RequestMapping("AddMedico.do")
 	public ModelAndView eventoRedireccionarPrincipal(String btnAgregarMedico, HttpSession session) {
@@ -42,9 +48,11 @@ public class ControladorListarMedicos {
 		MV.setViewName("ABMMedico");
 		 List<Especialidad> especialidades = especialidadNegocio.ReadAll();
          List<Nacionalidad> nacionalidades = nacionalidadNegocio.ReadAll();
+         List<Jornada> jornadas = jornadaNegocio.ReadAll();
          
          MV.addObject("especialidades", especialidades);
          MV.addObject("nacionalidades", nacionalidades);
+         MV.addObject("jornadas", jornadas);
 		return MV;
 
 	}
@@ -61,5 +69,4 @@ public class ControladorListarMedicos {
     	
 		return MV;
 	}
-
 }

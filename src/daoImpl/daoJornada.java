@@ -15,23 +15,20 @@ public class daoJornada implements IDaoJornada {
 	private Conexion conexion;
 
 	@Override
-	public ArrayList<Jornada> readAll(int estado) {
-		
+	public ArrayList<Jornada> ReadAll() {
+
 		Session session = conexion.abrirConexion();
-		ArrayList<Jornada> jornadas = null;
-		String query = "FROM Jornadas j";			
-		query = estado == 0?" WHERE j.estado = 0":" WHERE j.estado = 1";			
-		try {			
-			
+		try {
+
 			session.beginTransaction();
-			@SuppressWarnings({ "unchecked" })			
-			ArrayList<Jornada> jorns = (ArrayList<Jornada>)session.createQuery(query).list();
-			if (jorns.size()>0)
-				jornadas = jorns;
+			@SuppressWarnings({ "unchecked" })
+			ArrayList<Jornada> jornadas = (ArrayList<Jornada>) session.createQuery("FROM Jornada").list();
 			conexion.cerrarConexion();
+			return jornadas;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return jornadas;
+
 	}
 }

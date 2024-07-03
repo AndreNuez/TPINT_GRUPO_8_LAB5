@@ -5,5 +5,5 @@ import java.util.ArrayList;
 import entidad.Jornada;
 
 public interface IJornadaNegocio {
-	public ArrayList<Jornada> readAll(int estado);
+	public ArrayList<Jornada> ReadAll();
 }
