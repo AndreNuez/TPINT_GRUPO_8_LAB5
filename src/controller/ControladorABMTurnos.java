@@ -32,22 +32,18 @@ public class ControladorABMTurnos {
 	@Qualifier("servicioMedico")
 	private MedicoNegocio medicoNg;
 	
-	@RequestMapping("ABMTurnos.do")
-	public ModelAndView eventoABMTurnos(HttpSession session) {
+	@RequestMapping("ABMTurno.do")
+	public ModelAndView eventoABMTurnos(HttpSession session,Turno turno) {
 		ModelAndView MV = new ModelAndView();
-		
-		// Obtener la lista de turnos
-		List<Turno> turnos = turnoNg.ReadAll();
-		List<Especialidad> especialidades = especialidadNg.ReadAll();
-		List<Medico> medicos = medicoNg.ReadAll();
+		turnoNg.Add(turno);
 		
 		// Pasar las listas al JSP
-		MV.addObject("turnos", turnos);
-		MV.addObject("especialidades", especialidades);
-		MV.addObject("medicos", medicos);
+		
+		/*MV.addObject("especialidades", especialidades);
+		MV.addObject("medicos", medicos);*/
 		
 		// Establecer el nombre de la vista
-		MV.setViewName("ListarTurnos");
+		MV.setViewName("ABMTurno");
 		
 		return MV;
 	}

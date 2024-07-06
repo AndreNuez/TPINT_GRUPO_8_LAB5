@@ -16,104 +16,82 @@
     <h2 class="title">Alta y Modificacion de Turnos</h2>
 
     <div class="formulario">
-        <input type="hidden" name="id" value="${turno.id}">
+        
 
         <div>
             <table>
                 <tr>
-                    <td><label>Dni Paciente</label></td>
-                    <td><input type="text" name="txtDniPaciente" value="${turno.paciente.dni}" required ${not empty turno.paciente.dni ? 'disabled' : ''}></td>
-                    <c:if test="${empty turno.paciente.dni}">
-                        <td><button type="button" id="btnBuscarDni" class="btn btn-outline-success">Buscar Dni</button></td>
-                    </c:if>
+                    <td><label>ID Paciente</label></td>
+                    <td><input type="text" name="paciente" value=""></td>
+                    
+                        <td><button type="button" id="btnBuscarId" class="btn btn-outline-success">Buscar ID</button></td>
+                    
                 </tr>
-
-                <c:if test="${not empty turno.paciente.dni}">
+                
                     <tr>
                         <td><label>Nombre</label></td>
-                        <td><input type="text" name="txtNombrePaciente" value="${turno.paciente.nombre}" readonly style="background-color: #eee;"></td>
+                        <td><input type="text" name="txtNombrePaciente" value="" readonly style="background-color: #eee;"></td>
                     </tr>
 
                     <tr>
                         <td><label>Apellido</label></td>
-                        <td><input type="text" name="txtApellidoPaciente" value="${turno.paciente.apellido}" readonly style="background-color: #eee;"></td>
+                        <td><input type="text" name="txtApellidoPaciente" value="" readonly style="background-color: #eee;"></td>
                     </tr>
 
                     <tr>
                         <td><label>Especialidad</label></td>
                         <td><select name="selEspecialidad" id="selEspecialidad" style="width: 233px;" ${not empty turno.paciente.dni ? 'disabled' : ''}>
                             <option value="">Seleccione una Especialidad</option>
-                            <c:forEach items="${especialidades}" var="especialidad">
-                                <option value="${especialidad.id}" ${especialidad.id == turno.medico.especialidad.id ? 'selected' : ''}>${especialidad.nombre}</option>
-                            </c:forEach>
+                            
                         </select></td>
                     </tr>
 
                     <tr>
                         <td><label>Medico</label></td>
-                        <td><select name="selMedico" id="selMedico" style="width: 233px;" ${not empty turno.paciente.dni ? 'disabled' : ''}>
+                        <td><select name="selMedico" id="selMedico" style="width: 233px;">
                             <option value="">Seleccione un Medico</option>
-                            <c:forEach items="${medicos}" var="medico">
-                                <option value="${medico.dni}" data-especialidad="${medico.especialidad.id}" data-jornada="${medico.jornada.descripcion}" ${medico.dni == turno.medico.dni ? 'selected' : ''}>
-                                    ${medico.apellido} ${medico.nombre}
-                                </option>
-                            </c:forEach>
+                            
                         </select></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><label style="font-weight: bold;" id="lblJornada">${turno.medico.jornada.descripcion}</label></td>
+                        <td colspan="2"><label style="font-weight: bold;" id="lblJornada"></label></td>
                     </tr>
 
                     <tr>
                         <td><label>Fecha de Reserva</label></td>
-                        <td><input type="date" name="txtFechaReserva" value="${turno.fecha}" required style="width: 233px;" ${not empty turno.paciente.dni ? 'readonly disabled' : ''}></td>
-                        <td><button type="button" id="btnBuscarFecha" class="btn btn-outline-primary" ${not empty turno.paciente.dni ? 'style="display: none;"' : ''}>Buscar Fecha</button></td>
+                        <td><input type="date" name="txtFechaReserva" style="width: 233px"></td>
+                        <td><button type="button" id="btnBuscarFecha" class="btn btn-outline-primary" style="display:" >Buscar Fecha</button></td>
                     </tr>
 
-                    <c:if test="${not empty horas}">
+                    
                         <tr>
-                            <td><label>Hora</label></td>
-                            <c:choose>
-                                <c:when test="${horas.size() == 0}">
-                                    <td><label>No hay turnos disponibles para la fecha seleccionada</label></td>
-                                </c:when>
-                                <c:otherwise>
+                            <td><label>Hora</label></td>                           
+                               
                                     <td><select name="selHora">
-                                        <c:forEach items="${horas}" var="hora">
-                                            <option value="${hora}" ${hora == turno.hora ? 'selected' : ''}>${hora}</option>
-                                        </c:forEach>
+                                        
                                     </select></td>
-                                </c:otherwise>
-                            </c:choose>
+                               
                         </tr>
-                    </c:if>
+                   
 
                     <tr>
                         <td><label>Observaciones</label></td>
-                        <td><textarea name="txtObservacion" style="width: 233px;" required maxlength="1000">${turno.observacion}</textarea></td>
+                        <td><textarea name="txtObservacion" style="width: 233px;" maxlength="1000"></textarea></td>
                     </tr>
-                </c:if>
+            
             </table>
         </div>
 
         <div class="pt-4 w-25 d-flex justify-content-around">
-            <c:choose>
-                <c:when test="${empty turno.id}">
+      
                     <button type="submit" class="btn btn-outline-success" name="btnGrabar">Grabar</button>
-                </c:when>
-                <c:otherwise>
+                
                     <button type="submit" class="btn btn-outline-primary" name="btnActualizar">Actualizar</button>
                     <button type="submit" class="btn btn-outline-danger" name="btnEliminar">Eliminar</button>
-                </c:otherwise>
-            </c:choose>
+            
         </div>
 
-        <c:if test="${not empty success}">
-            <div class="success">${success}</div>
-        </c:if>
-        <c:if test="${not empty error}">
-            <div class="error">${error}</div>
-        </c:if>
+        
     </div>
 </form>
 
