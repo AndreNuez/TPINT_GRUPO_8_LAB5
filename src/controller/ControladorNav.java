@@ -13,9 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 import entidad.Especialidad;
 import entidad.Medico;
 import entidad.Paciente;
+import entidad.Turno;
 import negocioImpl.MedicoNegocio;
 import negocioImpl.PacienteNegocio;
-
+import negocioImpl.TurnoNegocio;
 @Controller
 public class ControladorNav {
 	
@@ -26,6 +27,10 @@ public class ControladorNav {
 	@Autowired
 	@Qualifier("servicioPaciente")
 	private PacienteNegocio pacienteNg;
+	
+	 @Autowired
+	 @Qualifier("servicioTurno")
+	 private TurnoNegocio turnoNg;
 
     @RequestMapping("navPages.do")
     public ModelAndView eventoRedireccionarPages(String inicioJsp, String medicosJsp, String pacientesJsp,
@@ -48,8 +53,11 @@ public class ControladorNav {
 
 	    }
         
-        else if (turnosJsp != null && turnosJsp.equals("Turnos"))
-            MV.setViewName("ABMTurnos");
+        else if (turnosJsp != null && turnosJsp.equals("Turnos")) {
+            List<Turno> turnos = turnoNg.ReadAll();
+            MV.addObject("turnos", turnos);
+            MV.setViewName("ListarTurnos");
+        }
         return MV;
     }
 
