@@ -47,7 +47,7 @@ public class daoMedico implements IDaoMedico {
 		
 		session.beginTransaction();
 		@SuppressWarnings({ "unchecked" })
-		List<Medico> list = (List<Medico>)session.createQuery("from Medico").list();
+		List<Medico> list = (List<Medico>)session.createQuery("from Medico where Activo = true").list();
 		
 		conexion.cerrarConexion();
 		
