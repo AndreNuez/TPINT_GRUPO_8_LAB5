@@ -48,16 +48,14 @@ public class ControladorABMLMedicos {
 			Usuario userMed = medico.getUsuario();
 			userMed.setPerfil(PerfilUsuario.MEDICO.ordinal());
 			medico.setActivo(true);
+			userMed.setActivo(true);
 			medico.setUsuario(userMed);
 			confirmacion = medicoNg.Add(medico);
+			
+			MV.addObject("confirmacion", confirmacion);
+			MV.setViewName("ListarMedicos");
 		}
-		List<Especialidad> especialidades = especialidadNegocio.ReadAll();
-		List<Jornada> jornadas = jornadaNegocio.ReadAll();
-		MV.addObject("especialidades", especialidades);
-		MV.addObject("confirmacion", confirmacion);
-		MV.addObject("jornadas", jornadas);
 
-		MV.setViewName("ABMMedico");
 		return MV;
 	}
 

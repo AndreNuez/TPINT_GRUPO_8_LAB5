@@ -64,4 +64,29 @@ public class daoUsuario implements IDaoUsuario {
 		return user;
 	}
 
+	@Override
+	public boolean Delete(Usuario user) {
+		
+		Session session = conexion.abrirConexion();
+		Transaction tx= session.beginTransaction();
+		boolean aux = true;
+		
+		try {
+			
+			session.update(user);
+			tx = session.getTransaction();
+			tx.commit();
+			
+		} catch (Exception e) {
+			
+			aux=false;
+			tx.rollback();
+		}
+		
+		conexion.cerrarConexion();
+		
+		return aux;
+		
+	}
+
 }

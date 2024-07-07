@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.IDaoMedico;
+import dao.IDaoUsuario;
 import entidad.Medico;
+import entidad.Usuario;
 import negocio.IMedicoNegocio;
 
 @Service("servicioMedico")
@@ -15,6 +17,9 @@ public class MedicoNegocio implements IMedicoNegocio {
 	
 	@Autowired
 	private IDaoMedico daoMedico;
+	
+	@Autowired
+	private IDaoUsuario daoUsuario;
 	
 	public MedicoNegocio() {
 		
@@ -51,7 +56,15 @@ public class MedicoNegocio implements IMedicoNegocio {
 	@Override
 	public boolean Delete(Medico medico) {
 		
-		return daoMedico.Delete(medico);
+		Usuario user = medico.getUsuario();
+		user.setActivo(false); 
+		
+		if (daoMedico.Delete(medico) && daoUsuario.Delete(user)) {
+			
+			return true;
+		}
+		
+		return false;
 	}
 
 	@Override

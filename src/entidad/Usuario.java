@@ -29,10 +29,21 @@ public class Usuario implements Serializable {
 
 	@Column(name = "Perfil")
 	private int perfil;
+	
+	@Column(name = "Activo")
+	private boolean activo;
 
 	// Agregamos Medico
 //	@OneToOne(mappedBy = "usuario", fetch = FetchType.EAGER)
 //	private Medico medico;
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
 
 	// Constructor en blanco
 	public Usuario() {
