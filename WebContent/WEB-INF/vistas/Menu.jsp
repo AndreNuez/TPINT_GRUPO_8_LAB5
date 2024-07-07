@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,40 +14,42 @@
 </head>
 <body>
 
-<script
+	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
 		crossorigin="anonymous"></script>
 
 	<nav class="navbar navbar-dark bg-mynav">
-		<div class="container-fluid">
-			<form action="navPages.do" method=post>
-				<input class="btn btn-primary" type=submit name="inicioJsp" value=Inicio>
-				<input class="btn btn-primary" type=submit name="medicosJsp" value=Medicos>
-				<input class="btn btn-primary" type=submit name="pacientesJsp" value=Pacientes>
-				<input class="btn btn-primary" type=submit name="turnosJsp" value=Turnos>
-			</form>
-			<div class="nav-item dropdown">
-				<a class="navbar-brand dropdown-toggle" href="#" role="button"
-					data-bs-toggle="dropdown" aria-expanded="false"> Reportes </a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="">Por Especialidad</a> <a
-						class="dropdown-item" href="">Por Medicos</a>
-				</div>
+	<div class="container-fluid">
+		<form action="navPages.do" method=post>
+			<input class="btn btn-primary" type=submit name="inicioJsp"
+				value=Inicio> <input class="btn btn-primary" type=submit
+				name="medicosJsp" value=Medicos> <input
+				class="btn btn-primary" type=submit name="pacientesJsp"
+				value=Pacientes> <input class="btn btn-primary" type=submit
+				name="turnosJsp" value=Turnos>
+		</form>
+		<div class="nav-item dropdown">
+			<a class="navbar-brand dropdown-toggle" href="#" role="button"
+				data-bs-toggle="dropdown" aria-expanded="false"> Reportes </a>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" href="">Por Especialidad</a> <a
+					class="dropdown-item" href="">Por Medicos</a>
 			</div>
-
-			<form action="navLogOut.do" method=post>
-				<li class="navbar navbar-dark bg-mynav"><a
-					class="nav-link dropdown-toggle" href="#" role="button"
-					data-bs-toggle="dropdown" aria-expanded="false">
-						${NombreUsuario} </a>
-					<ul class="dropdown-menu">
-						<li><input class="btn btn-outline-dark" type=submit
-							value="Cerrar Session"></li>
-					</ul></li>
-			</form>
-
 		</div>
+
+		<form action="navLogOut.do" method=post>
+			<li class="navbar navbar-dark bg-mynav"><a
+				class="nav-link dropdown-toggle" href="#" role="button"
+				data-bs-toggle="dropdown" aria-expanded="false">
+					${NombreUsuario} </a>
+				<ul class="dropdown-menu">
+					<li><input class="btn btn-outline-dark" type=submit
+						value="Cerrar Session"></li>
+				</ul></li>
+		</form>
+
+	</div>
 	</nav>
 
 </body>
