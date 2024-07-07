@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,9 @@ public class ControladorABMLPacientes {
 		
 		boolean confirmacion=pacienteNg.Add(paciente);
 		MV.addObject("confirmacion",confirmacion);
-		MV.setViewName("ABMPaciente");
+		List<Paciente> pacientes = pacienteNg.ReadAll();
+    	MV.addObject("pacientes", pacientes);
+		MV.setViewName("ListarPacientes");
 		
 		return MV;
 	}

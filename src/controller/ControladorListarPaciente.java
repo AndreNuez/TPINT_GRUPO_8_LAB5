@@ -47,19 +47,19 @@ public class ControladorListarPaciente {
 
 	}
 	
-	/*@RequestMapping("EditarPaciente.do")
-	public ModelAndView eventoEditarPaciente(@RequestParam("id") Long id, HttpSession session) {
+	@RequestMapping("EditarPaciente.do")
+	public ModelAndView eventoEditarPaciente(@RequestParam("dni") String dni, HttpSession session) {
 		ModelAndView MV = new ModelAndView();
-		Paciente paciente = pacienteNg.obtenerPacientePorId(id); // Implementa este método en tu negocio
+		Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni); // Implementa este método en tu negocio
 		MV.addObject("paciente", paciente);
 		MV.setViewName("ABMPaciente");
 		return MV;
-	}*/
+	}
 	
 	@RequestMapping("EliminarPaciente.do")
 	public ModelAndView eventoEliminarPaciente(@RequestParam("dni") String dni, HttpSession session) {
 		ModelAndView MV = new ModelAndView();
-		Paciente paciente = pacienteNg.obtenerPacientePorId(dni); // Implementa este método en tu negocio
+		Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni); // Implementa este método en tu negocio
 		pacienteNg.Delete(paciente);
 		
 		List<Paciente> pacientes = pacienteNg.ReadAll();

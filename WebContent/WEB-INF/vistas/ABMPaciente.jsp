@@ -24,18 +24,18 @@
 				<table>
 					<tr>
 						<td><label>DNI</label></td>
-						<td><input type="number" min=1000000 name="dni" value=""
+						<td><input type="text" min=1000000 name="dni" value="${paciente.dni}"
 							required></td>
 					</tr>
 					<tr>
 						<td><label>Nombre</label></td>
 						<td><input type="text" name="nombre" pattern="[a-z A-Z]+"
-							value="" required></td>
+							value="${paciente.nombre}" required></td>
 					</tr>
 					<tr>
 						<td><label>Apellido</label></td>
 						<td><input type="text" name="apellido"
-							pattern="[a-z A-Z]+" value="" required></td>
+							pattern="[a-z A-Z]+" value="${paciente.apellido}" required></td>
 					</tr>
 					<tr>
 <!-- 					<td><label>Nacionalidad</label></td>
@@ -58,7 +58,7 @@
  -->
 					<tr>
 					<td><label>Fecha Nacimiento</label></td>
-						<td><input type="date" name="fechaNacimiento" value=""
+						<td><input type="date" name="fechaNacimiento" value="${paciente.fechaNacimiento}"
 							max="" required style="width: 233px;"></td>
 					</tr>
 
@@ -90,25 +90,25 @@
 					
 					<tr>
 						<td><label>Direccion</label></td>
-						<td><input type="text" name="direccion" value="" required></td>
+						<td><input type="text" name="direccion" value="${paciente.direccion}" required></td>
 					</tr>
 					<tr>
 						<td><label>Localidad</label></td>
-						<td><input type="text" name="localidad" value="" required></td>
+						<td><input type="text" name="localidad" value="${paciente.localidad}" required></td>
 					</tr>
 					<tr>
 						<td><label>Provincia</label></td>
-						<td><input type="text" name="provincia" value="" required></td>
+						<td><input type="text" name="provincia" value="${paciente.provincia}" required></td>
 					</tr>
 					<tr>
 						<td><label>Correo Electronico</label></td>
 						<td><input type="email" name="correoElectronico"
-							pattern=".{1,}@.{1,}\.com.{0,}$" value="" required></td>
+							pattern=".{1,}@.{1,}\.com.{0,}$" value="${paciente.correoElectronico}" required></td>
 					</tr>
 					<tr>
 						<td><label>Telefono</label></td>
 						<td><input type="number" min=10000000 name="telefono"
-							value="" required></td>
+							value="${paciente.telefono}" required></td>
 					</tr>
 				</table>
 			</div>

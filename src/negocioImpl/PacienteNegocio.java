@@ -58,8 +58,8 @@ public class PacienteNegocio implements IPacienteNegocio {
 
 
 	@Override
-	public Paciente obtenerPacientePorId(String dni) {
-		return daoPaciente.obtenerPacientePorId(dni);
+	public Paciente obtenerPacientePorDNI(String dni) {
+		return daoPaciente.obtenerPacientePorDNI(dni);
 	}
 
 }
