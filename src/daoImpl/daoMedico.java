@@ -32,6 +32,7 @@ public class daoMedico implements IDaoMedico {
 			
 		} catch (Exception e) {
 			aux=false;
+			System.out.println(e.getMessage());
 			tx.rollback();
 		}
 		conexion.cerrarConexion();
@@ -46,7 +47,7 @@ public class daoMedico implements IDaoMedico {
 		
 		session.beginTransaction();
 		@SuppressWarnings({ "unchecked" })
-		List<Medico> list = (List<Medico>)session.createQuery("from Medico where Activo = 1").list();
+		List<Medico> list = (List<Medico>)session.createQuery("from Medico").list();
 		
 		conexion.cerrarConexion();
 		

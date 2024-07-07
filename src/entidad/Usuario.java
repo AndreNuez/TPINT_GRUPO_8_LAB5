@@ -31,8 +31,8 @@ public class Usuario implements Serializable {
 	private int perfil;
 
 	// Agregamos Medico
-	@OneToOne(mappedBy = "usuario", fetch = FetchType.EAGER)
-	private Medico medico;
+//	@OneToOne(mappedBy = "usuario", fetch = FetchType.EAGER)
+//	private Medico medico;
 
 	// Constructor en blanco
 	public Usuario() {
@@ -65,13 +65,13 @@ public class Usuario implements Serializable {
 	}
 
 	// Agregamos getters y setters para Medico
-	public Medico getMedico() {
-		return medico;
-	}
-
-	public void setMedico(Medico medico) {
-		this.medico = medico;
-	}
+//	public Medico getMedico() {
+//		return medico;
+//	}
+//
+//	public void setMedico(Medico medico) {
+//		this.medico = medico;
+//	}
 
 	public int getPerfil() {
 		return perfil;
@@ -84,8 +84,9 @@ public class Usuario implements Serializable {
 	@Override
 	public String toString() {
 		String mensaje = "Usuario [id=" + id + ", nombre=" + nombre + ", password=" + password + ", medico=";
-		if (medico != null)
-			mensaje += medico.getNombre() + ", " + medico.getApellido() + " - " + medico.getEspecialidad() + "]";
+//		if (medico != null)
+//			mensaje += medico.getNombre() + ", " + medico.getApellido() + " - " + medico.getEspecialidad();
+		mensaje += "]";
 		return mensaje;
 	}
 }

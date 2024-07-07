@@ -64,7 +64,7 @@
 
 					<tr>
 						<td><label>Fecha Nacimiento</label></td>
-						<td><input type="date" name="fNac" value="" max="" required
+						<td><input type="date" name="fNac" value=""
 							style="width: 233px;"></td>
 					</tr>
 
@@ -98,23 +98,32 @@
 -->
 					<tr>
 						<td><label>Direccion</label></td>
-						<td><input type="text" name="direccion" value="" required></td>
+						<td><input type="text" name="direccion" value="" ></td>
 					</tr>
 					<tr>
 						<td><label>Localidad</label></td>
-						<td><input type="text" name="localidad" value="" required></td>
+						<td><input type="text" name="localidad" value="" ></td>
 					</tr>
 
 					<tr>
 						<td><label>Correo Electronico</label></td>
 						<td><input type="email" name="correo"
-							pattern=".{1,}@.{1,}\.com.{0,}$" value="" required></td>
+							pattern=".{1,}@.{1,}\.com.{0,}$" value="" ></td>
 					</tr>
 					<tr>
 						<td><label>Telefono</label></td>
 						<td><input type="number" min=10000000 name="telefono"
-							value="" required></td>
+							value="" ></td>
 					</tr>
+					<tr>
+						<td><label>Usuario</label></td>
+						<td><input type="text" name="usuario.nombre" value="" ></td>
+					</tr>
+					<tr>
+						<td><label>Password</label></td>
+						<td><input type="password" name="usuario.password" value="" ></td>
+					</tr>
+					
 				</table>
 			</div>
 
@@ -124,14 +133,14 @@
 					
 				%>
 				<input class="btn btn-outline-success" type="submit"
-					name="btnGrabar" value="Grabar">
+					name="btnGrabar" value=Grabar>
 				<%
 					
 				%>
 				<input class="btn btn-outline-primary" type="submit"
-					name="btnActualizar" value="Actualizar"> <input
+					name="btnActualizar" value=Actualizar> <input
 					class="btn btn-outline-danger" type="submit" name="btnEliminar"
-					value="Eliminar">
+					value=Eliminar>
 				<%
 					
 				%>

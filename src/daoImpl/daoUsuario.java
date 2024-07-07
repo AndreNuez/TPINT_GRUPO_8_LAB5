@@ -24,12 +24,13 @@ public class daoUsuario implements IDaoUsuario {
 		
 		try {
 			
-			int ultimoId =(int) session.save(usuario);
+			session.save(usuario);
 			tx = session.getTransaction();
 			tx.commit();
 			
 		} catch (Exception e) {
 			aux=false;
+			System.out.println(e.getMessage());
 			tx.rollback();
 		}
 		conexion.cerrarConexion();
