@@ -23,8 +23,6 @@
 			<div>
 				<table>
 					<tr>
-						
-
 						<td><label>DNI</label></td>
 						<c:if test="${not editar}">
 							<td><input type="text" min=1000000 name="dni"
@@ -37,7 +35,7 @@
 						</c:if>
 					</tr>
 					<tr>
-						<td><input name="id" type="number" value="${paciente.id}"></td>
+						<td><input name="id" type="hidden" value="${paciente.id}" readonly></td>
 					</tr>
 					<tr>
 						<td><label>Nombre</label></td>

@@ -86,8 +86,12 @@ public class Paciente implements Serializable {
         return nombre;
     }
 
-    public int getId() {
+	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public void setNombre(String nombre) {
