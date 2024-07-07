@@ -117,11 +117,11 @@ public class Medico implements Serializable {
 		this.sexo = sexo;
 	}
 
-	public String getFNac() {
+	public String getfNac() {
 		return this.fNac;
 	}
 
-	public void setFNac(String fNac) {
+	public void setfNac(String fNac) {
 		this.fNac = fNac;
 	}
 

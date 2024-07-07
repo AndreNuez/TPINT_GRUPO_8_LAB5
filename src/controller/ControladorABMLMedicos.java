@@ -40,9 +40,10 @@ public class ControladorABMLMedicos {
 	private IJornadaNegocio jornadaNegocio;
 
 	@RequestMapping("ABMMedico.do")
-	public ModelAndView eventoAMBMedico(Medico medico, HttpSession session, String btnGrabar) {
+	public ModelAndView eventoAMBMedico(Medico medico, HttpSession session, String btnGrabar, String btnActualizar) {
 		ModelAndView MV = new ModelAndView();
 		boolean confirmacion = false;
+
 		if (btnGrabar != null && btnGrabar.equals("Grabar")) {
 			// primero se graba el usuario
 			Usuario userMed = medico.getUsuario();
@@ -52,10 +53,24 @@ public class ControladorABMLMedicos {
 			medico.setUsuario(userMed);
 			confirmacion = medicoNg.Add(medico);
 			
+			List<Medico> medicos = medicoNg.ReadAll();
+			MV.addObject("medicos", medicos);
+
 			MV.addObject("confirmacion", confirmacion);
 			MV.setViewName("ListarMedicos");
-		}
 
+		} else if (btnActualizar != null && btnActualizar.equals("Actualizar")) {
+
+			confirmacion = medicoNg.Update(medico);
+			
+			List<Medico> medicos = medicoNg.ReadAll();
+			MV.addObject("medicos", medicos);
+
+			MV.addObject("confirmacion", confirmacion);
+			MV.setViewName("ListarMedicos");
+
+		}
+		
 		return MV;
 	}
 
