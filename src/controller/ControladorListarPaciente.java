@@ -36,15 +36,12 @@ public class ControladorListarPaciente {
 	public ModelAndView eventoRedireccionarPrincipal(String btnAgregarPaciente, HttpSession session) {
 
 		ModelAndView MV = new ModelAndView();
-
 		MV.setViewName("ABMPaciente");
-		
         List<Nacionalidad> nacionalidades = nacionalidadNegocio.ReadAll();
-     
         MV.addObject("nacionalidades", nacionalidades);
+        MV.addObject("editar", false);
         
 		return MV;
-
 	}
 	
 	@RequestMapping("EditarPaciente.do")
@@ -52,6 +49,8 @@ public class ControladorListarPaciente {
 		ModelAndView MV = new ModelAndView();
 		Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni); // Implementa este método en tu negocio
 		MV.addObject("paciente", paciente);
+		
+		MV.addObject("editar", true);
 		MV.setViewName("ABMPaciente");
 		return MV;
 	}

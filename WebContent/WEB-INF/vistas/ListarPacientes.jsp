@@ -60,8 +60,8 @@
 					<td>${paciente.fechaNacimiento}</td>
 					<td>${paciente.correoElectronico}</td>
 					<td>${paciente.localidad}</td>
-					<td><form action="editarPaciente.do" method="get">
-                        <input type="hidden" name="id" value="${paciente.dni}">
+					<td><form action="EditarPaciente.do" method="get">
+                        <input type="hidden" name="dni" value="${paciente.dni}">
                         <button type="submit"><i class="fa fa-edit"></i></button>
                     </form></td>
                     <td><form action="EliminarPaciente.do" method="get">
