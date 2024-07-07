@@ -23,16 +23,21 @@
 			<div>
 				<table>
 					<tr>
+						
+
 						<td><label>DNI</label></td>
 						<c:if test="${not editar}">
 							<td><input type="text" min=1000000 name="dni"
 								value="${paciente.dni}" required></td>
 						</c:if>
-
+					
 						<c:if test="${editar}">
 							<td><input type="text" min=1000000 name="dni"
-								value="${paciente.dni}" required disabled></td>
+								value="${paciente.dni}" required readonly></td>
 						</c:if>
+					</tr>
+					<tr>
+						<td><input name="id" type="number" value="${paciente.id}"></td>
 					</tr>
 					<tr>
 						<td><label>Nombre</label></td>
