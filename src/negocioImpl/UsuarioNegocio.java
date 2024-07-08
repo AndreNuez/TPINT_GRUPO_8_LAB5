@@ -42,29 +42,27 @@ public class UsuarioNegocio implements IUsuarioNegocio {
 		return daoUsuario.ReadAll();
 	}
 
-	private boolean IsAccessOK(Usuario usuario, Usuario userDb) {
-		boolean isAccess = false;
-		// Reemplace 123 con el ID real
-		if (userDb.getNombre().equals(usuario.getNombre()) && userDb.getPassword().equals(usuario.getPassword())) {
-			isAccess = true;			
-		}
-		return isAccess; // daoUsuario.getAccess(usuario);
-	}
 
 	@Override
 	public Usuario getUsuarioDB(Usuario userLogin) {
-		for (Usuario user : this.ReadAll()) {
-			if (this.IsAccessOK(userLogin, user)) {
-				userLogin.setId(user.getId());
-				userLogin.setPerfil(user.getPerfil());
-				userLogin.setPassword(""); // borra la password ingresada para que no quede en el usuario.
-				if (userLogin.getPerfil() == PerfilUsuario.MEDICO.getPerfilUsuario())
-					userLogin.setMedico(user.getMedico()); // si tiene perfil medico lo completa
-				break; // Salir del bucle una vez encontrado
-			}
-		}
-		return userLogin;
+	    // Obtener la lista de usuarios de la base de datos
+	    List<Usuario> usuarios = this.ReadAll();
+
+	    // Recorrer la lista de usuarios para buscar el usuario por nombre y contraseña
+	    for (Usuario user : usuarios) {
+	        if (user.getNombre().equals(userLogin.getNombre()) && user.getPassword().equals(userLogin.getPassword())) {
+	            // Copiar los datos del usuario encontrado al usuario de login
+	            userLogin.setId(user.getId());
+	            userLogin.setPerfil(user.getPerfil());
+	            userLogin.setPassword(""); // Borra la contraseña ingresada por seguridad
+	            // No se copian datos adicionales específicos del perfil aquí
+
+	            return userLogin; // Devolver el usuario encontrado y actualizado
+	        }
+	    }
+	    return null; // Devolver null si no se encontró el usuario con las credenciales especificadas
 	}
+
 
 	@Override
 	public Usuario getPerfilInvitado(Usuario user) {

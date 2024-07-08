@@ -24,21 +24,31 @@
 				<table>
 					<tr>
 						<td><label>DNI</label></td>
-						<td><input type="number" min=1000000 name="dni" value=""
-							required></td>
+						<c:if test="${not editar}">
+							<td><input type="text" min=1000000 name="dni"
+								value="${paciente.dni}" required></td>
+						</c:if>
+					
+						<c:if test="${editar}">
+							<td><input type="text" min=1000000 name="dni"
+								value="${paciente.dni}" required readonly></td>
+						</c:if>
+					</tr>
+					<tr>
+						<td><input name="id" type="hidden" value="${paciente.id}" readonly></td>
 					</tr>
 					<tr>
 						<td><label>Nombre</label></td>
 						<td><input type="text" name="nombre" pattern="[a-z A-Z]+"
-							value="" required></td>
+							value="${paciente.nombre}" required></td>
 					</tr>
 					<tr>
 						<td><label>Apellido</label></td>
-						<td><input type="text" name="apellido"
-							pattern="[a-z A-Z]+" value="" required></td>
+						<td><input type="text" name="apellido" pattern="[a-z A-Z]+"
+							value="${paciente.apellido}" required></td>
 					</tr>
 					<tr>
-<!-- 					<td><label>Nacionalidad</label></td>
+						<!-- 					<td><label>Nacionalidad</label></td>
 						<td><select name="Nacionalidad" style="width: 233px;">
 								<option value="">Seleccione una nacionalidad</option>
 								<c:forEach items="${nacionalidades}" var="nacionalidad">
@@ -57,9 +67,10 @@
 					</tr>
  -->
 					<tr>
-					<td><label>Fecha Nacimiento</label></td>
-						<td><input type="date" name="fechaNacimiento" value=""
-							max="" required style="width: 233px;"></td>
+						<td><label>Fecha Nacimiento</label></td>
+						<td><input type="date" name="fechaNacimiento"
+							value="${paciente.fechaNacimiento}" max="" required
+							style="width: 233px;"></td>
 					</tr>
 
 					<tr>
@@ -87,62 +98,58 @@
 
 					</tr>
 -->
-					
 					<tr>
 						<td><label>Direccion</label></td>
-						<td><input type="text" name="direccion" value="" required></td>
+						<td><input type="text" name="direccion"
+							value="${paciente.direccion}" required></td>
 					</tr>
 					<tr>
 						<td><label>Localidad</label></td>
-						<td><input type="text" name="localidad" value="" required></td>
+						<td><input type="text" name="localidad"
+							value="${paciente.localidad}" required></td>
 					</tr>
 					<tr>
 						<td><label>Provincia</label></td>
-						<td><input type="text" name="provincia" value="" required></td>
+						<td><input type="text" name="provincia"
+							value="${paciente.provincia}" required></td>
 					</tr>
 					<tr>
 						<td><label>Correo Electronico</label></td>
 						<td><input type="email" name="correoElectronico"
-							pattern=".{1,}@.{1,}\.com.{0,}$" value="" required></td>
+							pattern=".{1,}@.{1,}\.com.{0,}$"
+							value="${paciente.correoElectronico}" required></td>
 					</tr>
 					<tr>
 						<td><label>Telefono</label></td>
 						<td><input type="number" min=10000000 name="telefono"
-							value="" required></td>
+							value="${paciente.telefono}" required></td>
 					</tr>
 				</table>
 			</div>
 
 			<div class="pt-4 w-25 d-flex justify-content-around">
 
-				<%
-					
-				%>
-				<input class="btn btn-outline-success" type="submit"
-					name="btnGrabar" value="Grabar">
-				<%
-					
-				%>
-				<input class="btn btn-outline-primary" type="submit"
-					name="btnActualizar" value="Actualizar"> <input
-					class="btn btn-outline-danger" type="submit" name="btnEliminar"
-					value="Eliminar">
-				<%
-					
-				%>
+				<c:if test="${not editar}">
+					<input class="btn btn-outline-success" type="submit"
+						name="btnGrabar" value="Grabar">
+				</c:if>
 
+				<c:if test="${editar}">
+					<input class="btn btn-outline-primary" type="submit"
+						name="btnActualizar" value="Actualizar">
+				</c:if>
 			</div>
 
-	
+
 			<div class="success"></div>
-		
+
 			<%
 				
 			%>
 			<div class="error"></div>
 			<%
-
-		%>
+				
+			%>
 		</div>
 	</form>
 

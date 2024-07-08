@@ -46,7 +46,6 @@ public class ControladorNav {
            
 
         } else if (pacientesJsp != null && pacientesJsp.equals("Pacientes")) {
-            MV.setViewName("ListarPacientes");
 	    	List<Paciente> pacientes = pacienteNg.ReadAll();
 	    	MV.addObject("pacientes", pacientes);
             MV.setViewName("ListarPacientes");

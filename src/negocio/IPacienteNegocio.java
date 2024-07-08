@@ -14,6 +14,6 @@ public interface IPacienteNegocio {
 	
 	public boolean Delete(Paciente paciente);
 	
-	public Paciente obtenerPacientePorDni(String dni);
+	public Paciente obtenerPacientePorDNI(String dni);
 
 }

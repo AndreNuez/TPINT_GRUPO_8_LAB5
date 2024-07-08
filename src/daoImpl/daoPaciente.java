@@ -45,7 +45,7 @@ public class daoPaciente implements IDaoPaciente {
 		
 		session.beginTransaction();
 		@SuppressWarnings({ "unchecked" })
-		List<Paciente> list = (List<Paciente>)session.createQuery("from Paciente where Activo = 1").list();
+		List<Paciente> list = (List<Paciente>)session.createQuery("from Paciente where Activo = true").list();
 		
 		conexion.cerrarConexion();
 		
@@ -101,7 +101,7 @@ public class daoPaciente implements IDaoPaciente {
 	}
 
 	@Override
-	public Paciente obtenerPacientePorDni(String dni) {
+	public Paciente obtenerPacientePorDNI(String dni) {
 		
 		Session session = conexion.abrirConexion();
 		

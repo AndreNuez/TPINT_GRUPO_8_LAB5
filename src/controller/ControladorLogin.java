@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import entidad.PerfilUsuario;
 import entidad.Usuario;
 import negocioImpl.UsuarioNegocio;
 
@@ -29,7 +28,6 @@ public class ControladorLogin {
 			MV.setViewName("Principal");
 		} else {
 			MV.addObject("cartelError", "Usuario o contraseña incorrecto");
-			session.setAttribute("PerfilUsuario", PerfilUsuario.INVALIDO);
 			MV.setViewName("Login");
 		}
 		return MV;
@@ -37,18 +35,15 @@ public class ControladorLogin {
 	}
 
 	private boolean controlLoginUser(Usuario user, HttpSession session) {
-
-		if (session.getAttribute("PerfilUsuario") != null) {
-			user = asignarPerfilInvitado(user);
-			return true;
-		}
 		user = userNg.getUsuarioDB(user);
-		return user.getPerfil() == 0 ? false : true;
+
+		if (user == null) {
+	        return false; 
+	    } else {
+	        session.setAttribute("user", user);
+	        return true; 
+	    }
 	}
 
-	private Usuario asignarPerfilInvitado(Usuario user) {
-
-		return userNg.getPerfilInvitado(user);
-	}
 
 }

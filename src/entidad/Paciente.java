@@ -21,7 +21,7 @@ public class Paciente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "Nombre")
     private String nombre;
@@ -86,7 +86,15 @@ public class Paciente implements Serializable {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 

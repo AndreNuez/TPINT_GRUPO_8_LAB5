@@ -36,30 +36,29 @@ public class ControladorListarPaciente {
 	public ModelAndView eventoRedireccionarPrincipal(String btnAgregarPaciente, HttpSession session) {
 
 		ModelAndView MV = new ModelAndView();
-
 		MV.setViewName("ABMPaciente");
-		
         List<Nacionalidad> nacionalidades = nacionalidadNegocio.ReadAll();
-     
         MV.addObject("nacionalidades", nacionalidades);
+        MV.addObject("editar", false);
         
 		return MV;
-
 	}
 	
-	/*@RequestMapping("EditarPaciente.do")
-	public ModelAndView eventoEditarPaciente(@RequestParam("id") Long id, HttpSession session) {
+	@RequestMapping("EditarPaciente.do")
+	public ModelAndView eventoEditarPaciente(@RequestParam("dni") String dni, HttpSession session) {
 		ModelAndView MV = new ModelAndView();
-		Paciente paciente = pacienteNg.obtenerPacientePorId(id); // Implementa este método en tu negocio
+		Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni); // Implementa este método en tu negocio
 		MV.addObject("paciente", paciente);
+		
+		MV.addObject("editar", true);
 		MV.setViewName("ABMPaciente");
 		return MV;
-	}*/
+	}
 	
-	/*@RequestMapping("EliminarPaciente.do")
+	@RequestMapping("EliminarPaciente.do")
 	public ModelAndView eventoEliminarPaciente(@RequestParam("dni") String dni, HttpSession session) {
 		ModelAndView MV = new ModelAndView();
-		Paciente paciente = pacienteNg.obtenerPacientePorDniId(dni); // Implementa este método en tu negocio
+		Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni); // Implementa este método en tu negocio
 		pacienteNg.Delete(paciente);
 		
 		List<Paciente> pacientes = pacienteNg.ReadAll();
@@ -67,6 +66,6 @@ public class ControladorListarPaciente {
 		MV.setViewName("ListarPacientes");
     	
 		return MV;
-	}*/
+	}
 	
 }

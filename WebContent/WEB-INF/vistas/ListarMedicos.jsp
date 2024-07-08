@@ -10,31 +10,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="./css/estilo.css">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<%@include file="Datatable_Init.html"%>
+
 <title>Listado de Medicos</title>
 </head>
 <body>
 
 	<%@include file="Menu.jsp"%>
 
-	<link rel="stylesheet" type="text/css"
-		href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script type="text/javascript" charset="utf8"
-		src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#table_id').DataTable();
-		});
-	</script>
-</head>
-<body>
-
 	<h1 class="title">Listado de medicos</h1>
+
 	<form action="AddMedico.do" method=post>
 		<input class="btn btn-outline-dark" type="submit"
 			name="btnAgregarMedico" value="Agregar Medico"
@@ -44,7 +32,7 @@
 	<br>
 	<br>
 
-	<table border="1" id="table_id">
+	<table border="1" id="table_id" datatable="true">
 
 		<thead>
 			<tr>
@@ -70,12 +58,20 @@
 					<td>${medico.especialidad.nombre}</td>
 					<td>${medico.correo}</td>
 					<td>${medico.direccion}</td>
-					<td><a href="editarMedico.do?id=${medico.legajo}"><i
-							class="fa fa-edit"></i></a></td>
+
+					<td><form action="EditarMedico.do" method="get">
+							<input type="hidden" name="legajo" value="${medico.legajo}">
+							<button type="submit">
+								<i class="fa fa-edit"></i>
+							</button>
+						</form></td>
+
 					<td><form action="EliminarMedico.do" method="get">
-                        <input name="legajo" type="hidden" value="${medico.legajo}">
-                        <button type="submit"><i class="fa fa-delete"></i></button>
-                    </form></td>
+							<input name="legajo" type="hidden" value="${medico.legajo}">
+							<button type="submit">
+								<i class="fa fa-delete"></i>
+							</button>
+						</form></td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -83,19 +79,19 @@
 	</table>
 
 	<%
-
-%>
+		
+	%>
 	<div class="success"></div>
 	<%
-
-%>
+		
+	%>
 	<%
-
-%>
+		
+	%>
 	<div class="error"></div>
 	<%
-
-%>
+		
+	%>
 
 </body>
 </html>

@@ -13,9 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 import entidad.Especialidad;
 import entidad.Jornada;
 import entidad.Medico;
+import entidad.PerfilUsuario;
+import entidad.Usuario;
 import negocio.IEspecialidadNegocio;
 import negocio.IJornadaNegocio;
 import negocioImpl.MedicoNegocio;
+import negocioImpl.UsuarioNegocio;
 
 @Controller
 public class ControladorABMLMedicos {
@@ -23,6 +26,10 @@ public class ControladorABMLMedicos {
 	@Autowired
 	@Qualifier("servicioMedico")
 	private MedicoNegocio medicoNg;
+
+	@Autowired
+	@Qualifier("servicioUsuario")
+	private UsuarioNegocio usuarioNg;
 
 	@Autowired
 	@Qualifier("servicioEspecialidad")
@@ -33,18 +40,37 @@ public class ControladorABMLMedicos {
 	private IJornadaNegocio jornadaNegocio;
 
 	@RequestMapping("ABMMedico.do")
-	public ModelAndView eventoAMBMedico(Medico medico, HttpSession session) {
+	public ModelAndView eventoAMBMedico(Medico medico, HttpSession session, String btnGrabar, String btnActualizar) {
 		ModelAndView MV = new ModelAndView();
-		List<Especialidad> especialidades = especialidadNegocio.ReadAll();
-		List<Jornada> jornadas = jornadaNegocio.ReadAll();
-		medico.setActivo(true);
+		boolean confirmacion = false;
 
-		boolean confirmacion = medicoNg.Add(medico);
-		MV.addObject("especialidades", especialidades);
-		MV.addObject("confirmacion", confirmacion);
-		MV.addObject("jornadas", jornadas);
+		if (btnGrabar != null && btnGrabar.equals("Grabar")) {
+			// primero se graba el usuario
+			Usuario userMed = medico.getUsuario();
+			userMed.setPerfil(PerfilUsuario.MEDICO.ordinal());
+			medico.setActivo(true);
+			userMed.setActivo(true);
+			medico.setUsuario(userMed);
+			confirmacion = medicoNg.Add(medico);
+			
+			List<Medico> medicos = medicoNg.ReadAll();
+			MV.addObject("medicos", medicos);
 
-		MV.setViewName("ABMMedico");
+			MV.addObject("confirmacion", confirmacion);
+			MV.setViewName("ListarMedicos");
+
+		} else if (btnActualizar != null && btnActualizar.equals("Actualizar")) {
+
+			confirmacion = medicoNg.Update(medico);
+			
+			List<Medico> medicos = medicoNg.ReadAll();
+			MV.addObject("medicos", medicos);
+
+			MV.addObject("confirmacion", confirmacion);
+			MV.setViewName("ListarMedicos");
+
+		}
+		
 		return MV;
 	}
 
