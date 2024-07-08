@@ -56,10 +56,10 @@ public class ControladorListarPaciente {
 		return MV;
 	}*/
 	
-	@RequestMapping("EliminarPaciente.do")
+	/*@RequestMapping("EliminarPaciente.do")
 	public ModelAndView eventoEliminarPaciente(@RequestParam("dni") String dni, HttpSession session) {
 		ModelAndView MV = new ModelAndView();
-		Paciente paciente = pacienteNg.obtenerPacientePorId(dni); // Implementa este método en tu negocio
+		Paciente paciente = pacienteNg.obtenerPacientePorDniId(dni); // Implementa este método en tu negocio
 		pacienteNg.Delete(paciente);
 		
 		List<Paciente> pacientes = pacienteNg.ReadAll();
@@ -67,6 +67,6 @@ public class ControladorListarPaciente {
 		MV.setViewName("ListarPacientes");
     	
 		return MV;
-	}
+	}*/
 	
 }

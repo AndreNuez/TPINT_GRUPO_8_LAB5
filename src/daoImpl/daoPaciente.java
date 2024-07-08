@@ -101,7 +101,7 @@ public class daoPaciente implements IDaoPaciente {
 	}
 
 	@Override
-	public Paciente obtenerPacientePorId(String dni) {
+	public Paciente obtenerPacientePorDni(String dni) {
 		
 		Session session = conexion.abrirConexion();
 		
