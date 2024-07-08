@@ -49,7 +49,8 @@ public class MedicoNegocio implements IMedicoNegocio {
 
 	@Override
 	public boolean Update(Medico medico) {
-		
+		medico.setActivo(true);
+		medico.getUsuario().setActivo(true);
 		return daoMedico.Update(medico);
 	}
 

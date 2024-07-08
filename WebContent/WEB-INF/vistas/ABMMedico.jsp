@@ -22,12 +22,12 @@
 
 			<div>
 				<table>
-				<c:if test="${editar}">
-					<tr>
-						<td><input name="legajo" type="hidden"
-							value="${medico.legajo}" readonly></td>
-					</tr>
-				</c:if>
+					<c:if test="${editar}">
+						<tr>
+							<td><input name="legajo" type="hidden"
+								value="${medico.legajo}" readonly></td>
+						</tr>
+					</c:if>
 
 					<tr>
 						<td><label>Nombre</label></td>
@@ -42,9 +42,9 @@
 					<tr>
 						<td><label>Especialidad</label></td>
 						<td><select name="especialidad.id" style="width: 233px;">
-						<c:if test="${editar}">
-								<option value="${medico.especialidad.id}">${medico.especialidad.nombre}</option>
-						</c:if>
+								<c:if test="${editar}">
+									<option value="${medico.especialidad.id}">${medico.especialidad.nombre}</option>
+								</c:if>
 								<option value="">Seleccione una Especialidad</option>
 								<c:forEach items="${especialidades}" var="especialidad">
 									<option value="${especialidad.id}">${especialidad.nombre}</option>
@@ -54,9 +54,9 @@
 					<tr>
 						<td><label>Jornada</label></td>
 						<td><select name="jornada.id" style="width: 233px;">
-						<c:if test="${editar}">
-								<option value="${medico.jornada.id}">${medico.jornada.descripcion}</option>
-						</c:if>
+								<c:if test="${editar}">
+									<option value="${medico.jornada.id}">${medico.jornada.descripcion}</option>
+								</c:if>
 								<option value="">Seleccione una Jornada</option>
 								<c:forEach items="${jornadas}" var="jornada">
 									<option value="${jornada.id}">${jornada.descripcion}</option>
@@ -67,9 +67,9 @@
 					<tr>
 						<td><label>Sexo</label></td>
 						<td><select name="sexo" style="width: 233px;">
-						<c:if test="${editar}">
-							<option value="${medico.sexo}">${medico.sexo}</option>
-						</c:if>
+								<c:if test="${editar}">
+									<option value="${medico.sexo}">${medico.sexo}</option>
+								</c:if>
 								<option value="X">X</option>
 								<option value="F">Femenino</option>
 								<option value="M">Masculino</option>
@@ -112,11 +112,13 @@
 -->
 					<tr>
 						<td><label>Direccion</label></td>
-						<td><input type="text" name="direccion" value="${medico.direccion}"></td>
+						<td><input type="text" name="direccion"
+							value="${medico.direccion}"></td>
 					</tr>
 					<tr>
 						<td><label>Localidad</label></td>
-						<td><input type="text" name="localidad" value="${medico.localidad}"></td>
+						<td><input type="text" name="localidad"
+							value="${medico.localidad}"></td>
 					</tr>
 
 					<tr>
@@ -129,17 +131,33 @@
 						<td><input type="number" min=10000000 name="telefono"
 							value="${medico.telefono}"></td>
 					</tr>
+					<c:if test="${editar}">
+						<tr>
+							<td><input type="hidden" name="usuario.id"
+								value="${medico.usuario.id}"></td>
+						</tr>
+						<tr>
+							<td><input type="hidden" name="usuario.perfil"
+								value="${medico.usuario.perfil}"></td>
+						</tr>
+					</c:if>
+					<tr>
+
+					</tr>
 					<tr>
 						<td><label>Usuario</label></td>
-						<td><input type="text" name="usuario.nombre" value="${medico.usuario.nombre}"></td>
+						<td><input type="text" name="usuario.nombre"
+							value="${medico.usuario.nombre}"></td>
 					</tr>
 					<tr>
 						<td><label>Password</label></td>
 						<c:if test="${not editar}">
-						<td><input type="password" name="usuario.password" value="${medico.usuario.password}"></td>
+							<td><input type="password" name="usuario.password"
+								value="${medico.usuario.password}"></td>
 						</c:if>
 						<c:if test="${editar}">
-							<td><input type="text" name="usuario.password" value="${medico.usuario.password}"></td>
+							<td><input type="text" name="usuario.password"
+								value="${medico.usuario.password}"></td>
 						</c:if>
 					</tr>
 
