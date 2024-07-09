@@ -55,19 +55,19 @@ public class ControladorABMTurnos {
 		return MV;
 	}
 
-	@RequestMapping(value = "buscarPacientePorDni.do", method = RequestMethod.GET)
-	public ModelAndView buscarPacientePorDni(@RequestParam("dni") String dni, HttpSession session) {
+	@RequestMapping(value = "buscarPacientePorDni.do", method = RequestMethod.POST)
+	public ModelAndView buscarPacientePorDniPost(@RequestParam("dni") String dni, HttpSession session) {
 	    ModelAndView MV = new ModelAndView("ABMTurno");
 	    
-	    // Mensaje de depuraciï¿½n: Imprimir el DNI recibido
+	    // Mensaje de depuración: Imprimir el DNI recibido
 	    if (dni == null || dni.isEmpty()) {
-	        System.out.println("DNI ACA LLEGA");
-	        // Puedes manejar esto segï¿½n tus necesidades (por ejemplo, redirigir o mostrar un mensaje de error)
+	        System.out.println("DNI no recibido");
+	        // Puedes manejar esto según tus necesidades (por ejemplo, redirigir o mostrar un mensaje de error)
 	    } else {
 	        // Obtener el paciente
 	        Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni);
 
-	        // Mensaje de depuraciï¿½n: Verificar si el paciente fue encontrado
+	        // Mensaje de depuración: Verificar si el paciente fue encontrado
 	        if (paciente != null) {
 	            System.out.println("Paciente encontrado: " + paciente.getNombre() + " " + paciente.getApellido());
 	            session.setAttribute("paciente", paciente);
@@ -79,5 +79,6 @@ public class ControladorABMTurnos {
 
 	    return MV;
 	}
+
 
 }
