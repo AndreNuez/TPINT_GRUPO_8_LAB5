@@ -42,7 +42,7 @@ public class ControladorListarTurnos {
 	public ModelAndView eventoRedireccionarPrincipal(HttpSession session, String btnAgregarTurno ) {
 		ModelAndView MV = new ModelAndView();
 		
-		// Obtener la lista de turnos
+		//  lista de turnos
 		List<Turno> turnos = turnoNg.ReadAll();
 		List<Especialidad> especialidades = especialidadNg.ReadAll();
 		List<Medico> medicos = medicoNg.ReadAll();
