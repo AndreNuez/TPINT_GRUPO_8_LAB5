@@ -36,7 +36,7 @@ public class daoLocalidad implements IDaoLocalidad {
 		
 		session.beginTransaction();
 		@SuppressWarnings({ "unchecked" })
-		List<Localidad> list = (List<Localidad>)session.createQuery("from Localidad where id = " + provinciaId).list();
+		List<Localidad> list = (List<Localidad>)session.createQuery("from Localidad where Id_Provincia = " + provinciaId).list();
 		
 		conexion.cerrarConexion();
 		
