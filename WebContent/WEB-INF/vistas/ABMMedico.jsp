@@ -83,49 +83,17 @@
 					</tr>
 
 					<tr>
-						<!-- 
-					<tr>
-
-						
-				<td><label>Provincia</label></td>
-				<td><select name="selProvincia"  style="width: 233px;" Id="selProvincia">
-						<%%>
-							<option value="" >
-								
-							</option>
-						<%%>
-				</select></td>
-			</tr>
-
-						<!--  		<tr>
-                <td><label>Localidad</label></td>
-                <td><select name="selLocalidad"  style="width: 233px;" Id="selLocalidad">
-                        <%%>
-                        <option value="" provincias="" >
-                        	
-                        </option>
-						
-                        <%%>
-                </select></td>
-
-					</tr>
--->
 					<tr>
 						<td><label>Direccion</label></td>
 						<td><input type="text" name="direccion"
 							value="${medico.direccion}" required></td>
 					</tr>
-<!--  				<tr>
-						<td><label>Localidad</label></td>
-						<td><input type="text" name="localidad"
-							value="${medico.localidad}" required></td>
-					</tr>-->
 					<tr>
 						<td><label>Provincia</label></td>
 						<td><select name="provincia.id" id="provincia"
 							style="width: 233px;">
-							<c:if test="${editar}">
-								<option value="${medico.provincia.id}">${medico.provincia.nombre}</option>
+								<c:if test="${editar}">
+									<option value="${medico.provincia.id}">${medico.provincia.nombre}</option>
 								</c:if>
 								<option value="">Seleccione una Provincia</option>
 								<c:forEach items="${provincias}" var="provincia">
@@ -137,8 +105,8 @@
 						<td><label>Localidad</label></td>
 						<td><select name="localidad.id" id="localidad"
 							style="width: 233px;">
-							<c:if test="${editar}">
-								<option value="${medico.localidad.id}">${medico.localidad.nombre}</option>
+								<c:if test="${editar}">
+									<option value="${medico.localidad.id}">${medico.localidad.nombre}</option>
 								</c:if>
 								<option value="">Seleccione una Localidad</option>
 								<c:forEach items="${localidades}" var="localidad">
@@ -179,12 +147,23 @@
 					<tr>
 						<td><label>Password</label></td>
 						<c:if test="${not editar}">
-							<td><input type="password" name="usuario.password"
+							<td><input type="password" name="usuario.password" id="pass"
 								value="${medico.usuario.password}" required></td>
 						</c:if>
 						<c:if test="${editar}">
-							<td><input type="text" name="usuario.password"
+							<td><input type="text" name="usuario.password" id="pass"
 								value="${medico.usuario.password}" required></td>
+						</c:if>
+					</tr>
+					<tr>
+						<td><label>Confirmar Password</label></td>
+						<c:if test="${not editar}">
+							<td><input type="password" name="confirm_pass"
+								id="confirm_pass" value="${medico.usuario.password}" required oninput="check(this)"></td>
+						</c:if>
+						<c:if test="${editar}">
+							<td><input type="text" name="confirm_pass"
+								id="confirm_pass" value="${medico.usuario.password}" required oninput="check(this)"></td>
 						</c:if>
 					</tr>
 
@@ -214,7 +193,15 @@
 			%>
 		</div>
 	</form>
-
+	<script>
+		function check(input) {
+			if (input.value !== document.getElementById('pass').value) {
+				input.setCustomValidity('Las contraseñas no coinciden.');
+			} else {
+				input.setCustomValidity('');
+			}
+		}
+	</script>
 
 </body>
 </html>
