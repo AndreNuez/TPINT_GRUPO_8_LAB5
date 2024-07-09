@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.time.LocalDate" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -79,9 +80,9 @@
 					<tr>
 						<td><label>Fecha Nacimiento</label></td>
 						<td><input type="date" name="fNac" value="${medico.fNac}"
+							max="<%= LocalDate.now().toString() %>"
 							style="width: 233px;" required></td>
 					</tr>
-
 					<tr>
 					<tr>
 						<td><label>Direccion</label></td>

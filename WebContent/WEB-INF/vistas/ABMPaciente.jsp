@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.time.LocalDate" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -25,9 +26,6 @@
 				<table>
 					
 					<tr>
-						<c:if test="${not editar}">
-							<td><input name="id" type="hidden" value="0" readonly></td>
-						</c:if>
 						<c:if test="${editar}">
 							<td><input name="id" type="hidden" value="${paciente.id}"
 								readonly></td>
@@ -57,6 +55,7 @@
 					<tr>
 						<td><label>Fecha Nacimiento</label></td>
 						<td><input type="date" name="fechaNacimiento"
+							max="<%= LocalDate.now().toString() %>"
 							value="${paciente.fechaNacimiento}" required
 							style="width: 233px;"></td>
 					</tr>
@@ -65,11 +64,6 @@
 						<td><input type="text" name="direccion"
 							value="${paciente.direccion}" required></td>
 					</tr>
-<!--  				<tr>
-						<td><label>Localidad</label></td>
-						<td><input type="text" name="localidad"
-							value="${paciente.localidad}" required></td>
-					</tr> -->
 					<tr>
 						<td><label>Provincia</label></td>
 						<td><select name="provincia.id" id="provincia"
@@ -97,11 +91,6 @@
 						</select></td>
 
 					</tr>
-<!--  					<tr>
-						<td><label>Provincia</label></td>
-						<td><input type="text" name="provincia"
-							value="${paciente.provincia}" required></td>
-					</tr> -->
 					<tr>
 						<td><label>Correo Electronico</label></td>
 						<td><input type="email" name="correoElectronico"
