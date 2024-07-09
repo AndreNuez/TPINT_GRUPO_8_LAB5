@@ -61,14 +61,14 @@ public class ControladorABMTurnos {
 	@RequestMapping(value = "buscarPacientePorDni.do", method = RequestMethod.GET)
 	public ModelAndView buscarPacientePorDni(@RequestParam("dni") String dni, HttpSession session) {
 	    ModelAndView MV = new ModelAndView("ABMTurno");
-
+	    
 	    // Mensaje de depuración: Imprimir el DNI recibido
 	    if (dni == null || dni.isEmpty()) {
 	        System.out.println("DNI ACA LLEGA");
 	        // Puedes manejar esto según tus necesidades (por ejemplo, redirigir o mostrar un mensaje de error)
 	    } else {
 	        // Obtener el paciente
-	        Paciente paciente = pacienteNg.obtenerPacientePorDni(dni);
+	        Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni);
 
 	        // Mensaje de depuración: Verificar si el paciente fue encontrado
 	        if (paciente != null) {

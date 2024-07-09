@@ -44,7 +44,7 @@
 				<td><b></b></td>
 			</tr>
 		</thead>
-		<tbody>
+		<%-- <tbody>
 			<c:forEach items="${turnos}" var="turno">
 				<tr>
 					<td>${turno.idTurno}</td>
@@ -68,7 +68,7 @@
 					</td>
 				</tr>
 			</c:forEach>
-		</tbody>
+		</tbody> --%>
 
 	</table>
 
