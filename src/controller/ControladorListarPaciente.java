@@ -36,10 +36,10 @@ public class ControladorListarPaciente {
 	public ModelAndView eventoRedireccionarPrincipal(String btnAgregarPaciente, HttpSession session) {
 
 		ModelAndView MV = new ModelAndView();
-		MV.setViewName("ABMPaciente");
         List<Nacionalidad> nacionalidades = nacionalidadNegocio.ReadAll();
         MV.addObject("nacionalidades", nacionalidades);
         MV.addObject("editar", false);
+        MV.setViewName("ABMPaciente");
         
 		return MV;
 	}

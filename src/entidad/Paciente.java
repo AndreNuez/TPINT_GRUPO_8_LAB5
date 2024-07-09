@@ -64,7 +64,7 @@ public class Paciente implements Serializable {
     }
 
     // Constructor con todos los atributos
-    public Paciente(String nombre, String apellido, String dni, String telefono,
+    /*public Paciente(String nombre, String apellido, String dni, String telefono,
             String direccion, String localidad, String provincia,
             String fechaNacimiento, String correoElectronico) {
         this.nombre = nombre;
@@ -76,7 +76,7 @@ public class Paciente implements Serializable {
         this.provincia = provincia;
         this.fechaNacimiento = fechaNacimiento;
         this.correoElectronico = correoElectronico;
-    }
+    }*/
 
     // Getters y Setters
     // Puedes generar automáticamente estos métodos en tu IDE para acceder a las
