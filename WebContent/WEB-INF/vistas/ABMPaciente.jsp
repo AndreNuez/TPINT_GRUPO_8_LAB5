@@ -65,14 +65,14 @@
 						<td><input type="text" name="direccion"
 							value="${paciente.direccion}" required></td>
 					</tr>
-					<tr>
+<!--  				<tr>
 						<td><label>Localidad</label></td>
 						<td><input type="text" name="localidad"
 							value="${paciente.localidad}" required></td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td><label>Provincia</label></td>
-						<td><select name="provincia.id" id="provinciaId"
+						<td><select name="provincia.id" id="provincia"
 							style="width: 233px;">
 								<option value="${paciente.provincia.id}">${paciente.provincia.nombre}</option>
 								<option value="">Seleccione una Provincia</option>
@@ -80,6 +80,18 @@
 									<option value="${provincia.id}">${provincia.nombre}</option>
 								</c:forEach>
 						</select></td>
+					</tr>
+					<tr>
+						<td><label>Localidad</label></td>
+						<td><select name="localidad.id" id="localidad"
+							style="width: 233px;">
+								<option value="${paciente.localidad.id}">${paciente.localidad.nombre}</option>
+								<option value="">Seleccione una Localidad</option>
+								<c:forEach items="${localidades}" var="localidad">
+									<option value="${localidad.id}">${localidad.nombre}</option>
+								</c:forEach>
+						</select></td>
+
 					</tr>
 <!--  					<tr>
 						<td><label>Provincia</label></td>

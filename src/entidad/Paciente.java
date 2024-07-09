@@ -40,11 +40,15 @@ public class Paciente implements Serializable {
     @Column(name = "Direccion")
     private String direccion;
 
-    @Column(name = "Localidad")
+    /*@Column(name = "Localidad")
     private String localidad;
 
-    /*@Column(name = "Provincia")
+    @Column(name = "Provincia")
     private String provincia;*/
+    
+    @ManyToOne
+	@JoinColumn(name = "Id_Localidad")
+    private Localidad localidad;
     
     @ManyToOne
 	@JoinColumn(name = "Id_Provincia")
@@ -135,8 +139,10 @@ public class Paciente implements Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+    
+    
 
-    public String getLocalidad() {
+    /*public String getLocalidad() {
         return localidad;
     }
 
@@ -144,7 +150,7 @@ public class Paciente implements Serializable {
         this.localidad = localidad;
     }
 
-   /*public String getProvincia() {
+   public String getProvincia() {
         return provincia;
     }
 
@@ -152,7 +158,15 @@ public class Paciente implements Serializable {
         this.provincia = provincia;
     }*/
 
-    public String getFechaNacimiento() {
+    public Localidad getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(Localidad localidad) {
+		this.localidad = localidad;
+	}
+
+	public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 

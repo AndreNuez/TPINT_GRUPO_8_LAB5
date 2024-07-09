@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import entidad.Localidad;
 import entidad.Medico;
 import entidad.Nacionalidad;
 import entidad.Paciente;
 import entidad.Provincia;
+import negocio.ILocalidadNegocio;
 import negocio.INacionalidadNegocio;
 import negocio.IProvinciaNegocio;
 import negocioImpl.MedicoNegocio;
@@ -36,6 +38,10 @@ public class ControladorListarPaciente {
     @Autowired
 	@Qualifier("servicioProvincia")
 	private IProvinciaNegocio provinciaNegocio;
+    
+    @Autowired
+	@Qualifier("servicioLocalidad")
+	private ILocalidadNegocio localidadNegocio;
   
 	
 	@RequestMapping("AddPaciente.do")
@@ -44,7 +50,9 @@ public class ControladorListarPaciente {
 		ModelAndView MV = new ModelAndView();
         List<Nacionalidad> nacionalidades = nacionalidadNegocio.ReadAll();
         List<Provincia> provincias = provinciaNegocio.ReadAll();
+        List<Localidad> localidades = localidadNegocio.ReadAll();
         MV.addObject("provincias", provincias);
+        MV.addObject("localidades", localidades);
         MV.addObject("nacionalidades", nacionalidades);
         MV.addObject("editar", false);
         MV.setViewName("ABMPaciente");
@@ -58,6 +66,11 @@ public class ControladorListarPaciente {
 		Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni); // Implementa este método en tu negocio
 		MV.addObject("paciente", paciente);
 		
+		List<Provincia> provincias = provinciaNegocio.ReadAll();
+        List<Localidad> localidades = localidadNegocio.ReadAll();
+        MV.addObject("provincias", provincias);
+        MV.addObject("localidades", localidades);
+        
 		MV.addObject("editar", true);
 		MV.setViewName("ABMPaciente");
 		return MV;

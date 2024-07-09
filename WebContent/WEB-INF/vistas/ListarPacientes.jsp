@@ -46,6 +46,7 @@
 				<td><b>Fecha Nacimiento </b></td>
 				<td><b>Correo Electronico</b></td>
 				<td><b>Provincia</b></td>
+				<td><b><b>Localidad</b></b></td>
 				<td><b></b></td>
 				<td><b></b></td>
 			</tr>
@@ -60,6 +61,7 @@
 					<td>${paciente.fechaNacimiento}</td>
 					<td>${paciente.correoElectronico}</td>
 					<td>${paciente.provincia.nombre}</td>
+					<td>${paciente.localidad.nombre}</td>
 					<td><form action="EditarPaciente.do" method="get">
                         <input type="hidden" name="dni" value="${paciente.dni}">
                         <button type="submit"><i class="fa fa-edit"></i></button>
