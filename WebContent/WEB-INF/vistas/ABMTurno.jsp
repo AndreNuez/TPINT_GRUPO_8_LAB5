@@ -41,7 +41,9 @@
                     <td>
                         <select name="selEspecialidad" id="selEspecialidad" style="width: 233px;">
                             <option value="">Seleccione una Especialidad</option>
-                            <!-- Opciones -->
+                            <c:forEach items="${especialidades}" var="especialidad">
+                                <option value="${especialidad.id}">${especialidad.nombre}</option>
+                            </c:forEach>
                         </select>
                     </td>
                 </tr>

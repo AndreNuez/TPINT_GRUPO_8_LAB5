@@ -40,20 +40,20 @@ public class ControladorABMTurnos {
 	private PacienteNegocio pacienteNg;
 	
 	@RequestMapping("ABMTurno.do")
-	public ModelAndView eventoABMTurnos(HttpSession session,Turno turno) {
-		ModelAndView MV = new ModelAndView();
-		turnoNg.Add(turno);
-		
-		// Pasar las listas al JSP
-		
-		/*MV.addObject("especialidades", especialidades);
-		MV.addObject("medicos", medicos);*/
-		
-		// Establecer el nombre de la vista
-		MV.setViewName("ABMTurno");
-		
-		return MV;
-	}
+    public ModelAndView eventoABMTurnos(HttpSession session, Turno turno) {
+        ModelAndView MV = new ModelAndView();
+
+        // Obtener lista de especialidades
+        List<Especialidad> especialidades = especialidadNg.ReadAll();
+        
+        // Añadir las especialidades al modelo
+        MV.addObject("especialidades", especialidades);
+
+        // Establecer el nombre de la vista
+        MV.setViewName("ABMTurno");
+
+        return MV;
+    }
 
 	@RequestMapping(value = "buscarPacientePorDni.do", method = RequestMethod.POST)
 	public ModelAndView buscarPacientePorDniPost(@RequestParam("dni") String dni, HttpSession session) {
