@@ -72,9 +72,20 @@
 					</tr>
 					<tr>
 						<td><label>Provincia</label></td>
+						<td><select name="provincia.id" id="provinciaId"
+							style="width: 233px;">
+								<option value="${paciente.provincia.id}">${paciente.provincia.nombre}</option>
+								<option value="">Seleccione una Provincia</option>
+								<c:forEach items="${provincias}" var="provincia">
+									<option value="${provincia.id}">${provincia.nombre}</option>
+								</c:forEach>
+						</select></td>
+					</tr>
+<!--  					<tr>
+						<td><label>Provincia</label></td>
 						<td><input type="text" name="provincia"
 							value="${paciente.provincia}" required></td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td><label>Correo Electronico</label></td>
 						<td><input type="email" name="correoElectronico"

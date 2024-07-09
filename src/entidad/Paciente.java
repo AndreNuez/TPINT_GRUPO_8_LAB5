@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -41,8 +43,12 @@ public class Paciente implements Serializable {
     @Column(name = "Localidad")
     private String localidad;
 
-    @Column(name = "Provincia")
-    private String provincia;
+    /*@Column(name = "Provincia")
+    private String provincia;*/
+    
+    @ManyToOne
+	@JoinColumn(name = "Id_Provincia")
+    private Provincia provincia;
 
     @Column(name = "FechaNacimiento")
     private String fechaNacimiento;
@@ -138,19 +144,27 @@ public class Paciente implements Serializable {
         this.localidad = localidad;
     }
 
-    public String getProvincia() {
+   /*public String getProvincia() {
         return provincia;
     }
 
     public void setProvincia(String provincia) {
         this.provincia = provincia;
-    }
+    }*/
 
     public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public Provincia getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+	}
+
+	public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

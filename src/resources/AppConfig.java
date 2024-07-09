@@ -10,6 +10,7 @@ import daoImpl.daoJornada;
 import daoImpl.daoMedico;
 import daoImpl.daoNacionalidad;
 import daoImpl.daoPaciente;
+import daoImpl.daoProvincia;
 import daoImpl.daoTurno;
 import daoImpl.daoUsuario;
 import entidad.Especialidad;
@@ -17,6 +18,7 @@ import entidad.Jornada;
 import entidad.Medico;
 import entidad.Nacionalidad;
 import entidad.Paciente;
+import entidad.Provincia;
 import entidad.Turno;
 import entidad.Usuario;
 import negocioImpl.EspecialidadNegocio;
@@ -24,6 +26,7 @@ import negocioImpl.JornadaNegocio;
 import negocioImpl.MedicoNegocio;
 import negocioImpl.NacionalidadNegocio;
 import negocioImpl.PacienteNegocio;
+import negocioImpl.ProvinciaNegocio;
 import negocioImpl.TurnoNegocio;
 import negocioImpl.UsuarioNegocio;
 
@@ -77,6 +80,12 @@ public class AppConfig {
         return jor;
     }
     
+    @Bean
+    public Provincia beanProvincia() {
+    	Provincia prov = new Provincia();
+        return prov;
+    }
+    
     //BEANS DAO
     @Bean
     public daoMedico beanDaoMedico() {
@@ -112,6 +121,12 @@ public class AppConfig {
     public daoJornada beanDaoJornada() {
         daoJornada daoJornada = new daoJornada();
         return daoJornada;
+    }
+    
+    @Bean
+    public daoProvincia beanDaoProvincia() {
+        daoProvincia daoProvincia = new daoProvincia();
+        return daoProvincia;
     }
     
     // BEANS NEGOCIO
@@ -153,6 +168,12 @@ public class AppConfig {
     public JornadaNegocio beanJornadaNegocio() {
     	JornadaNegocio jornadaNeg = new JornadaNegocio();
         return jornadaNeg;
+    }
+    
+    @Bean
+    public ProvinciaNegocio beanProvinciaNegocio() {
+    	ProvinciaNegocio provinciaNeg = new ProvinciaNegocio();
+        return provinciaNeg;
     }
     
 }

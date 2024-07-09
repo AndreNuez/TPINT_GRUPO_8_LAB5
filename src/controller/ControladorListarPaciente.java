@@ -14,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import entidad.Medico;
 import entidad.Nacionalidad;
 import entidad.Paciente;
+import entidad.Provincia;
 import negocio.INacionalidadNegocio;
+import negocio.IProvinciaNegocio;
 import negocioImpl.MedicoNegocio;
 import negocioImpl.PacienteNegocio;
 
@@ -30,6 +32,10 @@ public class ControladorListarPaciente {
     @Autowired
     @Qualifier("servicioNacionalidad")
     private INacionalidadNegocio nacionalidadNegocio;
+    
+    @Autowired
+	@Qualifier("servicioProvincia")
+	private IProvinciaNegocio provinciaNegocio;
   
 	
 	@RequestMapping("AddPaciente.do")
@@ -37,6 +43,8 @@ public class ControladorListarPaciente {
 
 		ModelAndView MV = new ModelAndView();
         List<Nacionalidad> nacionalidades = nacionalidadNegocio.ReadAll();
+        List<Provincia> provincias = provinciaNegocio.ReadAll();
+        MV.addObject("provincias", provincias);
         MV.addObject("nacionalidades", nacionalidades);
         MV.addObject("editar", false);
         MV.setViewName("ABMPaciente");
