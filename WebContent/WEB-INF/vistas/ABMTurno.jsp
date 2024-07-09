@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,6 +24,20 @@
 
 			<div class="formulario">
 
+        <div>
+            <table>
+                <tr>
+                    <td><label>ID Paciente</label></td>
+                    <td><input type="text" name="paciente" value=""></td>
+                    
+                        <td><button type="button" id="btnBuscarId" class="btn btn-outline-success">Buscar ID</button></td>
+                    
+                </tr>
+                
+                    <tr>
+                        <td><label>Nombre</label></td>
+                        <td><input type="text" name="txtNombrePaciente" value="" readonly style="background-color: #eee;"></td>
+                    </tr>
 
 				<div>
 					<table>
@@ -79,6 +93,14 @@
 									Fecha</button></td>
 						</tr>
 
+        <div class="pt-4 w-25 d-flex justify-content-around">
+      
+                    <button type="submit" class="btn btn-outline-success" name="btnGrabar">Grabar</button>
+                
+                    <button type="submit" class="btn btn-outline-primary" name="btnActualizar">Actualizar</button>
+                    <button type="submit" class="btn btn-outline-danger" name="btnEliminar">Eliminar</button>
+            
+        </div>
 
 						<tr>
 							<td><label>Hora</label></td>
@@ -156,13 +178,13 @@
 							const dni = document.getElementById('dni').value
 									.trim(); // Utiliza trim() para eliminar espacios en blanco al inicio y al final
 
-							// Muestra el valor capturado en la consola para depuración
+							// Muestra el valor capturado en la consola para depuraciï¿½n
 							console.log("Valor de DNI capturado:", dni);
 
 							if (dni) {
 								window.location.href = `buscarPacientePorDni.do?dni=${dni}`;
 							} else {
-								console.log("DNI está vacío");
+								console.log("DNI estï¿½ vacï¿½o");
 							}
 						});
 	</script> -->

@@ -79,7 +79,7 @@
 					<tr>
 						<td><label>Fecha Nacimiento</label></td>
 						<td><input type="date" name="fNac" value="${medico.fNac}"
-							style="width: 233px;"></td>
+							style="width: 233px;" required></td>
 					</tr>
 
 					<tr>
@@ -113,23 +113,24 @@
 					<tr>
 						<td><label>Direccion</label></td>
 						<td><input type="text" name="direccion"
-							value="${medico.direccion}"></td>
+							value="${medico.direccion}" required></td>
 					</tr>
 					<tr>
 						<td><label>Localidad</label></td>
 						<td><input type="text" name="localidad"
-							value="${medico.localidad}"></td>
+							value="${medico.localidad}" required></td>
 					</tr>
 
 					<tr>
 						<td><label>Correo Electronico</label></td>
 						<td><input type="email" name="correo"
-							pattern=".{1,}@.{1,}\.com.{0,}$" value="${medico.correo}"></td>
+							pattern=".{1,}@.{1,}\.com.{0,}$" value="${medico.correo}"
+							required></td>
 					</tr>
 					<tr>
 						<td><label>Telefono</label></td>
 						<td><input type="number" min=10000000 name="telefono"
-							value="${medico.telefono}"></td>
+							value="${medico.telefono}" required></td>
 					</tr>
 					<c:if test="${editar}">
 						<tr>
@@ -147,17 +148,17 @@
 					<tr>
 						<td><label>Usuario</label></td>
 						<td><input type="text" name="usuario.nombre"
-							value="${medico.usuario.nombre}"></td>
+							value="${medico.usuario.nombre}" required></td>
 					</tr>
 					<tr>
 						<td><label>Password</label></td>
 						<c:if test="${not editar}">
 							<td><input type="password" name="usuario.password"
-								value="${medico.usuario.password}"></td>
+								value="${medico.usuario.password}" required></td>
 						</c:if>
 						<c:if test="${editar}">
 							<td><input type="text" name="usuario.password"
-								value="${medico.usuario.password}"></td>
+								value="${medico.usuario.password}" required></td>
 						</c:if>
 					</tr>
 
@@ -165,17 +166,14 @@
 			</div>
 
 			<div class="pt-4 w-25 d-flex justify-content-around">
-
 				<c:if test="${not editar}">
 					<input class="btn btn-outline-success" type="submit"
 						name="btnGrabar" value="Grabar">
 				</c:if>
-
 				<c:if test="${editar}">
 					<input class="btn btn-outline-primary" type="submit"
 						name="btnActualizar" value="Actualizar">
 				</c:if>
-
 			</div>
 
 

@@ -1,3 +1,4 @@
+<%@ page import="entidad.Paciente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -22,20 +23,26 @@
 
 			<div>
 				<table>
-					<tr>
-						<td><label>DNI</label></td>
-						<c:if test="${not editar}">
-							<td><input type="text" min=1000000 name="dni"
-								value="${paciente.dni}" required></td>
-						</c:if>
 					
+					<tr>
+						<c:if test="${not editar}">
+							<td><input name="id" type="hidden" value="0" readonly></td>
+						</c:if>
 						<c:if test="${editar}">
-							<td><input type="text" min=1000000 name="dni"
-								value="${paciente.dni}" required readonly></td>
+							<td><input name="id" type="hidden" value="${paciente.id}"
+								readonly></td>
 						</c:if>
 					</tr>
 					<tr>
-						<td><input name="id" type="hidden" value="${paciente.id}" readonly></td>
+						<td><label>DNI</label></td>
+						<c:if test="${not editar}">
+							<td><input type="text" name="dni" value="${paciente.dni}"
+								required></td>
+						</c:if>
+						<c:if test="${editar}">
+							<td><input type="text" name="dni" value="${paciente.dni}"
+								required readonly></td>
+						</c:if>
 					</tr>
 					<tr>
 						<td><label>Nombre</label></td>
@@ -48,56 +55,11 @@
 							value="${paciente.apellido}" required></td>
 					</tr>
 					<tr>
-						<!-- 					<td><label>Nacionalidad</label></td>
-						<td><select name="Nacionalidad" style="width: 233px;">
-								<option value="">Seleccione una nacionalidad</option>
-								<c:forEach items="${nacionalidades}" var="nacionalidad">
-									<option value="${nacionalidad.idNacionalidad}">${nacionalidad.nacionalidad}</option>
-								</c:forEach>
-
-						</select></td>
-					</tr>
-					<tr>
-						<td><label>Sexo</label></td>
-						<td><select name="selSexo" style="width: 233px;">
-								<option value="No indica">No indica</option>
-								<option value="Femenino">Femenino</option>
-								<option value="Masculino">Masculino</option>
-						</select></td>
-					</tr>
- -->
-					<tr>
 						<td><label>Fecha Nacimiento</label></td>
 						<td><input type="date" name="fechaNacimiento"
-							value="${paciente.fechaNacimiento}" max="" required
+							value="${paciente.fechaNacimiento}" required
 							style="width: 233px;"></td>
 					</tr>
-
-					<tr>
-						<!-- 
-				<td><label>Provincia</label></td>
-				<td><select name="selProvincia"  style="width: 233px;" Id="selProvincia">
-						<%%>
-							<option value="" >
-								
-							</option>
-						<%%>
-				</select></td>
-			</tr>
--->
-						<!--  		<tr>
-                <td><label>Localidad</label></td>
-                <td><select name="selLocalidad"  style="width: 233px;" Id="selLocalidad">
-                        <%%>
-                        <option value="" provincias="" >
-                        	
-                        </option>
-						
-                        <%%>
-                </select></td>
-
-					</tr>
--->
 					<tr>
 						<td><label>Direccion</label></td>
 						<td><input type="text" name="direccion"
@@ -128,21 +90,17 @@
 			</div>
 
 			<div class="pt-4 w-25 d-flex justify-content-around">
-
 				<c:if test="${not editar}">
 					<input class="btn btn-outline-success" type="submit"
 						name="btnGrabar" value="Grabar">
 				</c:if>
-
 				<c:if test="${editar}">
 					<input class="btn btn-outline-primary" type="submit"
 						name="btnActualizar" value="Actualizar">
 				</c:if>
 			</div>
 
-
 			<div class="success"></div>
-
 			<%
 				
 			%>
@@ -153,6 +111,6 @@
 		</div>
 	</form>
 
-
 </body>
+
 </html>
