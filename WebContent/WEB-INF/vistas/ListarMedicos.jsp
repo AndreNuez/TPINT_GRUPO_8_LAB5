@@ -43,6 +43,8 @@
 				<td><b>Especialidad </b></td>
 				<td><b>Correo Electronico</b></td>
 				<td><b>Direccion</b></td>
+				<td><b>Provincia</b></td>
+				<td><b>Localidad</b></td>
 				<td><b></b></td>
 				<td><b></b></td>
 			</tr>
@@ -58,7 +60,8 @@
 					<td>${medico.especialidad.nombre}</td>
 					<td>${medico.correo}</td>
 					<td>${medico.direccion}</td>
-
+					<td>${medico.provincia.nombre}</td>
+					<td>${medico.localidad.nombre}</td>
 					<td><form action="EditarMedico.do" method="get">
 							<input type="hidden" name="legajo" value="${medico.legajo}">
 							<button type="submit">

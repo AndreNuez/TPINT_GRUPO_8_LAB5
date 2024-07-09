@@ -46,7 +46,7 @@
 				<td><b>Fecha Nacimiento </b></td>
 				<td><b>Correo Electronico</b></td>
 				<td><b>Provincia</b></td>
-				<td><b><b>Localidad</b></b></td>
+				<td><b>Localidad</b></td>
 				<td><b></b></td>
 				<td><b></b></td>
 			</tr>

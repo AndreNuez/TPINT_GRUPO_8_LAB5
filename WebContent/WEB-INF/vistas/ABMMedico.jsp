@@ -115,12 +115,38 @@
 						<td><input type="text" name="direccion"
 							value="${medico.direccion}" required></td>
 					</tr>
-					<tr>
+<!--  				<tr>
 						<td><label>Localidad</label></td>
 						<td><input type="text" name="localidad"
 							value="${medico.localidad}" required></td>
+					</tr>-->
+					<tr>
+						<td><label>Provincia</label></td>
+						<td><select name="provincia.id" id="provincia"
+							style="width: 233px;">
+							<c:if test="${editar}">
+								<option value="${medico.provincia.id}">${medico.provincia.nombre}</option>
+								</c:if>
+								<option value="">Seleccione una Provincia</option>
+								<c:forEach items="${provincias}" var="provincia">
+									<option value="${provincia.id}">${provincia.nombre}</option>
+								</c:forEach>
+						</select></td>
 					</tr>
+					<tr>
+						<td><label>Localidad</label></td>
+						<td><select name="localidad.id" id="localidad"
+							style="width: 233px;">
+							<c:if test="${editar}">
+								<option value="${medico.localidad.id}">${medico.localidad.nombre}</option>
+								</c:if>
+								<option value="">Seleccione una Localidad</option>
+								<c:forEach items="${localidades}" var="localidad">
+									<option value="${localidad.id}">${localidad.nombre}</option>
+								</c:forEach>
+						</select></td>
 
+					</tr>
 					<tr>
 						<td><label>Correo Electronico</label></td>
 						<td><input type="email" name="correo"

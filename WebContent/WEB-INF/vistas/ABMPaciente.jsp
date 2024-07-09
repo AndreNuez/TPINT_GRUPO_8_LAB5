@@ -74,7 +74,9 @@
 						<td><label>Provincia</label></td>
 						<td><select name="provincia.id" id="provincia"
 							style="width: 233px;">
+							<c:if test="${editar}">
 								<option value="${paciente.provincia.id}">${paciente.provincia.nombre}</option>
+							</c:if>
 								<option value="">Seleccione una Provincia</option>
 								<c:forEach items="${provincias}" var="provincia">
 									<option value="${provincia.id}">${provincia.nombre}</option>
@@ -85,7 +87,9 @@
 						<td><label>Localidad</label></td>
 						<td><select name="localidad.id" id="localidad"
 							style="width: 233px;">
+							<c:if test="${editar}">
 								<option value="${paciente.localidad.id}">${paciente.localidad.nombre}</option>
+							</c:if>
 								<option value="">Seleccione una Localidad</option>
 								<c:forEach items="${localidades}" var="localidad">
 									<option value="${localidad.id}">${localidad.nombre}</option>

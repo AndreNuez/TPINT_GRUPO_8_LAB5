@@ -42,8 +42,16 @@ public class Medico implements Serializable {
 	@Column(name = "Direccion")
 	private String direccion;
 
-	@Column(name = "Localidad")
-	private String localidad;
+	/*@Column(name = "Localidad")
+	private String localidad;*/
+	
+	@ManyToOne
+	@JoinColumn(name = "Id_Localidad")
+    private Localidad localidad;
+	
+	@ManyToOne
+	@JoinColumn(name = "Id_Provincia")
+    private Provincia provincia;
 
 	@Column(name = "Correo")
 	private String correo;
@@ -133,16 +141,32 @@ public class Medico implements Serializable {
 		this.direccion = direccion;
 	}
 
-	public String getLocalidad() {
+	/*public String getLocalidad() {
 		return this.localidad;
 	}
 
 	public void setLocalidad(String localidad) {
 		this.localidad = localidad;
-	}
+	}*/
 
 	public String getCorreo() {
 		return this.correo;
+	}
+
+	public Localidad getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(Localidad localidad) {
+		this.localidad = localidad;
+	}
+
+	public Provincia getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
 	}
 
 	public void setCorreo(String correo) {
