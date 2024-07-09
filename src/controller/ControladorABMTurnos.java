@@ -8,14 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import entidad.Turno;
 import entidad.Especialidad;
 import entidad.Medico;
+import entidad.Paciente;
 import negocioImpl.TurnoNegocio;
 import negocioImpl.EspecialidadNegocio;
 import negocioImpl.MedicoNegocio;
+import negocioImpl.PacienteNegocio;
 
 @Controller
 public class ControladorABMTurnos {
@@ -31,6 +35,9 @@ public class ControladorABMTurnos {
 	@Autowired
 	@Qualifier("servicioMedico")
 	private MedicoNegocio medicoNg;
+	@Autowired
+	@Qualifier("servicioPaciente")
+	private PacienteNegocio pacienteNg;
 	
 	@RequestMapping("ABMTurno.do")
 	public ModelAndView eventoABMTurnos(HttpSession session,Turno turno) {
