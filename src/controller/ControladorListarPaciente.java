@@ -80,7 +80,9 @@ public class ControladorListarPaciente {
 	public ModelAndView eventoEliminarPaciente(@RequestParam("dni") String dni, HttpSession session) {
 		ModelAndView MV = new ModelAndView();
 		Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni); // Implementa este método en tu negocio
-		pacienteNg.Delete(paciente);
+		
+		boolean eliminacion = pacienteNg.Delete(paciente);
+		MV.addObject("eliminacion", eliminacion);
 		
 		List<Paciente> pacientes = pacienteNg.ReadAll();
     	MV.addObject("pacientes", pacientes);

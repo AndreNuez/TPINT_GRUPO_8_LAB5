@@ -99,7 +99,9 @@ public class ControladorListarMedicos {
 	public ModelAndView eventoEliminarPaciente(@RequestParam("legajo") int legajo, HttpSession session) {
 		ModelAndView MV = new ModelAndView();
 		Medico medico = medicoNg.obtenerMedicoPorLegajo(legajo); // Implementa este método en tu negocio
-		medicoNg.Delete(medico);
+		
+		boolean eliminacion = medicoNg.Delete(medico);
+		MV.addObject("eliminacion", eliminacion);
 
 		List<Medico> medicos = medicoNg.ReadAll();
 		MV.addObject("medicos", medicos);
