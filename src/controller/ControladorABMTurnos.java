@@ -56,22 +56,29 @@ public class ControladorABMTurnos {
     }
 
 	@RequestMapping(value = "buscarPacientePorDni.do", method = RequestMethod.POST)
-    public ModelAndView buscarPacientePorDniPost(@RequestParam("dni") String dni, HttpSession session) {
-        ModelAndView MV = new ModelAndView("ABMTurno");
-        
-        if (dni != null && !dni.isEmpty()) {
-            Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni);
-            if (paciente != null) {
-                session.setAttribute("paciente", paciente);
-                MV.addObject("paciente", paciente);
-            }
-        }
-        
-        List<Especialidad> especialidades = especialidadNg.ReadAll();
-        MV.addObject("especialidades", especialidades);
-        
-        return MV;
-    }
+	public ModelAndView buscarPacientePorDniPost(@RequestParam("dni") String dni, HttpSession session) {
+	    ModelAndView MV = new ModelAndView("ABMTurno");
+	    
+	    if (dni != null && !dni.isEmpty()) {
+	        Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni);
+	        if (paciente != null) {
+	            session.setAttribute("paciente", paciente);
+	            MV.addObject("paciente", paciente);
+	        } else {
+	            MV.addObject("error", "El dni " + dni + " no corresponde a un Paciente.");
+	        }
+	    } else {
+	        MV.addObject("error", "Ingrese un DNI");
+	    }
+	    
+	    List<Especialidad> especialidades = especialidadNg.ReadAll();
+	    MV.addObject("especialidades", especialidades);
+	    
+	    List<Medico> medicos = medicoNg.ReadAll();
+	    MV.addObject("medicos", medicos);
+	    
+	    return MV;
+	}
 
 
 }
