@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.time.LocalDate" %>
+<%@ page import="entidad.Usuario" %>
+<%@ page import="entidad.PerfilUsuario" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,6 +12,11 @@
     <title>Medico</title>
 </head>
 <body>
+<%
+Usuario usuario = (Usuario) session.getAttribute("user");
+
+if(request.getSession().getAttribute("user")!=null && usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()){
+%>
     <%@ include file="Menu.jsp" %>
 
     <form id="formPpal" action="ABMMedico.do" method="post" onsubmit="return validarFormulario()">
@@ -184,5 +191,10 @@
   	     return true;
   	   }
     </script>
+<%}else{
+	response.sendRedirect("Access.do");
+	
+}
+%>
 </body>
 </html>

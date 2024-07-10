@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="entidad.Usuario" %>
+<%@ page import="entidad.PerfilUsuario" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,14 +26,22 @@
     </style>
 </head>
 <body>
-
-    <%@include file="Menu.jsp"%>
+	<%
+		Usuario usuario = (Usuario) session.getAttribute("user");
+	%>
+	<%@include file="Menu.jsp"%>
 
     <h1 class="title">Listado de pacientes</h1>
 
     <form action="AddPaciente.do" method="post">
-        <input class="btn btn-outline-dark" type="submit" name="btnAgregarPaciente" value="Agregar Paciente" style="margin-left: 730px;">
-    </form>
+		<%
+			if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
+		%>
+		<input class="btn btn-outline-dark" type="submit" name="btnAgregarPaciente" value="Agregar Paciente" style="margin-left: 730px;">
+		<%
+			}
+		%>
+	</form>
     <br><br><br>
     
     <c:if test="${confirmacion}">
@@ -79,13 +89,25 @@
                     <td>
                         <form action="EditarPaciente.do" method="get">
                             <input type="hidden" name="dni" value="${paciente.dni}">
-                            <button type="submit"><i class="fa fa-edit"></i></button>
-                        </form>
+							<%
+								if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
+							%>
+							<button type="submit"><i class="fa fa-edit"></i></button>
+							<%
+								}
+							%>
+						</form>
                     </td>
                     <td>
                         <form action="EliminarPaciente.do" method="get">
                             <input name="dni" type="hidden" value="${paciente.dni}">
+                            <%
+								if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
+							%>
                             <button type="submit" onclick="return confirm('¿Confirma que desea eliminar este paciente?')">
+                            <%
+								}
+							%>
                                 <i class="fa fa-delete"></i>
                             </button>
                         </form>

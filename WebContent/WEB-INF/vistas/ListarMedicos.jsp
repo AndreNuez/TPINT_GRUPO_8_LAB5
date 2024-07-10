@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page import="entidad.Usuario" %>
+<%@ page import="entidad.PerfilUsuario" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -25,13 +27,24 @@
     </style>
 </head>
 <body>
-    <%@ include file="Menu.jsp" %>
+	<%
+		Usuario usuario = (Usuario) session.getAttribute("user");
+	%>
+	<%@ include file="Menu.jsp" %>
 
     <h1 class="title">Listado de medicos</h1>
 
     <form action="AddMedico.do" method="post">
-        <input class="btn btn-outline-dark" type="submit" name="btnAgregarMedico" value="Agregar Medico" style="margin-left: 730px;">
-    </form>
+		<%
+			if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
+		%>
+		<input class="btn btn-outline-dark" type="submit"
+			name="btnAgregarMedico" value="Agregar Medico"
+			style="margin-left: 730px;">
+		<%
+			}
+		%>
+	</form>
     <br><br><br>
     
     <c:if test="${confirmacion}">
@@ -81,16 +94,32 @@
                     <td>
                         <form action="EditarMedico.do" method="get">
                             <input type="hidden" name="legajo" value="${medico.legajo}">
-                            <button type="submit"><i class="fa fa-edit"></i></button>
-                        </form>
+							<%
+								if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
+							%>
+							<button type="submit">
+								<i class="fa fa-edit"></i>
+							</button>
+							<%
+								}
+							%>
+						</form>
                     </td>
                     <td>
                         <form action="EliminarMedico.do" method="get">
                             <input name="legajo" type="hidden" value="${medico.legajo}">
-                            <button type="submit" onclick="return confirm('¿Confirma que desea eliminar este medico?')">
-                                <i class="fa fa-delete"></i>
-                            </button>
-                        </form>
+							<%
+								if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
+							%>
+							<button type="submit"
+								onclick="return confirm('¿Confirma que desea eliminar este medico?')">
+
+								<i class="fa fa-delete"></i>
+							</button>
+							<%
+								}
+							%>
+						</form>
                     </td>
                 </tr>
             </c:forEach>

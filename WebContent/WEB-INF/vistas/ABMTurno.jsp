@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ page import="entidad.Usuario" %>
+<%@ page import="entidad.PerfilUsuario" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,11 @@
 <title>Turno</title>
 </head>
 <body>
+<%
+	Usuario usuario = (Usuario) session.getAttribute("user");
+
+	if(request.getSession().getAttribute("user")!=null && usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()){
+%>
     <%@include file="Menu.jsp"%>
 
     <h2 class="title">Alta y Modificacion de Turnos</h2>
@@ -73,5 +79,10 @@
             <button type="submit" class="btn btn-outline-danger" name="btnEliminar">Eliminar</button>
         </div>
     </form>
+<%}else{
+	response.sendRedirect("Access.do");
+	
+}
+%>
 </body>
 </html>
