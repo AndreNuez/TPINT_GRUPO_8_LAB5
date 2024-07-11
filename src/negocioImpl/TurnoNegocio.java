@@ -7,14 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import dao.IDaoTurno;
 import entidad.Jornada;
 import entidad.Medico;
 import entidad.Turno;
-import negocio.IMedicoNegocio;
-import negocio.IPacienteNegocio;
 import negocio.ITurnoNegocio;
 
 @Service("servicioTurno")
@@ -22,12 +21,10 @@ public class TurnoNegocio implements ITurnoNegocio {
 
 	@Autowired
 	private IDaoTurno daoTurno;
+		
+	private MedicoNegocio medNeg;
 	
-//	@Autowired
-//	private IMedicoNegocio medNeg;
-//
-//	@Autowired
-//	private IPacienteNegocio pacNeg;
+	private PacienteNegocio pacNeg;
 	
 	public TurnoNegocio() {
 
@@ -155,10 +152,10 @@ public class TurnoNegocio implements ITurnoNegocio {
 	public boolean turnoValido(Turno turno) {
 		if(!fechaYHoraValida(turno))
 			return false;
-//		if(!medNeg.exists(turno.getMedico())) 
-//			return false;
-//		if(!pacNeg.exists(turno.getPaciente()))
-//			return false;
+		if(!medNeg.exists(turno.getMedico())) 
+			return false;
+		if(!pacNeg.exists(turno.getPaciente()))
+			return false;
 		return true;
 	}
 	
@@ -174,7 +171,7 @@ public class TurnoNegocio implements ITurnoNegocio {
 	private boolean medicoAtiende(Turno turno) {
 		String fecha = turno.getFecha();
 		boolean resp = false;
-		//resp = medNeg.medicoAtiende(turno.getMedico(), diaSemana(fecha), turno.getHora());
+		resp = medNeg.medicoAtiende(turno.getMedico(), diaSemana(fecha), turno.getHora());
         return resp;
 	}
 	

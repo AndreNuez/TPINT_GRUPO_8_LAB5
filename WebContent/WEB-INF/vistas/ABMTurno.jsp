@@ -76,7 +76,7 @@
 										<tr>
 											<td><label>Fecha de Reserva</label></td>
 											<td><input type="date" name="txtFechaReserva" style="width: 233px"></td>
-											<td><button type="button" id="btnBuscarFecha"
+											<td><button type="submit" formaction="buscarFecha.do" id="btnBuscarFecha"
 													class="btn btn-outline-primary">Buscar Fecha</button></td>
 										</tr>
 										<tr>

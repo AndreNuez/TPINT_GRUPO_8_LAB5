@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -81,5 +82,22 @@ public class ControladorABMTurnos {
 	    return MV;
 	}
 
+	@RequestMapping("buscarFecha.do")
+    public ModelAndView buscarFechaABMTurnos(String txtFechaReserva, int selMedico, HttpSession session, Turno turno) {
+        ModelAndView MV = new ModelAndView();
+        Medico medico = medicoNg.obtenerMedicoPorLegajo(selMedico);
+        ArrayList<Integer> horasTurnos = turnoNg.turnosDisponiblesMedicoFecha(medico, txtFechaReserva); 
+        // Obtener lista de especialidades
+        List<Especialidad> especialidades = especialidadNg.ReadAll();
+        List<Medico> medicos = medicoNg.ReadAll();
+        
+        MV.addObject("especialidades", especialidades);
+        MV.addObject("medicos", medicos);
+        MV.addObject("medico", medico);
+        MV.addObject("horasTurnos", horasTurnos);
+        
+        MV.setViewName("ABMTurno");
 
+        return MV;
+    }
 }
