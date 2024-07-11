@@ -51,10 +51,11 @@ public class ControladorListarTurnos {
 		MV.addObject("turnos", turnos);
 		MV.addObject("especialidades", especialidades);
 		MV.addObject("medicos", medicos);
-		
+		MV.addObject("hayTurno", false);
 		// Establecer el nombre de la vista
 		MV.setViewName("ABMTurno");
-		
+		if (session.getAttribute("paciente") != null)
+			session.setAttribute("paciente", null);
 		return MV;
 	}
 	/*@RequestMapping("EditarPaciente.do")
