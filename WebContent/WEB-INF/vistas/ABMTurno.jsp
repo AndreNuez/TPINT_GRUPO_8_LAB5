@@ -68,8 +68,8 @@
 											<td><label>Medico</label></td>
 											<td><select name="selMedico" id="selMedico" style="width: 233px;">
 													<option value="">Seleccione un Medico</option>
-													<c:forEach items="${medicos}" var="especialidad">
-														<option value="${medico.legajo}">${medico.nombre}</option>
+													<c:forEach items="${medicos}" var="medico">
+														<option value="${medico.legajo}">${medico.apellido}</option>
 													</c:forEach>
 												</select></td>
 										</tr>

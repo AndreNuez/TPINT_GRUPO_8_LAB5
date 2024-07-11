@@ -45,11 +45,14 @@ public class ControladorABMTurnos {
 
         // Obtener lista de especialidades
         List<Especialidad> especialidades = especialidadNg.ReadAll();
+        List<Medico> medicos = medicoNg.ReadAll();
+	    
         
-        // Añadir las especialidades al modelo
+        
+        
         MV.addObject("especialidades", especialidades);
-
-        // Establecer el nombre de la vista
+        MV.addObject("medicos", medicos);
+ 
         MV.setViewName("ABMTurno");
 
         return MV;
