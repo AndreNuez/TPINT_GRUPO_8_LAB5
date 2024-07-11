@@ -35,7 +35,7 @@ public class Turno implements Serializable {
     private String fecha;
 
     @Column(name = "Hora")
-    private String hora;
+    private int hora;
 
     @Column(name = "Observacion")
     private String observacion;
@@ -50,7 +50,7 @@ public class Turno implements Serializable {
     }
 
     // Constructor con todos los atributos
-    public Turno(Medico medico, Paciente paciente, String fecha, String hora,
+    /*public Turno(Medico medico, Paciente paciente, String fecha, String hora,
                  String observacion, EstadoTurno estado) {
         this.medico = medico;
         this.paciente = paciente;
@@ -58,7 +58,7 @@ public class Turno implements Serializable {
         this.hora = hora;
         this.observacion = observacion;
         this.estado = estado;
-    }
+    }*/
 
     // Getters y Setters
     // Puedes generar automáticamente estos métodos en tu IDE para acceder a las propiedades.
@@ -87,11 +87,11 @@ public class Turno implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public String getHora() {
+	public int getHora() {
 		return hora;
 	}
 
-	public void setHora(String hora) {
+	public void setHora(int hora) {
 		this.hora = hora;
 	}
 

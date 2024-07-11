@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import entidad.Turno;
-import entidad.Especialidad;
-import entidad.Medico;
-import entidad.Paciente;
-import negocioImpl.TurnoNegocio;
 import negocioImpl.EspecialidadNegocio;
 import negocioImpl.MedicoNegocio;
 import negocioImpl.PacienteNegocio;
+import negocioImpl.TurnoNegocio;
+import entidad.Especialidad;
+import entidad.Medico;
+import entidad.Paciente;
 
 @Controller
 public class ControladorABMTurnos {
@@ -35,6 +35,7 @@ public class ControladorABMTurnos {
 	@Autowired
 	@Qualifier("servicioMedico")
 	private MedicoNegocio medicoNg;
+	
 	@Autowired
 	@Qualifier("servicioPaciente")
 	private PacienteNegocio pacienteNg;
@@ -46,9 +47,6 @@ public class ControladorABMTurnos {
         // Obtener lista de especialidades
         List<Especialidad> especialidades = especialidadNg.ReadAll();
         List<Medico> medicos = medicoNg.ReadAll();
-	    
-        
-        
         
         MV.addObject("especialidades", especialidades);
         MV.addObject("medicos", medicos);

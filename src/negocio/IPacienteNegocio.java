@@ -16,4 +16,6 @@ public interface IPacienteNegocio {
 	
 	public Paciente obtenerPacientePorDNI(String dni);
 
+	public boolean exists(Paciente paciente);
+
 }

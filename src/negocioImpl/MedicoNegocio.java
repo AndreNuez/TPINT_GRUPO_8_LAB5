@@ -1,5 +1,6 @@
 package negocioImpl;
 
+import java.time.DayOfWeek;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,12 +8,12 @@ import org.springframework.stereotype.Service;
 
 import dao.IDaoMedico;
 import dao.IDaoUsuario;
+import entidad.Jornada;
 import entidad.Medico;
 import entidad.Usuario;
 import negocio.IMedicoNegocio;
 
 @Service("servicioMedico")
-
 public class MedicoNegocio implements IMedicoNegocio {
 	
 	@Autowired
@@ -69,9 +70,46 @@ public class MedicoNegocio implements IMedicoNegocio {
 	}
 
 	@Override
-	public Medico obtenerMedicoPorLegajo(int legajo) {
-		
+	public Medico obtenerMedicoPorLegajo(int legajo) {		
 		return daoMedico.obtenerMedicoPorLegajo(legajo);
 	}
 
+	@Override
+	public boolean exists(Medico medico) {
+		boolean estado = false;
+		if (medico.getLegajo() > 0) {
+			Medico m = obtenerMedicoPorLegajo(medico.getLegajo());
+			if (m != null)
+				estado = true;
+		}
+		return estado;
+	}
+	
+	@Override
+	public boolean medicoAtiende(Medico medico, DayOfWeek dia, int hora) {
+		Jornada jornada = medico.getJornada();
+		 switch (dia) {
+	         case MONDAY:
+	             return horaEnRango(hora, jornada.getInicioLunes(), jornada.getFinLunes());
+	         case TUESDAY:
+	        	 return horaEnRango(hora, jornada.getInicioMartes(), jornada.getFinMartes());
+	         case WEDNESDAY:
+	        	 return horaEnRango(hora, jornada.getInicioMiercoles(), jornada.getFinMiercoles());
+	         case THURSDAY:
+	        	 return horaEnRango(hora, jornada.getInicioJueves(), jornada.getFinJueves());
+	         case FRIDAY:
+	        	 return horaEnRango(hora, jornada.getInicioViernes(), jornada.getFinViernes());
+	         case SATURDAY:
+	        	 return horaEnRango(hora, jornada.getInicioSabado(), jornada.getFinSabado());
+	         case SUNDAY:
+	        	 return horaEnRango(hora, jornada.getInicioDomingo(), jornada.getFinDomingo());
+	         default:
+	             return false;
+		 }
+	}
+		 
+	 private boolean horaEnRango(int hora, int inicio, int fin) {
+		 return hora >= inicio && hora < fin;
+	 }
+	
 }

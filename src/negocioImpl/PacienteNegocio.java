@@ -56,10 +56,22 @@ public class PacienteNegocio implements IPacienteNegocio {
 		return daoPaciente.Delete(paciente);
 	}
 
-
 	@Override
 	public Paciente obtenerPacientePorDNI(String dni) {
 		return daoPaciente.obtenerPacientePorDNI(dni);
+	}
+	
+	//Logica para turno paciente
+	@Override
+	public boolean exists(Paciente paciente) {		
+		boolean estado=false;
+		if(paciente.getDni() != "")
+		{
+		  Paciente p =	obtenerPacientePorDNI(paciente.getDni());
+		  if (p != null)
+			  estado = true;
+		}
+		return estado;
 	}
 
 }

@@ -6,11 +6,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import dao.IDaoMedico;
 import daoImpl.Conexion;
 import entidad.Medico;
-import entidad.Paciente;
 
 @Repository("daoMedico")
 public class daoMedico implements IDaoMedico {
@@ -18,6 +16,7 @@ public class daoMedico implements IDaoMedico {
 	@Autowired
 	private Conexion conexion;
 
+	@Override
 	public boolean Add(Medico medico) {
 
 		Session session = conexion.abrirConexion();
@@ -41,6 +40,7 @@ public class daoMedico implements IDaoMedico {
 
 	}
 
+	@Override
 	public List<Medico> ReadAll() {
 
 		Session session = conexion.abrirConexion();
@@ -55,6 +55,7 @@ public class daoMedico implements IDaoMedico {
 		return list;
 	}
 
+	@Override
 	public boolean Update(Medico medico) {
 
 		Session session = conexion.abrirConexion();
@@ -78,6 +79,7 @@ public class daoMedico implements IDaoMedico {
 		return aux;
 	}
 
+	@Override
 	public boolean Delete(Medico medico) {
 
 		Session session = conexion.abrirConexion();
@@ -183,7 +185,6 @@ public class daoMedico implements IDaoMedico {
 		Session session = conexion.abrirConexion();
 
 		session.beginTransaction();
-		@SuppressWarnings({ "unchecked" })
 		Medico medico = (Medico) session.createQuery("from Medico where legajo = :legajo")
 				.setParameter("legajo", legajo).uniqueResult();
 
