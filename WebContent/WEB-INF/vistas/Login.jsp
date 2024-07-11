@@ -27,7 +27,14 @@
 			</div>
 		</form>
 	</div>
-			${cartelError}
+<% 
+    if(request.getSession().getAttribute("user") != null) {
+%>
+        ${cartelError}
+<% 
+    }
+%>
+
 
 </body>
 </html>

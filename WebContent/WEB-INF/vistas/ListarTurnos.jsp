@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="entidad.Usuario" %>
+<%@ page import="entidad.PerfilUsuario" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,15 +16,22 @@
 <title>Listado de Turnos</title>
 </head>
 <body>
-
+	<%
+		Usuario usuario = (Usuario) session.getAttribute("user");
+	%>
 	<%@include file="Menu.jsp"%>
 
 	<h1 class="title">Listado de turnos</h1>
 
 	<form action="AddTurno.do" method=post>
-		<a href="" class="p-2 bd-highlight"> <input
-			class="btn btn-outline-dark" type="submit" name="btnAgregarTurno"
-			value="Agregar Turno" style="margin-left: 730px;">
+		<a href="" class="p-2 bd-highlight"> 
+		<%
+			if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
+		%> 
+		<input class="btn btn-outline-dark" type="submit" name="btnAgregarTurno" value="Agregar Turno" style="margin-left: 730px;">
+		<%
+			}
+		%>
 		</a>
 	</form>
 	<br>

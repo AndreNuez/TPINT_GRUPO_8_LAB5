@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -38,11 +40,19 @@ public class Paciente implements Serializable {
     @Column(name = "Direccion")
     private String direccion;
 
-    @Column(name = "Localidad")
+    /*@Column(name = "Localidad")
     private String localidad;
 
     @Column(name = "Provincia")
-    private String provincia;
+    private String provincia;*/
+    
+    @ManyToOne
+	@JoinColumn(name = "Id_Localidad")
+    private Localidad localidad;
+    
+    @ManyToOne
+	@JoinColumn(name = "Id_Provincia")
+    private Provincia provincia;
 
     @Column(name = "FechaNacimiento")
     private String fechaNacimiento;
@@ -129,8 +139,10 @@ public class Paciente implements Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+    
+    
 
-    public String getLocalidad() {
+    /*public String getLocalidad() {
         return localidad;
     }
 
@@ -138,19 +150,35 @@ public class Paciente implements Serializable {
         this.localidad = localidad;
     }
 
-    public String getProvincia() {
+   public String getProvincia() {
         return provincia;
     }
 
     public void setProvincia(String provincia) {
         this.provincia = provincia;
-    }
+    }*/
 
-    public String getFechaNacimiento() {
+    public Localidad getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(Localidad localidad) {
+		this.localidad = localidad;
+	}
+
+	public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public Provincia getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+	}
+
+	public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

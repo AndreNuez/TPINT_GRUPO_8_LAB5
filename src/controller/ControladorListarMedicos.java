@@ -13,12 +13,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import entidad.Especialidad;
 import entidad.Jornada;
+import entidad.Localidad;
 import entidad.Medico;
 import entidad.Nacionalidad;
 import entidad.Paciente;
+import entidad.Provincia;
 import negocio.IEspecialidadNegocio;
 import negocio.IJornadaNegocio;
+import negocio.ILocalidadNegocio;
 import negocio.INacionalidadNegocio;
+import negocio.IProvinciaNegocio;
 import negocioImpl.MedicoNegocio;
 
 @Controller
@@ -39,6 +43,14 @@ public class ControladorListarMedicos {
 	@Autowired
 	@Qualifier("servicioJornada")
 	private IJornadaNegocio jornadaNegocio;
+	
+	@Autowired
+	@Qualifier("servicioProvincia")
+	private IProvinciaNegocio provinciaNegocio;
+    
+    @Autowired
+	@Qualifier("servicioLocalidad")
+	private ILocalidadNegocio localidadNegocio;
 
 	@RequestMapping("AddMedico.do")
 	public ModelAndView eventoRedireccionarPrincipal(String btnAgregarMedico, HttpSession session) {
@@ -49,7 +61,10 @@ public class ControladorListarMedicos {
 		List<Especialidad> especialidades = especialidadNegocio.ReadAll();
 		List<Nacionalidad> nacionalidades = nacionalidadNegocio.ReadAll();
 		List<Jornada> jornadas = jornadaNegocio.ReadAll();
-
+		List<Provincia> provincias = provinciaNegocio.ReadAll();
+        List<Localidad> localidades = localidadNegocio.ReadAll();
+        MV.addObject("provincias", provincias);
+        MV.addObject("localidades", localidades);
 		MV.addObject("especialidades", especialidades);
 		MV.addObject("nacionalidades", nacionalidades);
 		MV.addObject("jornadas", jornadas);
@@ -68,7 +83,10 @@ public class ControladorListarMedicos {
 		List<Especialidad> especialidades = especialidadNegocio.ReadAll();
 		List<Nacionalidad> nacionalidades = nacionalidadNegocio.ReadAll();
 		List<Jornada> jornadas = jornadaNegocio.ReadAll();
-
+		List<Provincia> provincias = provinciaNegocio.ReadAll();
+        List<Localidad> localidades = localidadNegocio.ReadAll();
+        MV.addObject("provincias", provincias);
+        MV.addObject("localidades", localidades);
 		MV.addObject("especialidades", especialidades);
 		MV.addObject("nacionalidades", nacionalidades);
 		MV.addObject("jornadas", jornadas);
@@ -81,7 +99,9 @@ public class ControladorListarMedicos {
 	public ModelAndView eventoEliminarPaciente(@RequestParam("legajo") int legajo, HttpSession session) {
 		ModelAndView MV = new ModelAndView();
 		Medico medico = medicoNg.obtenerMedicoPorLegajo(legajo); // Implementa este método en tu negocio
-		medicoNg.Delete(medico);
+		
+		boolean eliminacion = medicoNg.Delete(medico);
+		MV.addObject("eliminacion", eliminacion);
 
 		List<Medico> medicos = medicoNg.ReadAll();
 		MV.addObject("medicos", medicos);

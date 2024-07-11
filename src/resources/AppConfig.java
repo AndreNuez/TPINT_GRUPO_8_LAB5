@@ -7,23 +7,29 @@ import org.springframework.context.annotation.Configuration;
 import daoImpl.Conexion;
 import daoImpl.daoEspecialidad;
 import daoImpl.daoJornada;
+import daoImpl.daoLocalidad;
 import daoImpl.daoMedico;
 import daoImpl.daoNacionalidad;
 import daoImpl.daoPaciente;
+import daoImpl.daoProvincia;
 import daoImpl.daoTurno;
 import daoImpl.daoUsuario;
 import entidad.Especialidad;
 import entidad.Jornada;
+import entidad.Localidad;
 import entidad.Medico;
 import entidad.Nacionalidad;
 import entidad.Paciente;
+import entidad.Provincia;
 import entidad.Turno;
 import entidad.Usuario;
 import negocioImpl.EspecialidadNegocio;
 import negocioImpl.JornadaNegocio;
+import negocioImpl.LocalidadNegocio;
 import negocioImpl.MedicoNegocio;
 import negocioImpl.NacionalidadNegocio;
 import negocioImpl.PacienteNegocio;
+import negocioImpl.ProvinciaNegocio;
 import negocioImpl.TurnoNegocio;
 import negocioImpl.UsuarioNegocio;
 
@@ -77,6 +83,18 @@ public class AppConfig {
         return jor;
     }
     
+    @Bean
+    public Provincia beanProvincia() {
+    	Provincia prov = new Provincia();
+        return prov;
+    }
+    
+    @Bean
+    public Localidad beanLocalidad() {
+    	Localidad loc = new Localidad();
+        return loc;
+    }
+    
     //BEANS DAO
     @Bean
     public daoMedico beanDaoMedico() {
@@ -113,6 +131,19 @@ public class AppConfig {
         daoJornada daoJornada = new daoJornada();
         return daoJornada;
     }
+    
+    @Bean
+    public daoProvincia beanDaoProvincia() {
+        daoProvincia daoProvincia = new daoProvincia();
+        return daoProvincia;
+    }
+    
+    @Bean
+    public daoLocalidad beanDaoLocalidad() {
+        daoLocalidad daoLocalidad = new daoLocalidad();
+        return daoLocalidad;
+    }
+    
     
     // BEANS NEGOCIO
     @Bean
@@ -153,6 +184,18 @@ public class AppConfig {
     public JornadaNegocio beanJornadaNegocio() {
     	JornadaNegocio jornadaNeg = new JornadaNegocio();
         return jornadaNeg;
+    }
+    
+    @Bean
+    public ProvinciaNegocio beanProvinciaNegocio() {
+    	ProvinciaNegocio provinciaNeg = new ProvinciaNegocio();
+        return provinciaNeg;
+    }
+    
+    @Bean
+    public LocalidadNegocio beanProvinciaLocalidad() {
+    	LocalidadNegocio localidadNeg = new LocalidadNegocio();
+        return localidadNeg;
     }
     
 }
