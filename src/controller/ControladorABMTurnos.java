@@ -86,6 +86,7 @@ public class ControladorABMTurnos {
 
 	@RequestMapping("buscarFecha.do")
 	public ModelAndView buscarFechaABMTurnos(String txtFechaReserva, int selMedico, HttpSession session, Turno turno) {
+		
 		ModelAndView MV = new ModelAndView();
 		Medico medico = medicoNg.obtenerMedicoPorLegajo(selMedico);
 		ArrayList<Integer> horasTurnos = turnoNg.turnosDisponiblesMedicoFecha(medico, txtFechaReserva);
@@ -108,7 +109,6 @@ public class ControladorABMTurnos {
 		}
 
 		MV.setViewName("ABMTurno");
-
 		return MV;
 	}
 }

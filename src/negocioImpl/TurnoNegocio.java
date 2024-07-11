@@ -1,9 +1,11 @@
 package negocioImpl;
 
+import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,11 +136,23 @@ public class TurnoNegocio implements ITurnoNegocio {
 	}
 	
 	private DayOfWeek diaSemana(String fecha) {
+		
+		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd"); // Formato de entrada, ajusta según el formato recibido
+	    SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy"); // Formato deseado
+	    String fechaFormateada = null;
+
+	    try {
+	        Date dFecha = inputFormat.parse(fecha);
+	        fechaFormateada = outputFormat.format(dFecha);
+	    } catch (Exception e) {
+	    	System.out.println(e.getMessage());
+	        // Manejar la excepción de parseo si es necesario
+	    }
 		int d = 0;
 		String formatoFecha = "dd/MM/yyyy";
 		try {
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern(formatoFecha);
-			LocalDate fechaTurno = LocalDate.parse(fecha, dtf);
+			LocalDate fechaTurno = LocalDate.parse(fechaFormateada, dtf);
 			d = fechaTurno.getDayOfWeek().getValue();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

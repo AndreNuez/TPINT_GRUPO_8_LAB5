@@ -34,7 +34,7 @@ public class ControladorNav {
 
     @RequestMapping("navPages.do")
     public ModelAndView eventoRedireccionarPages(String inicioJsp, String medicosJsp, String pacientesJsp,
-            String turnosJsp) {
+            String turnosJsp, HttpSession session) {
         ModelAndView MV = new ModelAndView();
 
         if (inicioJsp != null && inicioJsp.equals("Inicio"))
@@ -49,6 +49,8 @@ public class ControladorNav {
 	    	List<Paciente> pacientes = pacienteNg.ReadAll();
 	    	MV.addObject("pacientes", pacientes);
             MV.setViewName("ListarPacientes");
+            if (session.getAttribute("paciente") != null)
+    			session.setAttribute("paciente", null);
 
 	    }
         
