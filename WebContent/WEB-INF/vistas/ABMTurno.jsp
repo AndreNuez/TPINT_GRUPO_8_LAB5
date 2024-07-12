@@ -9,6 +9,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Turno</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.1/css/bootstrap.min.css">
+
 
 </head>
 
@@ -22,10 +25,8 @@
 
 	<h2 class="title">Alta y Modificacion de Turnos</h2>
 
-
 	<form id="formTurno" action="ABMTurno.do" method="post">
 		<div class="formulario">
-
 			<div>
 				<c:if test="${not empty error}">
 					<label class="error" id="errorLabel">${error}</label>
@@ -35,8 +36,7 @@
 				<!-- Buscar paciente por DNI -->
 				<tr>
 					<td><label>DNI Paciente</label></td>
-					<td><input type="text" name="dni" value="${paciente.dni}">
-					</td>
+					<td><input type="text" name="dni" value="${paciente.dni}"></td>
 					<td>
 						<button type="submit" formaction="buscarPacientePorDni.do"
 							class="btn btn-outline-success">Buscar DNI</button>
@@ -59,11 +59,10 @@
 				<tr>
 					<td><label>Especialidad</label></td>
 					<td><select name="selEspecialidad" id="selEspecialidad"
-						style="width: 233px;">
+						style="width: 233px;" onchange="filtrarMedicos()">
 							<option value="">Seleccione una Especialidad</option>
 							<c:forEach items="${especialidades}" var="especialidad">
-								<option value="${especialidad.id}">${especialidad.nombre}
-								</option>
+								<option value="${especialidad.id}">${especialidad.nombre}</option>
 							</c:forEach>
 					</select></td>
 				</tr>
@@ -74,7 +73,9 @@
 							style="width: 233px;">
 								<option value="">Seleccione un Medico</option>
 								<c:forEach items="${medicos}" var="medico">
-									<option value="${medico.legajo}">${medico.apellido}</option>
+									<option value="${medico.legajo}"
+										data-especialidad="${medico.especialidad.id}"
+										style="display: none;">${medico.apellido}</option>
 								</c:forEach>
 						</select></td>
 					</tr>
@@ -89,10 +90,12 @@
 						<td><input type="text" name="txtMedico" id="txtMedico"
 							value="${medico.apellido}" readonly
 							style="background-color: #eee;"></td>
-					</tr>					
+					</tr>
 				</c:if>
 				<c:if test="${not empty cantTurnos}">
-					<label class="error" id="errorLabel">${cantTurnos}</label>
+					<tr>
+						<td colspan="3"><label class="error" id="errorLabel">${cantTurnos}</label></td>
+					</tr>
 				</c:if>
 				<tr>
 					<td><label>Fecha de Reserva</label></td>
@@ -116,7 +119,6 @@
 					<td><textarea name="txtObservacion" style="width: 233px;"
 							maxlength="1000"></textarea></td>
 				</tr>
-
 			</table>
 			<div class="button-container">
 				<button type="submit" class="btn btn-outline-success btn-spaced"
@@ -129,18 +131,31 @@
 		</div>
 	</form>
 
-	<script>
-								function hideErrorMessage() {
-									const errorLabel = document.getElementById('errorLabel');
-									if (errorLabel) {
-										setTimeout(() => {
-											errorLabel.style.display = 'none';
-										}, 6000); //6 segundos
-									}
-								}
 
-								window.onload = hideErrorMessage;
-							</script>
+	<script>
+    function filtrarMedicos() {
+        var especialidadId = document.getElementById('selEspecialidad').value;
+        var medicos = document.getElementById('selMedico').getElementsByTagName('option');
+
+        for (var i = 0; i < medicos.length; i++) {
+            medicos[i].style.display = (medicos[i].getAttribute('data-especialidad') === especialidadId || especialidadId === '') ? '' : 'none';
+        }
+    }
+
+    function hideErrorMessage() {
+        const errorLabel = document.getElementById('errorLabel');
+        if (errorLabel) {
+            setTimeout(() => errorLabel.style.display = 'none', 6000);
+        }
+    }
+
+    window.onload = () => {
+        hideErrorMessage();
+        filtrarMedicos();
+    };
+</script>
+	
+
 	<%
 		} else {
 			response.sendRedirect("Access.do");
