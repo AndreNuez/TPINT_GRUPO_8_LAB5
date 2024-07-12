@@ -1,76 +1,84 @@
 @charset "ISO-8859-1";
 
 .div_center {
-  margin: auto;
-  width: 80%;
-  border: 1px solid #73AD21;
-  padding: 10px;
+	margin: auto;
+	width: 80%;
+	border: 1px solid #73AD21;
+	padding: 10px;
 }
 
-.success{
+.success {
 	padding: 0.75rem 1.25rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: 0.25rem;
 	color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
 }
 
-.error{
-  padding: 0.5rem 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
-  display: inline-block;
-  margin-top: 15px;
-  margin-left: 10px;
-  font-size: 0.9rem;
+.error {
+	padding: 0.5rem 1rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: 0.25rem;
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+	display: inline-block;
+	margin-top: 15px;
+	margin-left: 10px;
+	font-size: 0.9rem;
 }
 
 .bg-mynav {
-  background-color: #2c3e50;
+	background-color: #2c3e50;
 }
 
 .user-name {
-  color: #ffe4c4;
+	color: #ffe4c4;
 }
 
 body {
-  font-size: 1.25rem;
-  background-color: #f6f8fa;
+	font-size: 1.25rem;
+	background-color: #f6f8fa;
 }
 
 td {
-    line-height: 2rem;
+	line-height: 2rem;
 }
 
 .inicio {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .inicio-content {
-  margin-top: 20%;
+	margin-top: 20%;
 }
 
 .title {
-  display: flex;
-  justify-content: center;
-  margin-top: 3%;
-  padding-bottom: 3%; 
+	display: flex;
+	justify-content: center;
+	margin-top: 3%;
+	padding-bottom: 3%;
 }
 
 .formulario {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 }
 
 .btn-spaced {
-    margin-right: 10px; /*espacio entre botones */
+	margin-right: 10px; /*espacio entre botones */
+}
+
+.hidden {
+	display: none;
+}
+
+.button-container {
+	margin-top: 20px;
 }

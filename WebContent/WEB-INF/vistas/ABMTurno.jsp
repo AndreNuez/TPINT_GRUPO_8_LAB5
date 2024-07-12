@@ -44,6 +44,7 @@
 				</tr>
 
 				<!-- Luego de buscar cargar nombre y apellido y el desplegable de espacialidad y medicos -->
+				<c:if test="${mostrarCampos}">
 				<tr>
 					<td><label>Nombre</label></td>
 					<td><input type="text" name="txtNombrePaciente"
@@ -119,6 +120,7 @@
 					<td><textarea name="txtObservacion" style="width: 233px;"
 							maxlength="1000"></textarea></td>
 				</tr>
+				</c:if>
 			</table>
 			<div class="button-container">
 				<button type="submit" class="btn btn-outline-success btn-spaced"
@@ -142,7 +144,7 @@
         }
     }
 
-    function hideErrorMessage() {
+    function ocultarMensajeError() {
         const errorLabel = document.getElementById('errorLabel');
         if (errorLabel) {
             setTimeout(() => errorLabel.style.display = 'none', 6000);
@@ -150,10 +152,11 @@
     }
 
     window.onload = () => {
-        hideErrorMessage();
+        ocultarMensajeError();
         filtrarMedicos();
     };
 </script>
+
 	
 
 	<%
