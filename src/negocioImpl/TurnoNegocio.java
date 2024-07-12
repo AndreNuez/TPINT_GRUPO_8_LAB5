@@ -43,11 +43,13 @@ public class TurnoNegocio implements ITurnoNegocio {
 	// FIN SPRING CORE
 
 	@Override
-	public boolean Add(Turno turno) {
+	public boolean Add(Turno turno, MedicoNegocio medicoNg, PacienteNegocio pacienteNg) {
 		// Logica para agregar el turno nuevo
-		//if (turnoValido(turno) && !turnoTomado(turno))
+		medNeg = medicoNg;
+		pacNeg = pacienteNg;
+		if (turnoValido(turno) && !turnoTomado(turno))
 			return daoTurno.Add(turno);
-		//return false;
+		return false;
 	}
 
 	@Override

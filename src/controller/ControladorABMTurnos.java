@@ -62,7 +62,7 @@ public class ControladorABMTurnos {
 		turno.setPaciente(paciente);
 		turno.setMedico(medico);		
 		turno.setObservacion("");
-		turnoNg.Add(turno);
+		turnoNg.Add(turno, medicoNg, pacienteNg);
 
 		List<Turno> turnos = turnoNg.ReadAll();		
 

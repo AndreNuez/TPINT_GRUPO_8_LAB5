@@ -6,10 +6,12 @@ import java.util.List;
 import entidad.EstadoTurno;
 import entidad.Medico;
 import entidad.Turno;
+import negocioImpl.MedicoNegocio;
+import negocioImpl.PacienteNegocio;
 
 public interface ITurnoNegocio {
 	
-	public boolean Add(Turno turno);
+	public boolean Add(Turno turno, MedicoNegocio medicoNg, PacienteNegocio pacienteNg);
 	
 	public List<Turno> ReadAll();
 	
