@@ -111,8 +111,8 @@ public class daoTurno implements IDaoTurno {
 		Long cantidadTurnos = (Long) session
 				.createQuery("SELECT COUNT(t) FROM Turno t " + "WHERE t.estado = :estado "
 						+ "AND t.fecha BETWEEN :fechaInicio AND :fechaFin")
-				.setParameter("estado", estado).setParameter("fechaInicio", LocalDate.parse(fechaInicio))
-				.setParameter("fechaFin", LocalDate.parse(fechaFin)).uniqueResult();
+				.setParameter("estado", estado).setParameter("fechaInicio", fechaInicio)
+				.setParameter("fechaFin", fechaFin).uniqueResult();
 
 		session.getTransaction().commit();
 		conexion.cerrarConexion();

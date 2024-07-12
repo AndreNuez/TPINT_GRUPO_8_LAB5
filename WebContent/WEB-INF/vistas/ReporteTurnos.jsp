@@ -19,13 +19,17 @@
 					<td><label>Fecha Inicio</label></td>
 					<td><input type="date" name="txtFechaInicio"
 						style="width: 233px" value=""></td>
+				</tr>
+				<tr>
 					<td><label>Fecha Fin</label></td>
 					<td><input type="date" name="txtFechaFin" style="width: 233px"
 						value=""></td>
+
 					<td><button type="submit" formaction="buscarTurnos.do"
 							id="btnBuscarTurnos" class="btn btn-outline-primary">Buscar
-							Fecha</button></td>
+						</button></td>
 				</tr>
+
 				<c:if test="${exito}">
 					<tr>
 						<td><label>Porcentaje Presentes: ${porcPresentes} </label></td>
@@ -33,6 +37,9 @@
 					<tr>
 						<td><label>Porcentaje Ausentes: ${porcAusentes} </label></td>
 					</tr>
+				</c:if>
+				<c:if test="${not exito}">
+					<td><label>No hay registros para mostrar</label></td>
 				</c:if>
 			</table>
 		</div>
