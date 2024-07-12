@@ -18,12 +18,12 @@
 				<tr>
 					<td><label>Fecha Inicio</label></td>
 					<td><input type="date" name="txtFechaInicio"
-						style="width: 233px" value=""></td>
+						style="width: 233px" value="${fechaInicioFormatted}"></td>
 				</tr>
 				<tr>
 					<td><label>Fecha Fin</label></td>
 					<td><input type="date" name="txtFechaFin" style="width: 233px"
-						value=""></td>
+						value="${fechaFinFormatted}"></td>
 
 					<td><button type="submit" formaction="buscarTurnos.do"
 							id="btnBuscarTurnos" class="btn btn-outline-primary">Buscar
