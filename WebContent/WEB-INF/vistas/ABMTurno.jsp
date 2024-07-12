@@ -44,7 +44,7 @@
 				</tr>
 
 				<!-- Luego de buscar cargar nombre y apellido y el desplegable de espacialidad y medicos -->
-				<c:if test="${mostrarCampos}">
+				<%-- <c:if test="${mostrarCampos}"> --%>
 					<tr>
 						<td><label>Nombre</label></td>
 						<td><input type="text" name="txtNombrePaciente"
@@ -67,7 +67,7 @@
 								</c:forEach>
 						</select></td>
 					</tr>
-				</c:if>
+			<%-- 	</c:if> --%>
 				<c:if test="${not hayTurno}">
 					<tr>
 						<td><label>Medico</label></td>

@@ -85,7 +85,7 @@ public class ControladorABMTurnos {
 		List<Medico> medicos = medicoNg.ReadAll();
 		MV.addObject("medicos", medicos);
 		MV.addObject("hayTurno", false);
-		 MV.addObject("mostrarCampos", mostrarCampos);
+		 /*MV.addObject("mostrarCampos", mostrarCampos);*/
 		return MV;
 	}
 
