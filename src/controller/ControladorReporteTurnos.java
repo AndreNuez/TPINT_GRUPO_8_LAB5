@@ -41,8 +41,12 @@ public class ControladorReporteTurnos {
 			MV.addObject("exito", true);
 			MV.addObject("porcPresentes", porcPresentes);
 			MV.addObject("porcAusentes", porcAusentes);
+			MV.addObject("fechaInicioFormatted", fechaInicioFormatted);
+			MV.addObject("fechaFinFormatted", fechaFinFormatted);
 
 		} else {
+			MV.addObject("fechaInicioFormatted", fechaInicioFormatted);
+			MV.addObject("fechaFinFormatted", fechaFinFormatted);
 			MV.addObject("exito", false);
 		}
 
