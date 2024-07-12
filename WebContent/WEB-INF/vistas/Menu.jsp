@@ -29,14 +29,17 @@
 				value=Pacientes> <input class="btn btn-primary" type=submit
 				name="turnosJsp" value=Turnos>
 		</form>
-		<div class="nav-item dropdown">
-			<a class="navbar-brand dropdown-toggle" href="#" role="button"
-				data-bs-toggle="dropdown" aria-expanded="false"> Reportes </a>
-			<div class="dropdown-menu">
-				<a class="dropdown-item" href="">Por Especialidad</a> <a
-					class="dropdown-item" href="">Por Medicos</a>
+		<form action="navPages.do">
+			<div class="nav-item dropdown">
+				<a class="navbar-brand dropdown-toggle" href="#" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"> Reportes </a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="">Por Especialidad</a> <input
+						class="dropdown-item" type=submit name="reporteTurnosJsp"
+						value=ReporteTurnos>
+				</div>
 			</div>
-		</div>
+		</form>
 
 		<form action="navLogOut.do" method=post>
 			<li class="navbar navbar-dark bg-mynav"><a

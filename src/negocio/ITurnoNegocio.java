@@ -3,6 +3,7 @@ package negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import entidad.EstadoTurno;
 import entidad.Medico;
 import entidad.Turno;
 
@@ -21,4 +22,8 @@ public interface ITurnoNegocio {
 	public ArrayList<Turno> readTurnosMedico(Medico medico);
 	
 	public boolean turnoValido(Turno turno);
+	
+	public double obtenerPorcentajeTurnos(EstadoTurno estado, String fechaInicio, String fechaFin);
+	
+	public long obtenerTotalTurnos(String fechaInicio, String fechaFin);
 }

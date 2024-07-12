@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.IDaoTurno;
+import entidad.EstadoTurno;
 import entidad.Jornada;
 import entidad.Medico;
 import entidad.Turno;
@@ -202,5 +203,17 @@ public class TurnoNegocio implements ITurnoNegocio {
 		}
 		
 		return false;
+	}
+
+	@Override
+	public double obtenerPorcentajeTurnos(EstadoTurno estado, String fechaInicio, String fechaFin) {
+		
+		return daoTurno.obtenerPorcentajeTurnos(estado, fechaInicio, fechaFin);
+	}
+
+	@Override
+	public long obtenerTotalTurnos(String fechaInicio, String fechaFin) {
+		
+		return daoTurno.obtenerTotalTurnos(fechaInicio, fechaFin);
 	}
 }

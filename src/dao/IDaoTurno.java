@@ -1,6 +1,8 @@
 package dao;
 
 import java.util.List;
+
+import entidad.EstadoTurno;
 import entidad.Turno;
 
 public interface IDaoTurno {
@@ -16,4 +18,8 @@ public interface IDaoTurno {
 	public List<Turno> searchTurnosMedico(int legajoMedico);
 
 	public List<Turno> searchTurnosDiaHorario(String fecha, int hora);
+	
+	public double obtenerPorcentajeTurnos(EstadoTurno estado, String fechaInicio, String fechaFin);
+	
+	public long obtenerTotalTurnos(String fechaInicio, String fechaFin);
 }
