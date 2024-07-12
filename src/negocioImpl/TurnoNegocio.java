@@ -23,11 +23,11 @@ public class TurnoNegocio implements ITurnoNegocio {
 
 	@Autowired
 	private IDaoTurno daoTurno;
-		
+	
 	private MedicoNegocio medNeg;
 	
 	private PacienteNegocio pacNeg;
-	
+
 	public TurnoNegocio() {
 
 	}
@@ -44,10 +44,10 @@ public class TurnoNegocio implements ITurnoNegocio {
 
 	@Override
 	public boolean Add(Turno turno) {
-		//Logica para agregar el turno nuevo 
-		if(turnoValido(turno) && !turnoTomado(turno))
+		// Logica para agregar el turno nuevo
+		//if (turnoValido(turno) && !turnoTomado(turno))
 			return daoTurno.Add(turno);
-		return false;
+		//return false;
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class TurnoNegocio implements ITurnoNegocio {
 		return daoTurno.Delete(turno);
 	}
 
-	// Logica para turnos disponibles 
+	// Logica para turnos disponibles
 	@Override
 	public ArrayList<Integer> turnosDisponiblesMedicoFecha(Medico medico, String fecha) {
 
@@ -135,20 +135,23 @@ public class TurnoNegocio implements ITurnoNegocio {
 			return null;
 		}
 	}
-	
-	private DayOfWeek diaSemana(String fecha) {
-		
-		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd"); // Formato de entrada, ajusta según el formato recibido
-	    SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy"); // Formato deseado
-	    String fechaFormateada = null;
 
-	    try {
-	        Date dFecha = inputFormat.parse(fecha);
-	        fechaFormateada = outputFormat.format(dFecha);
-	    } catch (Exception e) {
-	    	System.out.println(e.getMessage());
-	        // Manejar la excepción de parseo si es necesario
-	    }
+	private DayOfWeek diaSemana(String fecha) {
+
+		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd"); // Formato de entrada, ajusta según el
+																			// formato recibido
+		SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy"); // Formato deseado
+		String fechaFormateada = null;
+
+		if (!fecha.contains("/")) {
+			try {
+				Date dFecha = inputFormat.parse(fecha);
+				fechaFormateada = outputFormat.format(dFecha);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				// Manejar la excepción de parseo si es necesario
+			}
+		}
 		int d = 0;
 		String formatoFecha = "dd/MM/yyyy";
 		try {
@@ -160,60 +163,60 @@ public class TurnoNegocio implements ITurnoNegocio {
 		}
 		return DayOfWeek.of(d == 0 ? 7 : d);
 	}
-	
-	//Logica para turno valido
+
+	// Logica para turno valido
 	@Override
 	public boolean turnoValido(Turno turno) {
-		if(!fechaYHoraValida(turno))
+		if (!fechaYHoraValida(turno))
 			return false;
-		if(!medNeg.exists(turno.getMedico())) 
+		if (!medNeg.exists(turno.getMedico()))
 			return false;
-		if(!pacNeg.exists(turno.getPaciente()))
+		if (!pacNeg.exists(turno.getPaciente()))
 			return false;
 		return true;
 	}
-	
+
 	private boolean fechaYHoraValida(Turno turno) {
-		if(turno.getHora() > 23 || turno.getHora() < 0)
+		if (turno.getHora() > 23 || turno.getHora() < 0)
 			return false;
-		if(!medicoAtiende(turno))
+		if (!medicoAtiende(turno))
 			return false;
-		
+
 		return true;
 	}
-	
+
 	private boolean medicoAtiende(Turno turno) {
 		String fecha = turno.getFecha();
 		boolean resp = false;
 		resp = medNeg.medicoAtiende(turno.getMedico(), diaSemana(fecha), turno.getHora());
-        return resp;
+		return resp;
 	}
-	
+
 	private boolean turnoTomado(Turno turno) {
 		int legajoMed = turno.getMedico().getLegajo();
 		String dniPac = turno.getPaciente().getDni();
 		String fecha = turno.getFecha();
-		
+
 		List<Turno> tsDiaHorario = daoTurno.searchTurnosDiaHorario(fecha, turno.getHora());
-		for(Turno tomado : tsDiaHorario) {
-			if(legajoMed == tomado.getMedico().getLegajo())
+		for (Turno tomado : tsDiaHorario) {
+			if (legajoMed == tomado.getMedico().getLegajo())
 				return true;
-			if(dniPac == tomado.getPaciente().getDni())
+			if (dniPac == tomado.getPaciente().getDni())
 				return true;
 		}
-		
+
 		return false;
 	}
 
 	@Override
 	public double obtenerPorcentajeTurnos(EstadoTurno estado, String fechaInicio, String fechaFin) {
-		
+
 		return daoTurno.obtenerPorcentajeTurnos(estado, fechaInicio, fechaFin);
 	}
 
 	@Override
 	public long obtenerTotalTurnos(String fechaInicio, String fechaFin) {
-		
+
 		return daoTurno.obtenerTotalTurnos(fechaInicio, fechaFin);
 	}
 }

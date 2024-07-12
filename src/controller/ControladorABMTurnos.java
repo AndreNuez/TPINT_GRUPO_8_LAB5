@@ -21,6 +21,7 @@ import negocioImpl.MedicoNegocio;
 import negocioImpl.PacienteNegocio;
 import negocioImpl.TurnoNegocio;
 import entidad.Especialidad;
+import entidad.EstadoTurno;
 import entidad.Medico;
 import entidad.Paciente;
 
@@ -42,19 +43,32 @@ public class ControladorABMTurnos {
 	@Autowired
 	@Qualifier("servicioPaciente")
 	private PacienteNegocio pacienteNg;
-
+	
+	@Autowired
+	private Turno turno;
+	
 	@RequestMapping("ABMTurno.do")
-	public ModelAndView eventoABMTurnos(HttpSession session, Turno turno, String btnGrabar, String btnActualizar) {
+	public ModelAndView eventoABMTurnos(HttpSession session, String dni, int legajo, int selHora, String txtFechaReserva,
+			String btnGrabar, String btnActualizar) {
 		ModelAndView MV = new ModelAndView();
 
 		// Obtener lista de especialidades
+		Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni);
+		Medico medico = medicoNg.obtenerMedicoPorLegajo(legajo);
 		
-	/*	List<Medico> medicos = medicoNg.ReadAll();
-		List<Especialidad> especialidades = especialidadNg.ReadAll();
+		turno.setEstado(EstadoTurno.PENDIENTE);
+		turno.setFecha(txtFechaReserva);
+		turno.setHora(selHora);
+		turno.setPaciente(paciente);
+		turno.setMedico(medico);		
+		turno.setObservacion("");
+		turnoNg.Add(turno);
+
+		List<Turno> turnos = turnoNg.ReadAll();		
+
+		MV.addObject("turnos", turnos);
 		
-		MV.addObject("medicos", medicos);
-		MV.addObject("especialidades", especialidades);*/
-		MV.setViewName("ABMTurno");
+		MV.setViewName("ListarTurnos");
 
 		return MV;
 	}
@@ -64,14 +78,14 @@ public class ControladorABMTurnos {
 		ModelAndView MV = new ModelAndView("ABMTurno");
 		boolean mostrarCampos = true;
 		List<Especialidad> especialidades = especialidadNg.ReadAll();
-		
+
 		if (dni != null && !dni.isEmpty()) {
 			Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni);
 			if (paciente != null) {
 				session.setAttribute("paciente", paciente);
 				MV.addObject("paciente", paciente);
 				MV.addObject("especialidades", especialidades);
-				 mostrarCampos = true;
+				mostrarCampos = true;
 			} else {
 				MV.addObject("error", "El dni " + dni + " no corresponde a un Paciente.");
 			}
@@ -79,19 +93,21 @@ public class ControladorABMTurnos {
 			MV.addObject("error", "Ingrese un DNI");
 		}
 
-		/*List<Especialidad> especialidades = especialidadNg.ReadAll();
-		MV.addObject("especialidades", especialidades);*/
+		/*
+		 * List<Especialidad> especialidades = especialidadNg.ReadAll();
+		 * MV.addObject("especialidades", especialidades);
+		 */
 
 		List<Medico> medicos = medicoNg.ReadAll();
 		MV.addObject("medicos", medicos);
 		MV.addObject("hayTurno", false);
-		 /*MV.addObject("mostrarCampos", mostrarCampos);*/
+		/* MV.addObject("mostrarCampos", mostrarCampos); */
 		return MV;
 	}
 
 	@RequestMapping("buscarFecha.do")
 	public ModelAndView buscarFechaABMTurnos(String txtFechaReserva, int selMedico, HttpSession session, Turno turno) {
-		
+
 		ModelAndView MV = new ModelAndView();
 		Medico medico = medicoNg.obtenerMedicoPorLegajo(selMedico);
 		ArrayList<Integer> horasTurnos = turnoNg.turnosDisponiblesMedicoFecha(medico, txtFechaReserva);
@@ -107,9 +123,10 @@ public class ControladorABMTurnos {
 			MV.addObject("medicos", medicos);
 		}
 		if (hayTurno) {
-			MV.addObject("cantTurnos", "El medico " + medico.getApellido() + " cantidad de turnos para la fecha: " + horasTurnos.size());
+			MV.addObject("cantTurnos",
+					"El medico " + medico.getApellido() + " cantidad de turnos para la fecha: " + horasTurnos.size());
 			MV.addObject("medico", medico);
-			MV.addObject("horasTurnos", horasTurnos);			
+			MV.addObject("horasTurnos", horasTurnos);
 			MV.addObject("fechaReserva", txtFechaReserva);
 		}
 

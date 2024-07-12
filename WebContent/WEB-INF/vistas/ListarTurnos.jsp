@@ -53,31 +53,31 @@
 				<td><b></b></td>
 			</tr>
 		</thead>
-		<%-- <tbody>
+		<tbody>
 			<c:forEach items="${turnos}" var="turno">
 				<tr>
-					<td>${turno.idTurno}</td>
+					<td>${turno.id}</td>
 					<td>${turno.paciente.nombre} ${turno.paciente.apellido}</td>
 					<td>${turno.medico.nombre} ${turno.medico.apellido}</td>
-					<td>${turno.medico.especialidad.especialidad}</td>
-					<td>${turno.fechaReserva}</td>
+					<td>${turno.medico.especialidad.nombre}</td>
+					<td>${turno.fecha}</td>
 					<td>${turno.hora}hs</td>
-					<td>${turno.estadoTurno.descripcion}</td>
+					<td>${turno.estado}</td>
 					<td>
 						<form action="editarTurno.do" method="get">
-							<input type="hidden" name="id" value="${turno.idTurno}">
+							<input type="hidden" name="id" value="${turno.id}">
 							<button type="submit"><i class="fa fa-edit"></i></button>
 						</form>
 					</td>
 					<td>
 						<form action="EliminarTurno.do" method="get">
-							<input name="id" type="hidden" value="${turno.idTurno}">
+							<input name="id" type="hidden" value="${turno.id}">
 							<button type="submit"><i class="fa fa-trash"></i></button>
 						</form>
 					</td>
 				</tr>
 			</c:forEach>
-		</tbody> --%>
+		</tbody>
 
 	</table>
 
