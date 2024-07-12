@@ -44,16 +44,16 @@ public class ControladorABMTurnos {
 	private PacienteNegocio pacienteNg;
 
 	@RequestMapping("ABMTurno.do")
-	public ModelAndView eventoABMTurnos(HttpSession session, Turno turno) {
+	public ModelAndView eventoABMTurnos(HttpSession session, Turno turno, String btnGrabar, String btnActualizar) {
 		ModelAndView MV = new ModelAndView();
 
 		// Obtener lista de especialidades
+		
+	/*	List<Medico> medicos = medicoNg.ReadAll();
 		List<Especialidad> especialidades = especialidadNg.ReadAll();
-		List<Medico> medicos = medicoNg.ReadAll();
-
-		MV.addObject("especialidades", especialidades);
+		
 		MV.addObject("medicos", medicos);
-
+		MV.addObject("especialidades", especialidades);*/
 		MV.setViewName("ABMTurno");
 
 		return MV;
@@ -62,12 +62,15 @@ public class ControladorABMTurnos {
 	@RequestMapping(value = "buscarPacientePorDni.do", method = RequestMethod.POST)
 	public ModelAndView buscarPacientePorDniPost(@RequestParam("dni") String dni, HttpSession session) {
 		ModelAndView MV = new ModelAndView("ABMTurno");
-		boolean mostrarCampos = false;
+		boolean mostrarCampos = true;
+		List<Especialidad> especialidades = especialidadNg.ReadAll();
+		
 		if (dni != null && !dni.isEmpty()) {
 			Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni);
 			if (paciente != null) {
 				session.setAttribute("paciente", paciente);
 				MV.addObject("paciente", paciente);
+				MV.addObject("especialidades", especialidades);
 				 mostrarCampos = true;
 			} else {
 				MV.addObject("error", "El dni " + dni + " no corresponde a un Paciente.");
@@ -76,8 +79,8 @@ public class ControladorABMTurnos {
 			MV.addObject("error", "Ingrese un DNI");
 		}
 
-		List<Especialidad> especialidades = especialidadNg.ReadAll();
-		MV.addObject("especialidades", especialidades);
+		/*List<Especialidad> especialidades = especialidadNg.ReadAll();
+		MV.addObject("especialidades", especialidades);*/
 
 		List<Medico> medicos = medicoNg.ReadAll();
 		MV.addObject("medicos", medicos);
