@@ -68,7 +68,8 @@ import entidad.Turno;
 	        }
 	        
 	        else if (reporteTurnosJsp != null && reporteTurnosJsp.equals("ReporteTurnos")) {
-	            MV.setViewName("ReporteTurnos");
+	        	MV.addObject("exito", null);
+	        	MV.setViewName("ReporteTurnos");
 	        }
 	        return MV;
 	    }
