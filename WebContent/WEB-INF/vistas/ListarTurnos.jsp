@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="entidad.Usuario" %>
-<%@ page import="entidad.PerfilUsuario" %>
+<%@ page import="entidad.Usuario"%>
+<%@ page import="entidad.PerfilUsuario"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,14 +24,13 @@
 	<h1 class="title">Listado de turnos</h1>
 
 	<form action="AddTurno.do" method=post>
-		<a href="" class="p-2 bd-highlight"> 
-		<%
-			if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
-		%> 
-		<input class="btn btn-outline-dark" type="submit" name="btnAgregarTurno" value="Agregar Turno" style="margin-left: 730px;">
-		<%
-			}
-		%>
+		<a href="" class="p-2 bd-highlight"> <%
+ 	if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
+ %> <input class="btn btn-outline-dark" type="submit"
+			name="btnAgregarTurno" value="Agregar Turno"
+			style="margin-left: 730px;"> <%
+ 	}
+ %>
 		</a>
 	</form>
 	<br>
@@ -57,8 +56,8 @@
 			<c:forEach items="${turnos}" var="turno">
 				<tr>
 					<td>${turno.id}</td>
-					<td>${turno.paciente.nombre} ${turno.paciente.apellido}</td>
-					<td>${turno.medico.nombre} ${turno.medico.apellido}</td>
+					<td>${turno.paciente.nombre}${turno.paciente.apellido}</td>
+					<td>${turno.medico.nombre}${turno.medico.apellido}</td>
 					<td>${turno.medico.especialidad.nombre}</td>
 					<td>${turno.fecha}</td>
 					<td>${turno.hora}hs</td>
@@ -66,13 +65,29 @@
 					<td>
 						<form action="editarTurno.do" method="get">
 							<input type="hidden" name="id" value="${turno.id}">
-							<button type="submit"><i class="fa fa-edit"></i></button>
+							<%
+								if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
+							%>
+							<button type="submit">
+								<i class="fa fa-edit"></i>
+							</button>
+							<%
+								}
+							%>
 						</form>
 					</td>
 					<td>
 						<form action="EliminarTurno.do" method="get">
 							<input name="id" type="hidden" value="${turno.id}">
-							<button type="submit"><i class="fa fa-trash"></i></button>
+							<%
+								if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
+							%>
+							<button type="submit">
+								<i class="fa fa-trash"></i>
+							</button>
+							<%
+								}
+							%>
 						</form>
 					</td>
 				</tr>
