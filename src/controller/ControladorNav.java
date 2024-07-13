@@ -61,6 +61,7 @@ public class ControladorNav {
         }
         
         else if (reporteTurnosJsp != null && reporteTurnosJsp.equals("ReporteTurnos")) {
+        	MV.addObject("exito", null);
             MV.setViewName("ReporteTurnos");
         }
         return MV;
