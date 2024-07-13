@@ -62,12 +62,12 @@ public class ControladorABMTurnos {
 		turno.setPaciente(paciente);
 		turno.setMedico(medico);		
 		turno.setObservacion("");
-		turnoNg.Add(turno, medicoNg, pacienteNg);
+		boolean confirmacion = turnoNg.Add(turno, medicoNg, pacienteNg);
 
 		List<Turno> turnos = turnoNg.ReadAll();		
 
 		MV.addObject("turnos", turnos);
-		
+		MV.addObject("confirmacion", confirmacion);
 		MV.setViewName("ListarTurnos");
 
 		return MV;
@@ -76,7 +76,6 @@ public class ControladorABMTurnos {
 	@RequestMapping(value = "buscarPacientePorDni.do", method = RequestMethod.POST)
 	public ModelAndView buscarPacientePorDniPost(@RequestParam("dni") String dni, HttpSession session) {
 		ModelAndView MV = new ModelAndView("ABMTurno");
-		boolean mostrarCampos = true;
 		List<Especialidad> especialidades = especialidadNg.ReadAll();
 
 		if (dni != null && !dni.isEmpty()) {
@@ -85,7 +84,7 @@ public class ControladorABMTurnos {
 				session.setAttribute("paciente", paciente);
 				MV.addObject("paciente", paciente);
 				MV.addObject("especialidades", especialidades);
-				mostrarCampos = true;
+				MV.addObject("mostrarCampos", true);
 			} else {
 				MV.addObject("error", "El dni " + dni + " no corresponde a un Paciente.");
 			}
@@ -101,7 +100,6 @@ public class ControladorABMTurnos {
 		List<Medico> medicos = medicoNg.ReadAll();
 		MV.addObject("medicos", medicos);
 		MV.addObject("hayTurno", false);
-		/* MV.addObject("mostrarCampos", mostrarCampos); */
 		return MV;
 	}
 
@@ -115,6 +113,7 @@ public class ControladorABMTurnos {
 		Paciente paciente = (Paciente) session.getAttribute("paciente");
 		MV.addObject("paciente", paciente);
 		MV.addObject("hayTurno", hayTurno);
+		MV.addObject("mostrarCampos", true);
 		if (!hayTurno) {
 			MV.addObject("cantTurnos", "El medico " + medico.getApellido() + " no dispone de turnos para la fecha");
 			List<Especialidad> especialidades = especialidadNg.ReadAll();

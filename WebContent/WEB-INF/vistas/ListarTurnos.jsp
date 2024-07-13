@@ -14,6 +14,20 @@
 <%@include file="Datatable_Init.html"%>
 
 <title>Listado de Turnos</title>
+<style>
+        .success, .error {
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center; 
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+        }
+        .fade-out {
+            transition: opacity 1s ease-out;
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
 	<%
@@ -36,6 +50,22 @@
 	<br>
 	<br>
 	<br>
+	
+	<c:if test="${confirmacion}">
+        <div class="success" id="confirmacion">
+            <h4>Turno agregado con exito</h4>
+        </div>
+    </c:if>
+    <c:if test="${modificacion}">
+        <div class="success" id="modificacion">
+            <h4>Turno modificado con exito</h4>
+        </div>
+    </c:if>
+    <c:if test="${eliminacion}">
+        <div class="error" id="eliminacion">
+            <h4>Turno eliminado con exito</h4>
+        </div>
+    </c:if>
 
 	<table border="1" id="table_id" datatable="true">
 
@@ -96,12 +126,23 @@
 
 	</table>
 
-	<c:if test="${not empty success}">
-		<div class="success">${success}</div>
-	</c:if>
-	<c:if test="${not empty error}">
-		<div class="error">${error}</div>
-	</c:if>
+	<script>
+        // Function to fade out and hide the message
+        function fadeOutEffect(targetId) {
+            const fadeTarget = document.getElementById(targetId);
+            if (fadeTarget) {
+                fadeTarget.classList.add('fade-out');
+                setTimeout(() => fadeTarget.style.display = 'none', 1000); // delay to match CSS transition
+            }
+        }
+
+        // Set timeouts to fade out the confirmation messages after 3 seconds
+        window.onload = function() {
+            setTimeout(() => fadeOutEffect('confirmacion'), 3000);
+            setTimeout(() => fadeOutEffect('modificacion'), 3000);
+            setTimeout(() => fadeOutEffect('eliminacion'), 3000);
+        }
+    </script>
 
 </body>
 </html>
