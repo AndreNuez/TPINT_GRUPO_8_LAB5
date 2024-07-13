@@ -76,17 +76,13 @@
                     <tr>
                         <td><label>Localidad</label></td>
                         <td>
-                        <select name="selLocalidad" id="selLocalidad" style="width: 233px;">                           
-                                <option value="">Seleccione una Localidad</option> 
+                        <select name="selLocalidad" id="selLocalidad" style="width: 233px;">                         
                                 
-                                <c:if test="${editar}">
-                                
-                                    <option value="${paciente.localidad.id}"data-provincia="${paciente.localidad.provincia.id}"
-										style="display: none;">${paciente.localidad.nombre}</option>
+                                <c:if test="${editar}">                                
+                                    <option value="${paciente.localidad.id}">${paciente.localidad.nombre}</option>
                                 </c:if>                               
-                               
-                                <c:forEach items="${localidades}" var="localidad">
-                                    
+                                <option value="">Seleccione una Localidad</option> 
+                                <c:forEach items="${localidades}" var="localidad">                                    
                                 <option value="${localidad.id}"
 										data-provincia="${localidad.provincia.id}"
 										style="display: none;">${localidad.nombre}</option>
