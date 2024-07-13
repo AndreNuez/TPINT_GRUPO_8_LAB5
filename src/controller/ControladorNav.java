@@ -72,7 +72,6 @@ import entidad.Turno;
 	        }
 	        return MV;
 	    }
-<<<<<<< HEAD
 	
 	    @RequestMapping("navLogOut.do")
 	    public ModelAndView eventoRedireccionarLogOut(HttpSession session) {
@@ -93,27 +92,4 @@ import entidad.Turno;
 	        return turnosFiltrados;
 	    }
 	}
-=======
-        
-        else if (turnosJsp != null && turnosJsp.equals("Turnos")) {
-            List<Turno> turnos = turnoNg.ReadAll();
-            MV.addObject("turnos", turnos);
-            MV.setViewName("ListarTurnos");
-        }
-        
-        else if (reporteTurnosJsp != null && reporteTurnosJsp.equals("ReporteTurnos")) {
-        	MV.addObject("exito", null);
-            MV.setViewName("ReporteTurnos");
-        }
-        return MV;
-    }
-
-    @RequestMapping("navLogOut.do")
-    public ModelAndView eventoRedireccionarLogOut(HttpSession session) {
-        ModelAndView MV = new ModelAndView();
-        MV.setViewName("Login");
-        return MV;
-    }
-}
->>>>>>> 98a7b361c5786effbcfc768fd9f8fb513cb949a2
 
