@@ -61,7 +61,7 @@
                     <tr>
                         <td><label>Provincia</label></td>
                         <td>
-                            <select name="provincia.id" id="provincia" style="width: 233px;">
+                        <select name="selProvincia" id="selProvincia" style="width: 233px;"onchange="filtrarLocalidades()">                           
                                 <c:if test="${editar}">
                                     <option value="${paciente.provincia.id}">${paciente.provincia.nombre}</option>
                                 </c:if>
@@ -72,20 +72,29 @@
                             </select>
                         </td>
                     </tr>
+                    
                     <tr>
                         <td><label>Localidad</label></td>
                         <td>
-                            <select name="localidad.id" id="localidad" style="width: 233px;">
+                        <select name="selLocalidad" id="selLocalidad" style="width: 233px;">                           
+                                <option value="">Seleccione una Localidad</option> 
+                                
                                 <c:if test="${editar}">
-                                    <option value="${paciente.localidad.id}">${paciente.localidad.nombre}</option>
-                                </c:if>
-                                <option value="">Seleccione una Localidad</option>
+                                
+                                    <option value="${paciente.localidad.id}"data-provincia="${paciente.localidad.provincia.id}"
+										style="display: none;">${paciente.localidad.nombre}</option>
+                                </c:if>                               
+                               
                                 <c:forEach items="${localidades}" var="localidad">
-                                    <option value="${localidad.id}">${localidad.nombre}</option>
+                                    
+                                <option value="${localidad.id}"
+										data-provincia="${localidad.provincia.id}"
+										style="display: none;">${localidad.nombre}</option>
                                 </c:forEach>
                             </select>
                         </td>
                     </tr>
+               
                     <tr>
                         <td><label>Correo Electronico</label></td>
                         <td><input type="email" name="correoElectronico" pattern=".{1,}@.{1,}\.com.{0,}$" value="${paciente.correoElectronico}" required></td>
@@ -119,6 +128,19 @@
 	    }
 	    return true;
 	  }
+	  
+	  function filtrarLocalidades() {
+	        var provinciaId = document.getElementById('selProvincia').value;
+	        var localidades = document.getElementById('selLocalidad').getElementsByTagName('option');
+
+	        for (var i = 0; i < localidades.length; i++) {
+	        	localidades[i].style.display = (localidades[i].getAttribute('data-provincia') === provinciaId || provinciaId === '') ? '' : 'none';
+	        }
+	    }
+	  window.onload = () => {
+	        
+	        filtrarLocalidades();
+	    };
 	</script>
 <%}else{
 	response.sendRedirect("Access.do");

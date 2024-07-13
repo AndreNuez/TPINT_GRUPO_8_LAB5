@@ -72,8 +72,7 @@
 				<c:if test="${not hayTurno}">
 					<tr>
 						<td><label>Medico</label></td>
-						<td><select name="selMedico" id="selMedico"
-							style="width: 233px;">
+						<td><select name="selMedico" id="selMedico" style="width: 233px;">
 								<option value="">Seleccione un Medico</option>
 								<c:forEach items="${medicos}" var="medico">
 									<option value="${medico.legajo}"
