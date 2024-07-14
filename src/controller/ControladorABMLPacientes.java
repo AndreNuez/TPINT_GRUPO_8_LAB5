@@ -40,7 +40,9 @@ public class ControladorABMLPacientes {
 		Provincia provincia= provinciaNg.getProvinciaById(selProvincia);
 		
 		
-		if (btnGrabar != null && btnGrabar.equals("Grabar")) {
+		if (btnGrabar != null && btnGrabar.equals("Grabar")) {		
+			
+			if(pacienteNg.obtenerPacientePorDNI(paciente.getDni())==null) {
 			paciente.setActivo(true);
 			paciente.setProvincia(provincia);
 			paciente.setLocalidad(localidad);
@@ -49,6 +51,14 @@ public class ControladorABMLPacientes {
 			List<Paciente> pacientes = pacienteNg.ReadAll();
 			MV.addObject("pacientes", pacientes);
 			MV.setViewName("ListarPacientes");
+			}else {
+				MV.addObject("error", "El Dni ingresado ya existe en la base datos. ");
+				List<Provincia> provincias = provinciaNg.ReadAll();
+				List<Localidad> localidades = localidadNg.ReadAll();
+				MV.addObject("provincias", provincias);
+				MV.addObject("localidades", localidades);
+			}
+			
 		}
 		else if (btnActualizar != null && btnActualizar.equals("Actualizar")) {			
 			paciente.setActivo(true);

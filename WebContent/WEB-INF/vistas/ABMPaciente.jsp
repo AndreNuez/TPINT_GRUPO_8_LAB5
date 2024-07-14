@@ -30,6 +30,11 @@
 
 		<div class="formulario">
 			<div>
+			<div>
+				<c:if test="${not empty error}">
+					<label class="error" id="errorLabel">${error}</label>
+				</c:if>
+			</div>
 				<table>
 					<tr>
 						<c:if test="${editar}">

@@ -86,8 +86,8 @@
 			<c:forEach items="${turnos}" var="turno">
 				<tr>
 					<td>${turno.id}</td>
-					<td>${turno.paciente.nombre}${turno.paciente.apellido}</td>
-					<td>${turno.medico.nombre}${turno.medico.apellido}</td>
+					<td>${turno.paciente.nombre} ${turno.paciente.apellido}</td>
+					<td>${turno.medico.nombre} ${turno.medico.apellido}</td>
 					<td>${turno.medico.especialidad.nombre}</td>
 					<td>${turno.fecha}</td>
 					<td>${turno.hora}hs</td>

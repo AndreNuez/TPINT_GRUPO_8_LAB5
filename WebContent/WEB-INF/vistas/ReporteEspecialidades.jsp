@@ -31,7 +31,7 @@
 	<br>	
 	    <c:if test="${exito}">
         <div class="div_center">
-        	<label style="display: block; text-align: center;">Cantidad total de turnos en el periodo seleccionado: ${total}</label>
+        	<label style="display: block; text-align: center;"><b>Cantidad total de turnos en el periodo seleccionado: ${total}</b></label>
         	<br>
         	<br>
             <c:forEach var="item" items="${turnosPorEspecialidad}">
@@ -48,7 +48,7 @@
     	</c:if>
 		<c:if test="${exito == false}">
         <div class="div_center">
-            <label style="display: block; text-align: center;"><b>No turnos en las fechas seleccionadas</b></label>
+            <label style="display: block; text-align: center;"><b>No hay turnos en las fechas seleccionadas</b></label>
         </div>
    	 </c:if>
 </body>
