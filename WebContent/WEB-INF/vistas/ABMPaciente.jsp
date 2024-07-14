@@ -64,6 +64,17 @@
 						<td><input type="text" name="apellido" id="apellido"
 							pattern="[a-z A-Z]+" value="${paciente.apellido}" required></td>
 					</tr>
+					<tr>
+						<td><label>Sexo</label></td>
+						<td><select name="sexo" style="width: 233px;">
+								<c:if test="${editar}">
+									<option value="${paciente.sexo}">${paciente.sexo}</option>
+								</c:if>
+								<option value="X">X</option>
+								<option value="F">Femenino</option>
+								<option value="M">Masculino</option>
+						</select></td>
+					</tr>
 					<c:if test="${editar}">
 						<tr>
 							<td><label>Fecha Nacimiento</label></td>

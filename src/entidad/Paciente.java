@@ -39,8 +39,19 @@ public class Paciente implements Serializable {
 
     @Column(name = "Direccion")
     private String direccion;
+    
+    @Column(name = "Sexo")
+	private char sexo;
 
-    @ManyToOne
+    public char getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(char sexo) {
+		this.sexo = sexo;
+	}
+
+	@ManyToOne
 	@JoinColumn(name = "Id_Localidad")
     private Localidad localidad;
     

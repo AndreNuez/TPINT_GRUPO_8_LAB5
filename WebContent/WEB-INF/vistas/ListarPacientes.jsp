@@ -66,9 +66,10 @@
                 <td><b>DNI</b></td>
                 <td><b>Nombre</b></td>
                 <td><b>Apellido</b></td>
-                <td><b>Direccion</b></td>
+                <td><b>Sexo</b></td>
                 <td><b>Fecha Nacimiento</b></td>
                 <td><b>Correo Electronico</b></td>
+                <td><b>Direccion</b></td>
                 <td><b>Provincia</b></td>
                 <td><b>Localidad</b></td>
                 <td><b></b></td>
@@ -81,9 +82,10 @@
                     <td>${paciente.dni}</td>
                     <td>${paciente.nombre}</td>
                     <td>${paciente.apellido}</td>
-                    <td>${paciente.direccion}</td>
+                    <td>${paciente.sexo}</td>
                     <td>${paciente.fechaNacimiento}</td>
                     <td>${paciente.correoElectronico}</td>
+                    <td>${paciente.direccion}</td>
                     <td>${paciente.provincia.nombre}</td>
                     <td>${paciente.localidad.nombre}</td>
                     <td>
