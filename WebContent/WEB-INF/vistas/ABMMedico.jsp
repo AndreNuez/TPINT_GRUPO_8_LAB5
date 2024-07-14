@@ -224,17 +224,7 @@
   	     return true;
   	   };
   	   
-  	 function validarFormulario() {
- 	    var Nombre = document.getElementById("nombre").value.trim();
- 	    var Apellido = document.getElementById("apellido").value.trim();
- 	    var Direccion = document.getElementById("direccion").value.trim();
- 	
- 	    if (Nombre === "" || Apellido === "" ||  Direccion === "" ) {
- 	      alert("No se pueden guardar espacios. Debe ingresar un valor en todos los campos.");
- 	      return false;
- 	    }
- 	    return true;
- 	  }
+
  	  
  	  function filtrarLocalidades() {
  	        var provinciaId = document.getElementById('selProvincia').value;
@@ -243,7 +233,8 @@
  	        for (var i = 0; i < localidades.length; i++) {
  	        	localidades[i].style.display = (localidades[i].getAttribute('data-provincia') === provinciaId || provinciaId === '') ? '' : 'none';
  	        }
- 	    }
+ 	    };
+ 	    
  	  window.onload = () => {
  	        
  	        filtrarLocalidades();
