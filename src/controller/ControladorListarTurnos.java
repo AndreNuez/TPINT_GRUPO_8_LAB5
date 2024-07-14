@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import entidad.Especialidad;
+import entidad.Jornada;
 import entidad.Medico;
 import entidad.Paciente;
 import entidad.Turno;
-
+import negocio.IEspecialidadNegocio;
+import negocio.IJornadaNegocio;
 import negocioImpl.EspecialidadNegocio;
 import negocioImpl.MedicoNegocio;
 import negocioImpl.PacienteNegocio;
@@ -38,6 +40,14 @@ public class ControladorListarTurnos {
 	@Qualifier("servicioMedico")
 	private MedicoNegocio medicoNg;
 	
+	@Autowired
+	@Qualifier("servicioEspecialidad")
+	private IEspecialidadNegocio especialidadNegocio;
+
+	@Autowired
+	@Qualifier("servicioJornada")
+	private IJornadaNegocio jornadaNegocio;
+	
 	@RequestMapping("AddTurno.do")
 	public ModelAndView eventoRedireccionarPrincipal(HttpSession session, String btnAgregarTurno ) {
 		ModelAndView MV = new ModelAndView();
@@ -58,14 +68,28 @@ public class ControladorListarTurnos {
 			session.setAttribute("paciente", null);
 		return MV;
 	}
-	/*@RequestMapping("EditarPaciente.do")
+	@RequestMapping("EditarTurno.do")
 	public ModelAndView eventoEditarPaciente(@RequestParam("id") Long id, HttpSession session) {
 		ModelAndView MV = new ModelAndView();
-		Paciente paciente = pacienteNg.obtenerPacientePorId(id); // Implementa este método en tu negocio
-		MV.addObject("paciente", paciente);
-		MV.setViewName("ABMPaciente");
+		
+		MV.addObject("mostrarCampos", true);
+		MV.addObject("editar", true);
+		
+		Turno turno = (Turno) turnoNg.turnoPorId(id);
+		List<Especialidad> especialidades = especialidadNegocio.ReadAll();
+		List<Jornada> jornadas = jornadaNegocio.ReadAll();
+		Medico medico = medicoNg.obtenerMedicoPorLegajo(turno.getMedico().getLegajo());
+		
+		MV.addObject("especialidades", especialidades);
+		MV.addObject("jornadas", jornadas);
+		MV.addObject("medico", medico);
+
+		
+		
+		MV.addObject("turno", turno);
+		MV.setViewName("ABMTurno");
 		return MV;
-	}*/
+	}
 	
 	/*@RequestMapping("EliminarPaciente.do")
 	public ModelAndView eventoEliminarPaciente(@RequestParam("dni") String dni, HttpSession session) {

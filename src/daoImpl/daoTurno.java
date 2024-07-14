@@ -223,4 +223,21 @@ public class daoTurno implements IDaoTurno {
         }
         return turnos;
     }
+
+    public Turno turnoPorId(Long id) {
+        Turno turno = null;
+        Session session = conexion.abrirConexion();
+        session.beginTransaction();
+        try {
+            turno = (Turno) session.createQuery("FROM Turno t WHERE t.id = :id")
+                    .setParameter("id", id)
+                    .uniqueResult();
+        } catch (Exception e) {
+            System.out.println("Error al buscar el turno por ID: " + e.getMessage());
+        } finally {
+            session.getTransaction().commit();
+            conexion.cerrarConexion();
+        }
+        return turno;
+    }
 }

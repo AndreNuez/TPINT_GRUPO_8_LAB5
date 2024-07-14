@@ -93,17 +93,13 @@
 					<td>${turno.hora}hs</td>
 					<td>${turno.estado}</td>
 					<td>
-						<form action="editarTurno.do" method="get">
+						<form action="EditarTurno.do" method="get">
 							<input type="hidden" name="id" value="${turno.id}">
-							<%
-								if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
-							%>
+
 							<button type="submit">
 								<i class="fa fa-edit"></i>
 							</button>
-							<%
-								}
-							%>
+
 						</form>
 					</td>
 					<td>

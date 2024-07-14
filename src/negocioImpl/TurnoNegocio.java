@@ -226,4 +226,9 @@ public class TurnoNegocio implements ITurnoNegocio {
 
 		return daoTurno.listadoTurnosPorFecha(fechaInicio, fechaFin);
 	 }
+
+	@Override
+	public Turno turnoPorId(Long id) {
+		return daoTurno.turnoPorId(id);
+	}
 }
