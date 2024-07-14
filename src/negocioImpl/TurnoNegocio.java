@@ -221,4 +221,9 @@ public class TurnoNegocio implements ITurnoNegocio {
 
 		return daoTurno.obtenerTotalTurnos(fechaInicio, fechaFin);
 	}
+	
+	 public List<Turno> listadoTurnosPorFecha(String fechaInicio, String fechaFin){
+
+		return daoTurno.listadoTurnosPorFecha(fechaInicio, fechaFin);
+	 }
 }

@@ -202,4 +202,25 @@ public class daoTurno implements IDaoTurno {
 		}
 		return turnos;
 	}
+	
+    public List<Turno> listadoTurnosPorFecha(String fechaInicio, String fechaFin) {
+        List<Turno> turnos = null;
+        Session session = conexion.abrirConexion();
+        session.beginTransaction();
+        try {
+            @SuppressWarnings("unchecked")
+            List<Turno> list = (List<Turno>) session
+                    .createQuery("FROM Turno t WHERE t.fecha BETWEEN :fechaInicio AND :fechaFin")
+                    .setParameter("fechaInicio", fechaInicio)
+                    .setParameter("fechaFin", fechaFin)
+                    .list();
+            turnos = list;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            session.getTransaction().commit();
+            conexion.cerrarConexion();
+        }
+        return turnos;
+    }
 }

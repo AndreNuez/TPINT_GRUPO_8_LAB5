@@ -34,9 +34,8 @@
 				<a class="navbar-brand dropdown-toggle" href="#" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false"> Reportes </a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="">Por Especialidad</a> <input
-						class="dropdown-item" type=submit name="reporteTurnosJsp"
-						value=ReporteTurnos>
+					<input class="dropdown-item" type=submit name="reporteEspecialidadesJsp" value=ReporteEspecialidades>
+					<input class="dropdown-item" type=submit name="reporteTurnosJsp" value=ReporteTurnos>
 				</div>
 			</div>
 		</form>
