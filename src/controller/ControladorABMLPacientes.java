@@ -52,9 +52,11 @@ public class ControladorABMLPacientes {
 			MV.addObject("pacientes", pacientes);
 			MV.setViewName("ListarPacientes");
 			}else {
-				MV.addObject("error", "El Dni ingresado ya existe en la base datos. ");
+				MV.addObject("error", true);
 				List<Provincia> provincias = provinciaNg.ReadAll();
 				List<Localidad> localidades = localidadNg.ReadAll();
+				paciente.setProvincia(provincia);
+				paciente.setLocalidad(localidad);
 				MV.addObject("provincias", provincias);
 				MV.addObject("localidades", localidades);
 			}

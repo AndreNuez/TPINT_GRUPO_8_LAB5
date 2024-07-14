@@ -31,8 +31,8 @@
 		<div class="formulario">
 			<div>
 			<div>
-				<c:if test="${not empty error}">
-					<label class="error" id="errorLabel">${error}</label>
+				<c:if test="${error}">
+					<label class="error" id="errorLabel"> El Dni ingresado ya existe en la base datos.</label>
 				</c:if>
 			</div>
 				<table>
@@ -78,7 +78,7 @@
 							<td><label>Fecha Nacimiento</label></td>
 							<td><input type="date" name="fechaNacimiento"
 								max="<%= LocalDate.now().toString() %>"
-								value="${paciente.fechaNacimiento}" required
+								value="${fecNacPac}" required
 								style="width: 233px;"></td>
 						</tr>
 					</c:if>
@@ -94,6 +94,9 @@
 								<c:if test="${editar}">
 									<option value="${paciente.provincia.id}">${paciente.provincia.nombre}</option>
 								</c:if>
+								<c:if test="${error}">
+									<option value="${paciente.provincia.id}">${paciente.provincia.nombre}</option>
+								</c:if>
 								<option value="">Seleccione una Provincia</option>
 								<c:forEach items="${provincias}" var="provincia">
 									<option value="${provincia.id}">${provincia.nombre}</option>
@@ -107,6 +110,9 @@
 							style="width: 233px;">
 
 								<c:if test="${editar}">
+									<option value="${paciente.localidad.id}">${paciente.localidad.nombre}</option>
+								</c:if>
+								<c:if test="${error}">
 									<option value="${paciente.localidad.id}">${paciente.localidad.nombre}</option>
 								</c:if>
 								<option value="">Seleccione una Localidad</option>
