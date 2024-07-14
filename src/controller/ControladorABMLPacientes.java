@@ -66,8 +66,8 @@ public class ControladorABMLPacientes {
 			paciente.setActivo(true);
 			paciente.setProvincia(provincia);
 			paciente.setLocalidad(localidad);
-			boolean confirmacion = pacienteNg.Update(paciente);
-			MV.addObject("confirmacion", confirmacion);
+			boolean modificacion = pacienteNg.Update(paciente);
+			MV.addObject("modificacion", modificacion);
 			List<Paciente> pacientes = pacienteNg.ReadAll();
 			MV.addObject("pacientes", pacientes);
 			MV.setViewName("ListarPacientes");			

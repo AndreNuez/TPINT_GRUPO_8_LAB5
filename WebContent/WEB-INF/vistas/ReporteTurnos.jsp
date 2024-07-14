@@ -58,7 +58,7 @@
 	</c:if>
 	<c:if test="${exito == false}">
 		<div class="div_center">
-			<label><b>No hay registros para mostrar</b></label>
+			<label style="display: block; text-align: center;"><b>No hay registros para mostrar</b></label>
 		</div>
 	</c:if>
 </body>

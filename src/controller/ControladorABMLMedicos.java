@@ -96,12 +96,12 @@ public class ControladorABMLMedicos {
 			
 			medico.setProvincia(provincia);
 			medico.setLocalidad(localidad);
-			confirmacion = medicoNg.Update(medico);
+			boolean modificacion = medicoNg.Update(medico);
 			
 			List<Medico> medicos = medicoNg.ReadAll();
 			MV.addObject("medicos", medicos);
 
-			MV.addObject("confirmacion", confirmacion);
+			MV.addObject("modificacion", modificacion);
 			MV.setViewName("ListarMedicos");
 
 		}
