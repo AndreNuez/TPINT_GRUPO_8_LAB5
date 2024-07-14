@@ -15,6 +15,8 @@ public interface IMedicoNegocio {
 	public boolean Delete(Medico medico);
 	
 	public Medico obtenerMedicoPorLegajo(int legajo);
+	
+	public Medico obtenerMedicoPorDNI(String dni);
 
 	public boolean exists(Medico medico);
 

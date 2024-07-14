@@ -60,6 +60,8 @@ public class ControladorABMLMedicos {
 
 		if (btnGrabar != null && btnGrabar.equals("Grabar")) {
 			// primero se graba el usuario
+			if(medicoNg.obtenerMedicoPorDNI(medico.getDni()) == null) {
+			
 			Usuario userMed = medico.getUsuario();
 			userMed.setPerfil(PerfilUsuario.MEDICO.ordinal());
 			medico.setActivo(true);
@@ -74,6 +76,21 @@ public class ControladorABMLMedicos {
 
 			MV.addObject("confirmacion", confirmacion);
 			MV.setViewName("ListarMedicos");
+			
+			} else {
+				medico.setProvincia(provincia);
+				medico.setLocalidad(localidad);
+
+				MV.addObject("error", true);
+				List<Provincia> provincias = provinciaNg.ReadAll();
+				List<Localidad> localidades = localidadNg.ReadAll();
+				List<Especialidad> especialidades = especialidadNegocio.ReadAll();
+				List<Jornada> jornadas = jornadaNegocio.ReadAll();
+				MV.addObject("provincias", provincias);
+				MV.addObject("localidades", localidades);
+				MV.addObject("especialidades", especialidades);
+				MV.addObject("jornadas", jornadas);
+			}
 
 		} else if (btnActualizar != null && btnActualizar.equals("Actualizar")) {
 			

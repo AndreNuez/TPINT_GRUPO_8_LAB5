@@ -67,6 +67,7 @@
         <thead>
             <tr>
                 <td><b>Legajo</b></td>
+                <td><b>DNI</b></td>
                 <td><b>Nombre</b></td>
                 <td><b>Apellido</b></td>
                 <td><b>Sexo</b></td>
@@ -83,6 +84,7 @@
             <c:forEach items="${medicos}" var="medico">
                 <tr>
                     <td>${medico.legajo}</td>
+                    <td>${medico.dni}</td>
                     <td>${medico.nombre}</td>
                     <td>${medico.apellido}</td>
                     <td>${medico.sexo}</td>

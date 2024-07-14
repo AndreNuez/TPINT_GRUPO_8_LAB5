@@ -111,5 +111,10 @@ public class MedicoNegocio implements IMedicoNegocio {
 	 private boolean horaEnRango(int hora, int inicio, int fin) {
 		 return hora >= inicio && hora < fin;
 	 }
+
+	@Override
+	public Medico obtenerMedicoPorDNI(String dni) {
+		return daoMedico.obtenerMedicoPorDNI(dni);
+	}
 	
 }

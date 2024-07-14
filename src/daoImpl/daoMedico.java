@@ -48,8 +48,9 @@ public class daoMedico implements IDaoMedico {
 		session.beginTransaction();
 		@SuppressWarnings({ "unchecked" })
 		List<Medico> list = (List<Medico>) session.createQuery("from Medico where Activo = true").list();
-//		List<Medico> list = (List<Medico>) session
-//				.createQuery("from Medico medico join medico.usuario usuario where medico.activo = true").list();
+		// List<Medico> list = (List<Medico>) session
+		// .createQuery("from Medico medico join medico.usuario usuario where
+		// medico.activo = true").list();
 		conexion.cerrarConexion();
 
 		return list;
@@ -187,6 +188,20 @@ public class daoMedico implements IDaoMedico {
 		session.beginTransaction();
 		Medico medico = (Medico) session.createQuery("from Medico where legajo = :legajo")
 				.setParameter("legajo", legajo).uniqueResult();
+
+		conexion.cerrarConexion();
+
+		return medico;
+	}
+
+	@Override
+	public Medico obtenerMedicoPorDNI(String dni) {
+		Session session = conexion.abrirConexion();
+
+		session.beginTransaction();
+		@SuppressWarnings({ "unchecked" })
+		Medico medico = (Medico) session.createQuery("from Medico where dni = :dni").setParameter("dni", dni)
+				.uniqueResult();
 
 		conexion.cerrarConexion();
 

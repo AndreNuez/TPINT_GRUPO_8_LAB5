@@ -26,6 +26,17 @@ public class Medico implements Serializable {
 	@Column(name = "Legajo")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int legajo;
+	
+	@Column(name = "DNI")
+    private String dni;
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
 
 	@Column(name = "Nombre")
 	private String nombre;

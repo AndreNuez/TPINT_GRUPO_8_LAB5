@@ -31,6 +31,11 @@
 
 		<div class="formulario">
 			<div>
+			<div>
+				<c:if test="${error}">
+					<label class="error" id="errorLabel"> El Dni ingresado ya existe en la base datos.</label>
+				</c:if>
+			</div>
 				<table>
 					<c:if test="${editar}">
 						<tr>
@@ -38,7 +43,20 @@
 								value="${medico.legajo}" readonly></td>
 						</tr>
 					</c:if>
-
+					
+					<tr>
+						<td><label>DNI</label></td>
+						<c:if test="${not editar}">
+							<td><input type="text" name="dni" value="${medico.dni}"
+								pattern="^[0-9]{8}$" autofocus
+								title="Este campo solo admite un numero de 8 digitos." required></td>
+						</c:if>
+						<c:if test="${editar}">
+							<td><input type="text" name="dni" value="${medico.dni}"
+								style="background-color: #f2f2f2" required readonly></td>
+						</c:if>
+					</tr>
+					
 					<tr>
 						<td><label>Nombre</label></td>
 						<td><input type="text" name="nombre" id="nombre"
@@ -55,6 +73,9 @@
 								<c:if test="${editar}">
 									<option value="${medico.especialidad.id}">${medico.especialidad.nombre}</option>
 								</c:if>
+								<c:if test="${error}">
+									<option value="${medico.especialidad.id}">${medico.especialidad.nombre}</option>
+								</c:if>
 								<option value="">Seleccione una Especialidad</option>
 								<c:forEach items="${especialidades}" var="especialidad">
 									<option value="${especialidad.id}">${especialidad.nombre}</option>
@@ -65,6 +86,9 @@
 						<td><label>Jornada</label></td>
 						<td><select name="jornada.id" style="width: 233px;">
 								<c:if test="${editar}">
+									<option value="${medico.jornada.id}">${medico.jornada.descripcion}</option>
+								</c:if>
+								<c:if test="${error}">
 									<option value="${medico.jornada.id}">${medico.jornada.descripcion}</option>
 								</c:if>
 								<option value="">Seleccione una Jornada</option>
@@ -96,7 +120,7 @@
 					<c:if test="${not editar}">
 						<tr>
 							<td><label>Fecha Nacimiento</label></td>
-							<td><input type="date" name="fNac" value="${medico.fNac}"
+							<td><input type="date" name="fNac" value="${fecNacMed}"
 								max="<%= LocalDate.now().toString() %>" style="width: 233px;"
 								required></td>
 						</tr>
@@ -113,6 +137,9 @@
 								<c:if test="${editar}">
 									<option value="${medico.provincia.id}">${medico.provincia.nombre}</option>
 								</c:if>
+								<c:if test="${error}">
+									<option value="${medico.provincia.id}">${medico.provincia.nombre}</option>
+								</c:if>
 								<option value="">Seleccione una Provincia</option>
 								<c:forEach items="${provincias}" var="provincia">
 									<option value="${provincia.id}">${provincia.nombre}</option>
@@ -124,6 +151,9 @@
 						<td><select name="selLocalidad" id="selLocalidad"
 							style="width: 233px;">
 								<c:if test="${editar}">
+									<option value="${medico.localidad.id}">${medico.localidad.nombre}</option>
+								</c:if>
+								<c:if test="${error}">
 									<option value="${medico.localidad.id}">${medico.localidad.nombre}</option>
 								</c:if>
 								<option value="">Seleccione una Localidad</option>
