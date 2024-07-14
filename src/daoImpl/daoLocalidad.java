@@ -42,18 +42,4 @@ public class daoLocalidad implements IDaoLocalidad {
 		
 		return list;
 	}
-	
-	@Override
-	public Localidad getLocalidadById(int localidadId) {
-		
-		Session session = conexion.abrirConexion();
-		
-		session.beginTransaction();
-		
-		Localidad localidad = (Localidad) session.createQuery("from Localidad where id = " + localidadId).uniqueResult();
-		
-		conexion.cerrarConexion();
-		
-		return localidad;
-	}
 }

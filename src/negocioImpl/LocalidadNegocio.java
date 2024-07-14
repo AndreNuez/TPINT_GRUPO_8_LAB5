@@ -40,11 +40,5 @@ public class LocalidadNegocio implements ILocalidadNegocio {
 		
 		return daoLocalidad.getLocalidadesByProvinciaId(provinciaId);
 	}
-	
-	@Override
-	public Localidad getLocalidadById(int localidadId) {
-		
-		return daoLocalidad.getLocalidadById(localidadId);
-	}
 
 }

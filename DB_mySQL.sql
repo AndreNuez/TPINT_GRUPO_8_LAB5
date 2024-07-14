@@ -95,8 +95,8 @@ CREATE TABLE `jornadas` (
   UNIQUE KEY `UK_InicioFin` (`InicioLunes`,`FinLunes`,`InicioMartes`,`FinMartes`,`InicioMiercoles`,`FinMiercoles`,`InicioJueves`,`FinJueves`,`InicioViernes`,`FinViernes`,`InicioSabado`,`FinSabado`,`InicioDomingo`,`FinDomingo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `usuarios` (`Nombre`,`Password`,`perfil`,`activo`)
-VALUES('admin','admin',1,1);
+INSERT INTO `usuarios` (`Nombre`,`Password`,`perfil`)
+VALUES('admin','admin',1);
 
 -- Insertar 4 provincias 
 

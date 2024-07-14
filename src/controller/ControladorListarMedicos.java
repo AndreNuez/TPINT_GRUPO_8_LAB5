@@ -15,11 +15,13 @@ import entidad.Especialidad;
 import entidad.Jornada;
 import entidad.Localidad;
 import entidad.Medico;
+import entidad.Nacionalidad;
 import entidad.Paciente;
 import entidad.Provincia;
 import negocio.IEspecialidadNegocio;
 import negocio.IJornadaNegocio;
 import negocio.ILocalidadNegocio;
+import negocio.INacionalidadNegocio;
 import negocio.IProvinciaNegocio;
 import negocioImpl.MedicoNegocio;
 
@@ -33,6 +35,10 @@ public class ControladorListarMedicos {
 	@Autowired
 	@Qualifier("servicioEspecialidad")
 	private IEspecialidadNegocio especialidadNegocio;
+
+	@Autowired
+	@Qualifier("servicioNacionalidad")
+	private INacionalidadNegocio nacionalidadNegocio;
 
 	@Autowired
 	@Qualifier("servicioJornada")
@@ -53,12 +59,14 @@ public class ControladorListarMedicos {
 
 		MV.setViewName("ABMMedico");
 		List<Especialidad> especialidades = especialidadNegocio.ReadAll();
+		List<Nacionalidad> nacionalidades = nacionalidadNegocio.ReadAll();
 		List<Jornada> jornadas = jornadaNegocio.ReadAll();
 		List<Provincia> provincias = provinciaNegocio.ReadAll();
         List<Localidad> localidades = localidadNegocio.ReadAll();
         MV.addObject("provincias", provincias);
         MV.addObject("localidades", localidades);
 		MV.addObject("especialidades", especialidades);
+		MV.addObject("nacionalidades", nacionalidades);
 		MV.addObject("jornadas", jornadas);
 		MV.addObject("editar", false);
 		
@@ -73,12 +81,14 @@ public class ControladorListarMedicos {
 		MV.addObject("medico", medico);
 		
 		List<Especialidad> especialidades = especialidadNegocio.ReadAll();
+		List<Nacionalidad> nacionalidades = nacionalidadNegocio.ReadAll();
 		List<Jornada> jornadas = jornadaNegocio.ReadAll();
 		List<Provincia> provincias = provinciaNegocio.ReadAll();
         List<Localidad> localidades = localidadNegocio.ReadAll();
         MV.addObject("provincias", provincias);
         MV.addObject("localidades", localidades);
 		MV.addObject("especialidades", especialidades);
+		MV.addObject("nacionalidades", nacionalidades);
 		MV.addObject("jornadas", jornadas);
 		MV.addObject("editar", true);
 		MV.setViewName("ABMMedico");

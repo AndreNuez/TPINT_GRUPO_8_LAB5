@@ -114,7 +114,7 @@
 							<button type="submit"
 								onclick="return confirm('¿Confirma que desea eliminar este medico?')">
 
-								<i class="fa fa-trash"></i>
+								<i class="fa fa-delete"></i>
 							</button>
 							<%
 								}

@@ -36,14 +36,12 @@ public class ControladorReporteTurnos {
 
 		double porcPresentes = turnoNg.obtenerPorcentajeTurnos(presente, fechaInicioFormatted, fechaFinFormatted);
 		double porcAusentes = turnoNg.obtenerPorcentajeTurnos(ausente, fechaInicioFormatted, fechaFinFormatted);
-		long total = turnoNg.obtenerTotalTurnos(fechaInicioFormatted, fechaFinFormatted);
-		
+
 		if (!Double.isNaN(porcPresentes) && !Double.isNaN(porcAusentes)) {
 			MV.addObject("exito", true);
 			MV.addObject("porcPresentes", porcPresentes);
 			MV.addObject("porcAusentes", porcAusentes);
 			MV.addObject("fechaInicioFormatted", fechaInicioFormatted);
-			MV.addObject("total", total);
 			MV.addObject("fechaFinFormatted", fechaFinFormatted);
 
 		} else {

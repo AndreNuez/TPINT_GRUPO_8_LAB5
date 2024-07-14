@@ -27,19 +27,6 @@ public class daoProvincia implements IDaoProvincia {
 		
 		return list;
 	}
-	
-	@Override
-	public Provincia getProvinciaById(int provinciaId) {
-		Session session = conexion.abrirConexion();
-		
-		session.beginTransaction();
-		
-		Provincia provincia = (Provincia) session.createQuery("from Provincia where id=" + provinciaId).uniqueResult();
-		
-		conexion.cerrarConexion();
-		
-		return provincia;
-	}
 
 	
 }

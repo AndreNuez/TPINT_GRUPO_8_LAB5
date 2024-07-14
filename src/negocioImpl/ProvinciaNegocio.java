@@ -15,15 +15,15 @@ public class ProvinciaNegocio implements IProvinciaNegocio {
 
 	@Autowired
 	private IDaoProvincia daoProvincia;
-
+	
 	public ProvinciaNegocio() {
-
+		
 	}
-
+	
 	public ProvinciaNegocio(daoProvincia daoprov) {
 		this.daoProvincia = daoprov;
 	}
-
+	
 	public IDaoProvincia getDaoProvincia() {
 		return daoProvincia;
 	}
@@ -34,13 +34,9 @@ public class ProvinciaNegocio implements IProvinciaNegocio {
 
 	// FIN SPRING CORE
 
+
 	public List<Provincia> ReadAll() {
-
+		
 		return daoProvincia.ReadAll();
-	}
-
-	public Provincia getProvinciaById  (int provinciaId ) {
-
-		return daoProvincia.getProvinciaById(provinciaId);
 	}
 }

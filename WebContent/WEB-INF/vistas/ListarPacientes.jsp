@@ -108,7 +108,7 @@
                             <%
 								}
 							%>
-                               <i class="fa fa-trash"></i>
+                                <i class="fa fa-delete"></i>
                             </button>
                         </form>
                     </td>
