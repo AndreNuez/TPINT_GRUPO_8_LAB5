@@ -4,6 +4,7 @@
 <%@ page import="entidad.Usuario"%>
 <%@ page import="entidad.PerfilUsuario"%>
 <%@ page import="entidad.Turno"%>
+<%@ page import="java.time.LocalDate"%>
 <!DOCTYPE html>
 <html>
 
@@ -33,11 +34,11 @@
 					<label class="error" id="errorLabel">${error}</label>
 				</c:if>
 			</div>
-			<table>				
+			<table>
 				<!-- Buscar paciente por DNI -->
 				<tr>
 					<td><label>DNI Paciente</label></td>
-					<td><input type="text" name="dni" value="${paciente.dni}"></td>
+					<td><input type="text" name="dni" value="${paciente.dni}" required></td>
 					<td>
 						<button type="submit" formaction="buscarPacientePorDni.do"
 							class="btn btn-outline-success">Buscar DNI</button>
@@ -45,7 +46,7 @@
 				</tr>
 
 				<!-- Luego de buscar cargar nombre y apellido y el desplegable de espacialidad y medicos -->
-				<%-- <c:if test="${mostrarCampos}"> --%>
+				<c:if test="${mostrarCampos}">
 				<tr>
 					<td><label>Nombre</label></td>
 					<td><input type="text" name="txtNombrePaciente"
@@ -68,7 +69,7 @@
 							</c:forEach>
 					</select></td>
 				</tr>
-				<%-- 	</c:if> --%>
+
 				<c:if test="${not hayTurno}">
 					<tr>
 						<td><label>Medico</label></td>
@@ -103,7 +104,8 @@
 				<tr>
 					<td><label>Fecha de Reserva</label></td>
 					<td><input type="date" name="txtFechaReserva"
-						style="width: 233px" value="${fechaReserva}"></td>
+						style="width: 233px" value="${fechaReserva}"
+						min="<%=LocalDate.now().plusDays(1) %>" required></td>
 					<td><button type="submit" formaction="buscarFecha.do"
 							id="btnBuscarFecha" class="btn btn-outline-primary">Buscar
 							Fecha</button></td>
@@ -122,16 +124,18 @@
 					<td><textarea name="txtObservacion" style="width: 233px;"
 							maxlength="1000"></textarea></td>
 				</tr>
-
+				
 			</table>
 			<div class="button-container">
-				<button type="submit" class="btn btn-outline-success btn-spaced"
-					name="btnGrabar">Grabar</button>
-				<button type="submit" class="btn btn-outline-primary btn-spaced"
-					name="btnActualizar">Actualizar</button>
-
+				<button type="submit"
+					onclick="return confirm('¿Confirma que desea guardar este turno?')"
+					class="btn btn-outline-success btn-spaced" name="btnGrabar">Grabar</button>
+				<button type="submit"
+					onclick="return confirm('¿Confirma que desea guardar este turno?')"
+					class="btn btn-outline-primary btn-spaced" name="btnActualizar">Actualizar</button>
 			</div>
 		</div>
+		</c:if>
 	</form>
 
 

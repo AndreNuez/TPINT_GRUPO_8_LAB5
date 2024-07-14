@@ -9,7 +9,6 @@ import daoImpl.daoEspecialidad;
 import daoImpl.daoJornada;
 import daoImpl.daoLocalidad;
 import daoImpl.daoMedico;
-import daoImpl.daoNacionalidad;
 import daoImpl.daoPaciente;
 import daoImpl.daoProvincia;
 import daoImpl.daoTurno;
@@ -18,7 +17,6 @@ import entidad.Especialidad;
 import entidad.Jornada;
 import entidad.Localidad;
 import entidad.Medico;
-import entidad.Nacionalidad;
 import entidad.Paciente;
 import entidad.Provincia;
 import entidad.Turno;
@@ -27,7 +25,6 @@ import negocioImpl.EspecialidadNegocio;
 import negocioImpl.JornadaNegocio;
 import negocioImpl.LocalidadNegocio;
 import negocioImpl.MedicoNegocio;
-import negocioImpl.NacionalidadNegocio;
 import negocioImpl.PacienteNegocio;
 import negocioImpl.ProvinciaNegocio;
 import negocioImpl.TurnoNegocio;
@@ -69,12 +66,6 @@ public class AppConfig {
     public Turno beanTurno() {
         Turno turn = new Turno();
         return turn;
-    }
-    
-    @Bean
-    public Nacionalidad beanNacionalidad() {
-    	Nacionalidad nac = new Nacionalidad();
-        return nac;
     }
     
     @Bean
@@ -121,11 +112,7 @@ public class AppConfig {
         daoUsuario daoUser = new daoUsuario();
         return daoUser;
     }
-    @Bean
-    public daoNacionalidad beanDaoNacionalidad() {
-        daoNacionalidad daoNacionalidad = new daoNacionalidad();
-        return daoNacionalidad;
-    }
+   
     @Bean
     public daoJornada beanDaoJornada() {
         daoJornada daoJornada = new daoJornada();
@@ -175,11 +162,7 @@ public class AppConfig {
         UsuarioNegocio userNeg = new UsuarioNegocio();
         return userNeg;
     }
-    @Bean
-    public NacionalidadNegocio beanNacionalidadNegocio() {
-        NacionalidadNegocio nacionalidadNeg = new NacionalidadNegocio();
-        return nacionalidadNeg;
-    }
+
     @Bean
     public JornadaNegocio beanJornadaNegocio() {
     	JornadaNegocio jornadaNeg = new JornadaNegocio();

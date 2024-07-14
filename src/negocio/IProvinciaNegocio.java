@@ -7,4 +7,5 @@ import entidad.Provincia;
 public interface IProvinciaNegocio {
 
 	public List<Provincia> ReadAll();
+	public Provincia getProvinciaById(int provinciaId); 
 }
