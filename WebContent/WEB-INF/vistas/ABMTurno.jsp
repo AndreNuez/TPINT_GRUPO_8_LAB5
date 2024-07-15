@@ -146,14 +146,15 @@
 					value="Grabar">Grabar</button>
 
 				<input class="btn btn-outline-primary" type="submit"
-					name="btnVolver" id="btnVolver" value="Volver">
+					name="btnVolver" id="btnVolver" value="Volver"
+					formaction="AddTurno.do">
 			</div>
 		</div>
 		</c:if>
 		</c:if>
-		
-<!-- Validacion para generacion de turnos que no permita grabar si no se completo todo -->>
-<script>
+
+		<!-- Validacion para generacion de turnos que no permita grabar si no se completo todo -->
+		<script>
 	function validarHoraSeleccionada() {
     // Obtener el valor de la hora seleccionada
     var hora = document.getElementsByName('selHora')[0].value;
@@ -178,6 +179,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Llamar a validarHoraSeleccionada después de que se cargue la página
     validarHoraSeleccionada();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var btnVolver = document.getElementById('btnVolver');
+    var fechaReserva = document.getElementsByName('txtFechaReserva')[0];
+
+    btnVolver.addEventListener('click', function() {
+        fechaReserva.removeAttribute('required');
+    });
 });
 </script>
 
@@ -290,7 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			</c:if>
 		</c:if>
 	</form>
-<!-- Validacion para edicion de turnos que no permita grabar si no se completo el cambio de estatus -->>
+	<!-- Validacion para edicion de turnos que no permita grabar si no se completo el estatys -->
 
 	<script>
     function filtrarMedicos() {
