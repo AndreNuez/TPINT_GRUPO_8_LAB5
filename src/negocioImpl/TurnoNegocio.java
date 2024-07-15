@@ -15,7 +15,9 @@ import dao.IDaoTurno;
 import entidad.EstadoTurno;
 import entidad.Jornada;
 import entidad.Medico;
+import entidad.PerfilUsuario;
 import entidad.Turno;
+import entidad.Usuario;
 import negocio.ITurnoNegocio;
 
 @Service("servicioTurno")
@@ -230,5 +232,18 @@ public class TurnoNegocio implements ITurnoNegocio {
 	@Override
 	public Turno turnoPorId(Long id) {
 		return daoTurno.turnoPorId(id);
+	}
+	
+	public List<Turno> filtrarTurnosPorMedico(List<Turno> turnos, Usuario user) {
+		List<Turno> turnosFiltrados = new ArrayList<>();
+
+		for (Turno turno : turnos) {
+			if (turno.getMedico().getUsuario().getId() == user.getId()
+					|| user.getPerfil() == PerfilUsuario.ADMINISTRADOR.getPerfilUsuario()) {
+				turnosFiltrados.add(turno);
+			}
+		}
+
+		return turnosFiltrados;
 	}
 }

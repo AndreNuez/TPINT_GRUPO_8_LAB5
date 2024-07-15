@@ -6,6 +6,7 @@ import java.util.List;
 import entidad.EstadoTurno;
 import entidad.Medico;
 import entidad.Turno;
+import entidad.Usuario;
 import negocioImpl.MedicoNegocio;
 import negocioImpl.PacienteNegocio;
 
@@ -32,5 +33,6 @@ public interface ITurnoNegocio {
 	public List<Turno> listadoTurnosPorFecha(String fechaInicio, String fechaFin);
 	
 	public Turno turnoPorId(Long id);
+	public List<Turno> filtrarTurnosPorMedico(List<Turno> turnos, Usuario user);
 
 }

@@ -37,26 +37,18 @@
 				</c:if>
 			</div>
 			<table>
-				<!-- Buscar paciente por DNI -->
 				<tr>
-					<c:if test="${editar}">
-
-					</c:if>
-
-
-
-
 					<c:if test="${!editar}">
-						<!-- Luego de buscar cargar nombre y apellido y el desplegable de espacialidad y medicos -->
-						<c:if test="${mostrarCampos}">
-							<td><label>DNI Paciente</label></td>
-							<td><input type="text" name="dni" value="${paciente.dni}"
-								required></td>
 
-							<td>
-								<button type="submit" formaction="buscarPacientePorDni.do"
-									class="btn btn-outline-success">Buscar DNI</button>
-							</td>
+						<td><label>DNI Paciente</label></td>
+						<td><input type="text" name="dni" value="${paciente.dni}"
+							required></td>
+
+						<td>
+							<button type="submit" formaction="buscarPacientePorDni.do"
+								class="btn btn-outline-success">Buscar DNI</button>
+						</td>
+						<c:if test="${mostrarCampos}">
 				</tr>
 				<tr>
 					<td><label>Nombre</label></td>
@@ -143,17 +135,15 @@
 				</tr>
 				<tr>
 					<td><label>Observaciones</label></td>
-					<td><textarea name="txtObservacion" style="width: 233px;"
-							maxlength="1000"></textarea></td>
+					<td><textarea name="txtObservacion" id="txtObservacion"
+							style="width: 233px;" maxlength="1000" disabled></textarea></td>
 				</tr>
 			</table>
 			<div class="button-container">
 				<button type="submit"
 					onclick="return confirm('¿Confirma que desea guardar este turno?')"
-					class="btn btn-outline-success btn-spaced" name="btnGrabar">Grabar</button>
-				<button type="submit"
-					onclick="return confirm('¿Confirma que desea guardar este turno?')"
-					class="btn btn-outline-primary btn-spaced" name="btnActualizar">Actualizar</button>
+					class="btn btn-outline-success btn-spaced" name="btnGrabar"
+					value="Grabar">Grabar</button>
 			</div>
 		</div>
 		</c:if>
@@ -166,6 +156,15 @@
 				<td><label>DNI Paciente</label></td>
 				<td><input type="text" name="dni" value="${turno.paciente.dni}"
 					required readonly style="background-color: #f2f2f2;"></td>
+				<tr>
+					<td><input name="legajo" type="hidden"
+						value="${turno.medico.legajo}" readonly></td>
+				</tr>
+				<tr>
+					<td><input name="id" type="hidden" value="${turno.id}"
+						readonly></td>
+				</tr>
+
 				<tr>
 					<td><label>Nombre</label></td>
 					<td><input type="text" name="txtNombrePaciente"
@@ -225,11 +224,10 @@
 				</tr>
 				<tr>
 					<td><label for="txtHora">Hora</label></td>
-					<td><input type="text" name="txtHora" id="txtHora"
+					<td><input type="text" name="selHora" id="txtHora"
 						value="${turno.hora}" required readonly
 						style="width: 100px; padding: 5px; background-color: #f2f2f2; color: #888;">
 					</td>
-				</tr>
 				<tr>
 					<td><label>Estado</label></td>
 					<td><select name="selEstado">
@@ -243,21 +241,24 @@
 					</select></td>
 				</tr>
 				<tr>
+				<tr>
 					<td><label>Observaciones</label></td>
 					<td><textarea name="txtObservacion" style="width: 233px;"
-							maxlength="1000"></textarea></td>
+							maxlength="1000">${turno.observacion}</textarea></td>
+				</tr>
 				</tr>
 				</table>
 				<div class="button-container">
-					<button type="submit"
-						onclick="return confirm('¿Confirma que desea guardar este turno?')"
-						class="btn btn-outline-primary btn-spaced" name="btnActualizar">Actualizar</button>
+					<input class="btn btn-outline-primary" type="submit"
+						onclick="return confirm('¿Confirma que desea modificar este turno?')"
+						name="btnActualizar" id="btnActualizar" value="Actualizar">
+					<input class="btn btn-outline-primary" type="submit"
+						name="btnVolver" id="btnVolver" value="Volver">
 				</div>
 				</div>
 			</c:if>
 		</c:if>
 	</form>
-
 
 	<script>
     function filtrarMedicos() {
@@ -280,6 +281,32 @@
         ocultarMensajeError();
         filtrarMedicos();
     };
+    
+    window.onload = function() {
+        var selEstado = document.querySelector('select[name="selEstado"]');
+        var btnActualizar = document.getElementById('btnActualizar');
+        var txtObservacion = document.querySelector('textarea[name="txtObservacion"]');
+
+        // Función para actualizar el estado del botón y la caja de texto de observación
+        function actualizarEstado() {
+            var estadoSeleccionado = selEstado.value;
+            if (estadoSeleccionado === "<%=EstadoTurno.PENDIENTE%>") {
+                btnActualizar.disabled = true;
+                txtObservacion.disabled = true;
+            } else {
+                btnActualizar.disabled = false;
+                txtObservacion.disabled = false;
+            }
+        }
+
+        // Ejecutar la función al cargar la página
+        actualizarEstado();
+
+        // Escuchar cambios en el select de estado
+        selEstado.addEventListener('change', function() {
+            actualizarEstado();
+        });
+    }
 </script>
 
 	<%

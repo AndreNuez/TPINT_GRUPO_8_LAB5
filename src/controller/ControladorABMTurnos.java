@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import entidad.Turno;
+import entidad.Usuario;
 import negocioImpl.EspecialidadNegocio;
 import negocioImpl.MedicoNegocio;
 import negocioImpl.PacienteNegocio;
@@ -48,28 +49,51 @@ public class ControladorABMTurnos {
 	private Turno turno;
 	
 	@RequestMapping("ABMTurno.do")
-	public ModelAndView eventoABMTurnos(HttpSession session, String dni, int legajo, int selHora, String txtFechaReserva,
-			String btnGrabar, String btnActualizar) {
+	public ModelAndView eventoABMTurnos(@RequestParam(value = "id", required = false)Long id,HttpSession session, String dni, int legajo, int selHora,String selEstado,
+			String txtObservacion, String txtFechaReserva, String btnVolver, String btnGrabar, String btnActualizar) {
+
 		ModelAndView MV = new ModelAndView();
-
-		// Obtener lista de especialidades
-		Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni);
 		Medico medico = medicoNg.obtenerMedicoPorLegajo(legajo);
-		
-		turno.setEstado(EstadoTurno.PENDIENTE);
-		turno.setFecha(txtFechaReserva);
-		turno.setHora(selHora);
-		turno.setPaciente(paciente);
-		turno.setMedico(medico);		
-		turno.setObservacion("");
-		boolean confirmacion = turnoNg.Add(turno, medicoNg, pacienteNg);
+		Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni);
+		Usuario user = (Usuario) session.getAttribute("user");
 
-		List<Turno> turnos = turnoNg.ReadAll();		
+		if (btnGrabar != null && btnGrabar.equals("Grabar")) {
+			
+			turno.setEstado(EstadoTurno.PENDIENTE);
+			turno.setFecha(txtFechaReserva);
+			turno.setHora(selHora);
+			turno.setPaciente(paciente);
+			turno.setMedico(medico);
+			turno.setObservacion("");
+			boolean confirmacion = turnoNg.Add(turno, medicoNg, pacienteNg);
 
-		MV.addObject("turnos", turnos);
-		MV.addObject("confirmacion", confirmacion);
-		MV.setViewName("ListarTurnos");
+			List<Turno> turnos = turnoNg.ReadAll();
 
+			MV.addObject("turnos", turnos);
+			MV.addObject("confirmacion", confirmacion);
+			MV.setViewName("ListarTurnos");
+		} else if (btnActualizar != null && btnActualizar.equals("Actualizar")) {
+			
+			Turno turno = (Turno) turnoNg.turnoPorId(id);
+			turno.setEstado(EstadoTurno.valueOf(selEstado));
+			turno.setFecha(txtFechaReserva);
+			turno.setHora(selHora);
+			turno.setPaciente(paciente);
+			turno.setMedico(medico);
+			turno.setObservacion(txtObservacion);
+			
+			boolean modificacion = turnoNg.Update(turno);
+			MV.addObject("modificacion", modificacion);
+			List<Turno> turnos = turnoNg.ReadAll();
+			turnos= turnoNg.filtrarTurnosPorMedico(turnos, user);
+			MV.addObject("turnos", turnos);
+			MV.setViewName("ListarTurnos");	
+		}else if(btnVolver!=null && btnVolver.equals("Volver")) {
+			List<Turno> turnos = turnoNg.ReadAll();
+			turnos= turnoNg.filtrarTurnosPorMedico(turnos, user);
+			MV.addObject("turnos", turnos);
+			MV.setViewName("ListarTurnos");	
+		}
 		return MV;
 	}
 

@@ -62,7 +62,7 @@ public class ControladorNav {
 		else if (turnosJsp != null && turnosJsp.equals("Turnos")) {
 			List<Turno> turnos = turnoNg.ReadAll();
 
-			turnos = filtrarTurnosPorMedico(turnos, user);
+			turnos = turnoNg.filtrarTurnosPorMedico(turnos, user);
 
 			MV.addObject("turnos", turnos);
 			MV.setViewName("ListarTurnos");
@@ -88,16 +88,4 @@ public class ControladorNav {
 		return MV;
 	}
 
-	private List<Turno> filtrarTurnosPorMedico(List<Turno> turnos, Usuario user) {
-		List<Turno> turnosFiltrados = new ArrayList<>();
-
-		for (Turno turno : turnos) {
-			if (turno.getMedico().getUsuario().getId() == user.getId()
-					|| user.getPerfil() == PerfilUsuario.ADMINISTRADOR.getPerfilUsuario()) {
-				turnosFiltrados.add(turno);
-			}
-		}
-
-		return turnosFiltrados;
-	}
 }
