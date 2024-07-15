@@ -144,11 +144,42 @@
 					onclick="return confirm('¿Confirma que desea guardar este turno?')"
 					class="btn btn-outline-success btn-spaced" name="btnGrabar"
 					value="Grabar">Grabar</button>
+
+				<input class="btn btn-outline-primary" type="submit"
+					name="btnVolver" id="btnVolver" value="Volver">
 			</div>
 		</div>
 		</c:if>
 		</c:if>
+		
+<!-- Validacion para generacion de turnos que no permita grabar si no se completo todo -->>
+<script>
+	function validarHoraSeleccionada() {
+    // Obtener el valor de la hora seleccionada
+    var hora = document.getElementsByName('selHora')[0].value;
 
+    // Verificar que se haya seleccionado una hora válida
+    if (hora !== '' && hora !== 'Seleccione una hora') {
+        // Hora válida seleccionada
+        document.getElementsByName('btnGrabar')[0].disabled = false;
+    } else {
+        // Hora no seleccionada (seleccionó "Seleccione una hora" o no seleccionó nada)
+        document.getElementsByName('btnGrabar')[0].disabled = true;
+    }
+}
+
+// Llamar a la función de validación cuando se cambie la hora
+document.addEventListener('DOMContentLoaded', function() {
+    validarHoraSeleccionada(); // Validar al cargar la página por primera vez
+
+    // Escuchar cambios en el desplegable de hora para validar dinámicamente
+    var selectHora = document.getElementsByName('selHora')[0];
+    selectHora.addEventListener('change', validarHoraSeleccionada);
+
+    // Llamar a validarHoraSeleccionada después de que se cargue la página
+    validarHoraSeleccionada();
+});
+</script>
 
 		<c:if test="${editar}">
 			<!-- Luego de buscar cargar nombre y apellido y el desplegable de espacialidad y medicos -->
@@ -259,6 +290,7 @@
 			</c:if>
 		</c:if>
 	</form>
+<!-- Validacion para edicion de turnos que no permita grabar si no se completo el cambio de estatus -->>
 
 	<script>
     function filtrarMedicos() {
@@ -306,6 +338,8 @@
         selEstado.addEventListener('change', function() {
             actualizarEstado();
         });
+        
+        
     }
 </script>
 
