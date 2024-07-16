@@ -16,14 +16,13 @@
 <title>Medico</title>
 </head>
 <body>
-	<%
-		Usuario usuario = (Usuario) session.getAttribute("user");
+<%@ include file="Menu.jsp"%>
 
+	<%
 		if (request.getSession().getAttribute("user") != null
 				&& usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
 	%>
-	<%@ include file="Menu.jsp"%>
-
+	
 	<form id="formPpal" action="ABMMedico.do" method="post"
 		onsubmit="return validarFormulario()">
 		<h2 class="title">Alta y Modificacion de Medicos</h2>

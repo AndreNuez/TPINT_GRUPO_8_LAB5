@@ -29,9 +29,6 @@
 </style>
 </head>
 <body>
-	<%
-		Usuario usuario = (Usuario) session.getAttribute("user");
-	%>
 	<%@include file="Menu.jsp"%>
 
 	<h1 class="title">Listado de pacientes</h1>

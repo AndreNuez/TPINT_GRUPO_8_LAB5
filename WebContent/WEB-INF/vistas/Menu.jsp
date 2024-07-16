@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="entidad.Usuario"%>
+<%@ page import="entidad.PerfilUsuario"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,7 +15,9 @@
 <title>Navegacion</title>
 </head>
 <body>
-
+	<%
+		Usuario usuario = (Usuario) session.getAttribute("user");
+	%>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
@@ -23,10 +27,18 @@
 	<div class="container-fluid">
 		<form action="navPages.do" method=post>
 			<input class="btn btn-primary" type=submit name="inicioJsp"
-				value=Inicio> <input class="btn btn-primary" type=submit
+				value=Inicio> 
+		<%
+			if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
+		%>
+				<input class="btn btn-primary" type=submit
 				name="medicosJsp" value=Medicos> <input
 				class="btn btn-primary" type=submit name="pacientesJsp"
-				value=Pacientes> <input class="btn btn-primary" type=submit
+				value=Pacientes>
+			<%
+				}
+			%>
+			<input class="btn btn-primary" type=submit
 				name="turnosJsp" value=Turnos>
 		</form>
 		<form action="navPages.do">

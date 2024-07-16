@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Reporte Especialidades </title>
 </head>
-<body>
+<body> 
 	<%@ include file="Menu.jsp"%>
 
 	<h1 class="title">Reporte Especialidades</h1>

@@ -18,14 +18,11 @@
 
 </head>
 
-<body>
+<body> 
+<%@include file="Menu.jsp"%>
 	<%
-		Usuario usuario = (Usuario) session.getAttribute("user");
-
 		if (request.getSession().getAttribute("user") != null) {
 	%>
-
-	<%@include file="Menu.jsp"%>
 
 	<h2 class="title">Alta y Modificacion de Turnos</h2>
 
