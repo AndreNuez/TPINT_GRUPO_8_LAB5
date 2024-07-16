@@ -196,7 +196,7 @@
 								value="${medico.usuario.password}" required></td>
 						</c:if>
 						<c:if test="${editar}">
-							<td><input type="text" name="usuario.password" id="pass"
+							<td><input type="password" name="usuario.password" id="pass"
 								value="${medico.usuario.password}" required></td>
 						</c:if>
 					</tr>
@@ -208,7 +208,7 @@
 								oninput="check(this)"></td>
 						</c:if>
 						<c:if test="${editar}">
-							<td><input type="text" name="confirm_pass" id="confirm_pass"
+							<td><input type="password" name="confirm_pass" id="confirm_pass"
 								value="${medico.usuario.password}" required
 								oninput="check(this)"></td>
 						</c:if>
@@ -264,7 +264,7 @@
  	        }
  	    };
  	    
- 	  window.onload = () => {
+ 	  window.onload = ()=> {
  	        
  	        filtrarLocalidades();
  	    };

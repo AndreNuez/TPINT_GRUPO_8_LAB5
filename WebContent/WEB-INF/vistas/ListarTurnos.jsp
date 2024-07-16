@@ -100,7 +100,7 @@
 						</form>
 					</td>
 					<td>
-						<form action="EliminarTurno.do" method="get">
+		<!--  			<form action="EliminarTurno.do" method="get">
 							<input name="id" type="hidden" value="${turno.id}">
 							<%
 								if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
@@ -111,7 +111,9 @@
 							<%
 								}
 							%>
+			
 						</form>
+		-->	
 					</td>
 				</tr>
 			</c:forEach>

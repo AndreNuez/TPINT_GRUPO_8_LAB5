@@ -43,7 +43,7 @@
 
 						<td>
 							<button type="submit" formaction="buscarPacientePorDni.do"
-								class="btn btn-outline-success">Buscar DNI</button>
+								class="btn btn-outline-success" id="btnBuscarDNI">Buscar DNI</button>
 						</td>
 						<c:if test="${mostrarCampos}">
 				</tr>
@@ -151,7 +151,7 @@
 		</c:if>
 
 		<!-- Validacion para generacion de turnos que no permita grabar si no se completo todo -->
-		<script>
+<script>
 	function validarHoraSeleccionada() {
     // Obtener el valor de la hora seleccionada
     var hora = document.getElementsByName('selHora')[0].value;
@@ -186,6 +186,34 @@ document.addEventListener('DOMContentLoaded', function() {
         fechaReserva.removeAttribute('required');
     });
 });
+
+<c:if test="${mostrarCampos}">
+
+document.addEventListener('DOMContentLoaded', function() {
+    var dniInput = document.getElementsByName('dni')[0]; // Obtener el campo de DNI (asumiendo que es único)
+    dniInput.readOnly = true; // Hacer el campo de DNI solo de lectura
+    dniInput.style.backgroundColor = '#eee'; // Cambiar color de fondo a gris
+
+    // Agregar manejo de evento al formulario para enviar el campo DNI correctamente
+    var formTurno = document.getElementById('formTurno');
+    formTurno.addEventListener('submit', function(event) {
+        // Habilitar temporalmente el campo DNI para que su valor se envíe con el formulario
+        dniInput.disabled = false;
+        // Permitir que el formulario se envíe
+        return true;
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var dniInput = document.getElementsByName('dni')[0]; // Obtener el campo de DNI (asumiendo que es único)
+    dniInput.disabled = true;
+    dniInput.style.backgroundColor = '#eee'; // Cambiar color de fondo a gris
+    
+    var btnBuscarDNI = document.getElementById('btnBuscarDNI');
+    btnBuscarDNI.disabled = true; // Deshabilitar el botón "Buscar DNI"
+});
+
+</c:if>
 </script>
 
 		<c:if test="${editar}">
