@@ -66,6 +66,16 @@ public class ControladorABMTurnos {
 				turno.setPaciente(paciente);
 				turno.setMedico(medico);
 				turno.setObservacion("");
+				
+				 // Validamos que para ese dia y hora que el paciente no tenga ningun otro turno
+	            boolean yaTieneTurno = turnoNg.existeTurnoPaciente(dni, selHora, txtFechaReserva);
+	            if (yaTieneTurno) {
+	            	if (session.getAttribute("msjTurno") != null)
+	            		session.setAttribute("msjTurno", null);
+	                session.setAttribute("msjTurno", "El paciente ya tiene un turno cargado para esa hora y dia");
+	                return buscarFechaABMTurnos(txtFechaReserva, legajo, session, turno);	                
+	            }
+				
 				boolean confirmacion = turnoNg.Add(turno, medicoNg, pacienteNg);
 
 				List<Turno> turnos = turnoNg.ReadAll();

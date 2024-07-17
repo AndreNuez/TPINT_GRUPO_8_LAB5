@@ -66,6 +66,8 @@ public class ControladorListarTurnos {
 		MV.setViewName("ABMTurno");
 		if (session.getAttribute("paciente") != null)
 			session.setAttribute("paciente", null);
+		if (session.getAttribute("msjTurno") != null)
+			session.setAttribute("msjTurno", null);
 		return MV;
 	}
 	@RequestMapping("EditarTurno.do")
@@ -84,7 +86,8 @@ public class ControladorListarTurnos {
 		MV.addObject("jornadas", jornadas);
 		MV.addObject("medico", medico);
 
-		
+		if (session.getAttribute("msjTurno") != null)
+			session.setAttribute("msjTurno", null);
 		
 		MV.addObject("turno", turno);
 		MV.setViewName("ABMTurno");

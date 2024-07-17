@@ -32,6 +32,14 @@
 				<c:if test="${not empty error}">
 					<label class="error" id="errorLabel">${error}</label>
 				</c:if>
+				<%
+					if (request.getSession().getAttribute("msjTurno") != null) {
+							String mensaje = (String) request.getSession().getAttribute("msjTurno");
+				%>
+				<label class="error" id="mensajeTurno"><%=mensaje%></label>
+				<%
+					}
+				%>
 			</div>
 			<table>
 				<tr>
@@ -310,17 +318,17 @@ document.addEventListener('DOMContentLoaded', function() {
 					<td><textarea name="txtObservacion" style="width: 233px;"
 							maxlength="1000">${turno.observacion}</textarea></td>
 				</tr>
-		</tr>
-		</table>
-		<div class="button-container">
-			<input class="btn btn-outline-primary" type="submit"
-				onclick="return confirm('¿Confirma que desea modificar este turno?')"
-				name="btnActualizar" id="btnActualizar" value="Actualizar">
-			<input class="btn btn-outline-primary" type="submit" name="btnVolver"
-				id="btnVolver" value="Volver">
-		</div>
-		</div>
-		</c:if>
+				</tr>
+				</table>
+				<div class="button-container">
+					<input class="btn btn-outline-primary" type="submit"
+						onclick="return confirm('¿Confirma que desea modificar este turno?')"
+						name="btnActualizar" id="btnActualizar" value="Actualizar">
+					<input class="btn btn-outline-primary" type="submit"
+						name="btnVolver" id="btnVolver" value="Volver">
+				</div>
+				</div>
+			</c:if>
 		</c:if>
 	</form>
 	<!-- Validacion para edicion de turnos que no permita grabar si no se completo el estatys -->

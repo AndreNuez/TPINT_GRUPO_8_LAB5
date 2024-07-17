@@ -25,9 +25,9 @@ public class TurnoNegocio implements ITurnoNegocio {
 
 	@Autowired
 	private IDaoTurno daoTurno;
-	
+
 	private MedicoNegocio medNeg;
-	
+
 	private PacienteNegocio pacNeg;
 
 	public TurnoNegocio() {
@@ -223,17 +223,17 @@ public class TurnoNegocio implements ITurnoNegocio {
 
 		return daoTurno.obtenerTotalTurnos(fechaInicio, fechaFin);
 	}
-	
-	 public List<Turno> listadoTurnosPorFecha(String fechaInicio, String fechaFin){
+
+	public List<Turno> listadoTurnosPorFecha(String fechaInicio, String fechaFin) {
 
 		return daoTurno.listadoTurnosPorFecha(fechaInicio, fechaFin);
-	 }
+	}
 
 	@Override
 	public Turno turnoPorId(Long id) {
 		return daoTurno.turnoPorId(id);
 	}
-	
+
 	public List<Turno> filtrarTurnosPorMedico(List<Turno> turnos, Usuario user) {
 		List<Turno> turnosFiltrados = new ArrayList<>();
 
@@ -245,5 +245,18 @@ public class TurnoNegocio implements ITurnoNegocio {
 		}
 
 		return turnosFiltrados;
+	}
+
+	public boolean existeTurnoPaciente(String dni, Integer selHora, String txtFechaReserva) {
+		List<Turno> turnos = daoTurno.listadoTurnosPorFecha(txtFechaReserva, txtFechaReserva);
+		for (Turno turno2 : turnos) {
+			Integer hora = turno2.getHora();
+			String dniTurno = turno2.getPaciente().getDni().trim();
+			boolean estadoTurno = turno2.getEstado() == EstadoTurno.PENDIENTE ? true : false;
+			if (hora == selHora && estadoTurno && dniTurno.equals(dni.trim()))
+				return true;
+		}
+
+		return false;
 	}
 }
