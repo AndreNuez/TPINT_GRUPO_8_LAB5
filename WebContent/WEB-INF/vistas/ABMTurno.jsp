@@ -46,36 +46,40 @@
 								class="btn btn-outline-success" id="btnBuscarDNI">Buscar
 								DNI</button>
 						</td>
-						<c:if test="${mostrarCampos}">
 				</tr>
-				<tr>
-					<td><label>Nombre</label></td>
-					<td><input type="text" name="txtNombrePaciente"
-						id="nombrePaciente" value="${paciente.nombre}" readonly
-						style="background-color: #eee;"></td>
-				</tr>
-				<tr>
-					<td><label>Apellido</label></td>
-					<td><input type="text" name="txtApellidoPaciente"
-						id="apellidoPaciente" value="${paciente.apellido}" readonly
-						style="background-color: #eee;"></td>
-				</tr>
-				<tr>
-					<td><label>Especialidad</label></td>
-					<td><select name="selEspecialidad" id="selEspecialidad"
-						style="width: 233px;" onchange="filtrarMedicos()">
-							<option value="">Seleccione una Especialidad</option>
-							<c:forEach items="${especialidades}" var="especialidad">
-								<option value="${especialidad.id}">${especialidad.nombre}</option>
-							</c:forEach>
-					</select></td>
-				</tr>
-
-				<c:if test="${not hayTurno}">
+				<c:if test="${mostrarCampos}">
+					<tr>
+						<td><label>Nombre</label></td>
+						<td><input type="text" name="txtNombrePaciente"
+							id="nombrePaciente" value="${paciente.nombre}" readonly
+							style="background-color: #eee;"></td>
+					</tr>
+					<tr>
+						<td><label>Apellido</label></td>
+						<td><input type="text" name="txtApellidoPaciente"
+							id="apellidoPaciente" value="${paciente.apellido}" readonly
+							style="background-color: #eee;"></td>
+					</tr>
+					<tr>
+						<td><label>Especialidad</label></td>
+						<td><select name="selEspecialidad" id="selEspecialidad"
+							style="width: 233px;" onchange="filtrarMedicos()">
+								<c:if test="${hayTurno || hayTurno == false}">
+									<option value="${medico.especialidad.id}">${medico.especialidad.nombre}</option>
+								</c:if>
+								<option value="">Seleccione una Especialidad</option>
+								<c:forEach items="${especialidades}" var="especialidad">
+									<option value="${especialidad.id}">${especialidad.nombre}</option>
+								</c:forEach>
+						</select></td>
+					</tr>
 					<tr>
 						<td><label>Medico</label></td>
 						<td><select name="selMedico" id="selMedico"
 							style="width: 233px;">
+								<c:if test="${hayTurno || hayTurno == false}">
+									<option value="${medico.legajo}">${medico.apellido}</option>
+								</c:if>
 								<option value="">Seleccione un Medico</option>
 								<c:forEach items="${medicos}" var="medico">
 									<option value="${medico.legajo}"
@@ -84,58 +88,51 @@
 								</c:forEach>
 						</select></td>
 					</tr>
-				</c:if>
-				<c:if test="${hayTurno}">
+					<c:if test="${hayTurno}">
+						<tr>
+							<td><input name="legajo" type="hidden"
+								value="${medico.legajo}" readonly></td>
+						</tr>
+					</c:if>
+					<c:if test="${not empty cantTurnos}">
+						<tr>
+							<td colspan="3"><label class="error" id="errorLabel">${cantTurnos}</label></td>
+						</tr>
+					</c:if>
 					<tr>
-						<td><input name="legajo" type="hidden"
-							value="${medico.legajo}" readonly></td>
+						<td><label>Fecha de Reserva</label></td>
+						<td><input type="date" name="txtFechaReserva"
+							style="width: 233px" value="${fechaReserva}"
+							min="<%=LocalDate.now().plusDays(1) %>" required></td>
+						<td><button type="submit" formaction="buscarFecha.do"
+								id="btnBuscarFecha" class="btn btn-outline-primary">Buscar
+								Fecha</button></td>
 					</tr>
 					<tr>
-						<td><label>Medico</label></td>
-						<td><input type="text" name="txtMedico" id="txtMedico"
-							value="${medico.apellido}" readonly
-							style="background-color: #eee;"></td>
+						<td><label>Hora</label></td>
+						<td><select name="selHora">
+								<option value="">Seleccione una hora</option>
+								<c:forEach items="${horasTurnos}" var="hora">
+									<option value="${hora}">${hora}</option>
+								</c:forEach>
+						</select></td>
 					</tr>
-				</c:if>
-				<c:if test="${not empty cantTurnos}">
 					<tr>
-						<td colspan="3"><label class="error" id="errorLabel">${cantTurnos}</label></td>
+						<td><label>Estado</label></td>
+						<td><select name="selEstado">
+								<c:forEach items="${EstadoTurno.values()}" var="estado"
+									varStatus="loop">
+									<option value="${estado}" ${loop.index == 0 ? 'selected' : ''}
+										${loop.index != 0 ? 'disabled' : ''}>
+										${estado.getEstado()}</option>
+								</c:forEach>
+						</select></td>
 					</tr>
-				</c:if>
-				<tr>
-					<td><label>Fecha de Reserva</label></td>
-					<td><input type="date" name="txtFechaReserva"
-						style="width: 233px" value="${fechaReserva}"
-						min="<%=LocalDate.now().plusDays(1) %>" required></td>
-					<td><button type="submit" formaction="buscarFecha.do"
-							id="btnBuscarFecha" class="btn btn-outline-primary">Buscar
-							Fecha</button></td>
-				</tr>
-				<tr>
-					<td><label>Hora</label></td>
-					<td><select name="selHora">
-							<option value="">Seleccione una hora</option>
-							<c:forEach items="${horasTurnos}" var="hora">
-								<option value="${hora}">${hora}</option>
-							</c:forEach>
-					</select></td>
-				</tr>
-				<tr>
-					<td><label>Estado</label></td>
-					<td><select name="selEstado">
-							<c:forEach items="${EstadoTurno.values()}" var="estado"
-								varStatus="loop">
-								<option value="${estado}" ${loop.index == 0 ? 'selected' : ''}
-									${loop.index != 0 ? 'disabled' : ''}>
-									${estado.getEstado()}</option>
-							</c:forEach>
-					</select></td>
-				</tr>
-				<tr>
-					<td><label>Observaciones</label></td>
-					<td><textarea name="txtObservacion" id="txtObservacion"
-							style="width: 233px;" maxlength="1000" disabled></textarea></td>
-				</tr>
+					<tr>
+						<td><label>Observaciones</label></td>
+						<td><textarea name="txtObservacion" id="txtObservacion"
+								style="width: 233px;" maxlength="1000" disabled></textarea></td>
+					</tr>
 			</table>
 			<div class="button-container">
 				<button type="submit"
@@ -313,17 +310,17 @@ document.addEventListener('DOMContentLoaded', function() {
 					<td><textarea name="txtObservacion" style="width: 233px;"
 							maxlength="1000">${turno.observacion}</textarea></td>
 				</tr>
-				</tr>
-				</table>
-				<div class="button-container">
-					<input class="btn btn-outline-primary" type="submit"
-						onclick="return confirm('¿Confirma que desea modificar este turno?')"
-						name="btnActualizar" id="btnActualizar" value="Actualizar">
-					<input class="btn btn-outline-primary" type="submit"
-						name="btnVolver" id="btnVolver" value="Volver">
-				</div>
-				</div>
-			</c:if>
+		</tr>
+		</table>
+		<div class="button-container">
+			<input class="btn btn-outline-primary" type="submit"
+				onclick="return confirm('¿Confirma que desea modificar este turno?')"
+				name="btnActualizar" id="btnActualizar" value="Actualizar">
+			<input class="btn btn-outline-primary" type="submit" name="btnVolver"
+				id="btnVolver" value="Volver">
+		</div>
+		</div>
+		</c:if>
 		</c:if>
 	</form>
 	<!-- Validacion para edicion de turnos que no permita grabar si no se completo el estatys -->

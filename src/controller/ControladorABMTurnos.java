@@ -129,7 +129,7 @@ public class ControladorABMTurnos {
 
 			List<Medico> medicos = medicoNg.ReadAll();
 			MV.addObject("medicos", medicos);
-			MV.addObject("hayTurno", false);
+			MV.addObject("hayTurno", null);
 			return MV;
 		}
 		return new ModelAndView("redirect:/login.do");
@@ -144,21 +144,27 @@ public class ControladorABMTurnos {
 		boolean hayTurno = horasTurnos.size() > 0 ? true : false;
 		Paciente paciente = (Paciente) session.getAttribute("paciente");
 		MV.addObject("paciente", paciente);
-		MV.addObject("hayTurno", hayTurno);
+		MV.addObject("medico", medico);
 		MV.addObject("mostrarCampos", true);
+		
 		if (!hayTurno) {
 			MV.addObject("cantTurnos", "El medico " + medico.getApellido() + " no dispone de turnos para la fecha");
 			List<Especialidad> especialidades = especialidadNg.ReadAll();
 			MV.addObject("especialidades", especialidades);
 			List<Medico> medicos = medicoNg.ReadAll();
 			MV.addObject("medicos", medicos);
+			MV.addObject("hayTurno", hayTurno);
 		}
 		if (hayTurno) {
 			MV.addObject("cantTurnos",
 					"El medico " + medico.getApellido() + " cantidad de turnos para la fecha: " + horasTurnos.size());
-			MV.addObject("medico", medico);
 			MV.addObject("horasTurnos", horasTurnos);
 			MV.addObject("fechaReserva", txtFechaReserva);
+			List<Especialidad> especialidades = especialidadNg.ReadAll();
+			MV.addObject("especialidades", especialidades);
+			List<Medico> medicos = medicoNg.ReadAll();
+			MV.addObject("medicos", medicos);
+			MV.addObject("hayTurno", hayTurno);
 		}
 
 		MV.setViewName("ABMTurno");
