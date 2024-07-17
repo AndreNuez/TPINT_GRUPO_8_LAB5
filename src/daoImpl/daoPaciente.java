@@ -107,7 +107,10 @@ public class daoPaciente implements IDaoPaciente {
 		
 		session.beginTransaction();
 		@SuppressWarnings({ "unchecked" })
-		Paciente paciente = (Paciente) session.createQuery("from Paciente where dni = :dni").setParameter("dni", dni).uniqueResult();
+		Paciente paciente = (Paciente) session.createQuery("from Paciente where dni = :dni and activo = :activo")
+	    .setParameter("dni", dni)
+	    .setParameter("activo", true)
+	    .uniqueResult();
 		
 		conexion.cerrarConexion();
 		
