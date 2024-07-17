@@ -32,14 +32,9 @@
 				<c:if test="${not empty error}">
 					<label class="error" id="errorLabel">${error}</label>
 				</c:if>
-				<%
-					if (request.getSession().getAttribute("msjTurno") != null) {
-							String mensaje = (String) request.getSession().getAttribute("msjTurno");
-				%>
-				<label class="error" id="mensajeTurno"><%=mensaje%></label>
-				<%
-					}
-				%>
+				<c:if test="${not empty msjHayTurno}">
+					<label class="error" id="mensajeTurno">${msjHayTurno}</label>
+				</c:if>
 			</div>
 			<table>
 				<tr>

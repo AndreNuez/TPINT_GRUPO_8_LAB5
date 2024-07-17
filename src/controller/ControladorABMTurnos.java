@@ -69,10 +69,8 @@ public class ControladorABMTurnos {
 				
 				 // Validamos que para ese dia y hora que el paciente no tenga ningun otro turno
 	            boolean yaTieneTurno = turnoNg.existeTurnoPaciente(dni, selHora, txtFechaReserva);
-	            if (yaTieneTurno) {
-	            	if (session.getAttribute("msjTurno") != null)
-	            		session.setAttribute("msjTurno", null);
-	                session.setAttribute("msjTurno", "El paciente ya tiene un turno cargado para esa hora y dia");
+	            if (yaTieneTurno) {	            	
+	            	turno.setObservacion("El paciente ya tiene un turno cargado para esa hora y dia");
 	                return buscarFechaABMTurnos(txtFechaReserva, legajo, session, turno);	                
 	            }
 				
@@ -177,6 +175,10 @@ public class ControladorABMTurnos {
 			MV.addObject("hayTurno", hayTurno);
 		}
 
+		if (turno.getObservacion() != null &&  !turno.getObservacion().equals("")) {
+			MV.addObject("msjHayTurno", turno.getObservacion());
+			turno.setObservacion("");
+		}
 		MV.setViewName("ABMTurno");
 		return MV;
 	}
