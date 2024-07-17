@@ -187,8 +187,14 @@
 					</c:if>
 					<tr>
 						<td><label>Usuario</label></td>
+					<c:if test="${editar}">	
 						<td><input type="text" name="usuario.nombre" id="usuario"
 							value="${medico.usuario.nombre}" style="background-color: #f2f2f2" required readonly></td>
+					</c:if>
+					<c:if test="${!editar}">	
+						<td><input type="text" name="usuario.nombre" id="usuario"
+							value="${medico.usuario.nombre}" required ></td>
+					</c:if>
 					</tr>
 					<tr>
 						<td><label>Password</label></td>

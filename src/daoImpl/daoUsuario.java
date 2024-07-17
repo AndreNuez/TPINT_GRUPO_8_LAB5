@@ -44,7 +44,7 @@ public class daoUsuario implements IDaoUsuario {
 	
 		session.beginTransaction();
 		@SuppressWarnings({ "unchecked" })
-		List<Usuario> list = (List<Usuario>)session.createQuery("from Usuario").list();
+		List<Usuario> list = (List<Usuario>)session.createQuery("from Usuario where Activo=1").list();
 		
 		conexion.cerrarConexion();
 		

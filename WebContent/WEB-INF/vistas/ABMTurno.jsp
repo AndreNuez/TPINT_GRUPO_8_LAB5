@@ -355,12 +355,18 @@ document.addEventListener('DOMContentLoaded', function() {
         // Función para actualizar el estado del botón y la caja de texto de observación
         function actualizarEstado() {
             var estadoSeleccionado = selEstado.value;
-            if (estadoSeleccionado === "<%=EstadoTurno.PENDIENTE%>") {
-                btnActualizar.disabled = true;
+            if (estadoSeleccionado === "<%=EstadoTurno.PENDIENTE%>" || estadoSeleccionado === "<%=EstadoTurno.AUSENTE%>") {
                 txtObservacion.disabled = true;
-            } else {
+            } 
+            
+            if (estadoSeleccionado === "<%=EstadoTurno.PRESENTE%>" ){
                 btnActualizar.disabled = false;
                 txtObservacion.disabled = false;
+            }
+            
+            if(estadoSeleccionado === "<%=EstadoTurno.AUSENTE%>" ){
+            	btnActualizar.disabled = false;
+                txtObservacion.value = "";
             }
         }
 
