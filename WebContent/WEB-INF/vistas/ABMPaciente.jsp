@@ -98,7 +98,7 @@
 					<tr>
 						<td><label>Provincia</label></td>
 						<td><select name="selProvincia" id="selProvincia"
-							style="width: 233px;" onchange="filtrarLocalidades()">
+							style="width: 233px;" onchange="filtrarLocalidades()" required>
 								<c:if test="${editar}">
 									<option value="${paciente.provincia.id}">${paciente.provincia.nombre}</option>
 								</c:if>
@@ -115,7 +115,7 @@
 					<tr>
 						<td><label>Localidad</label></td>
 						<td><select name="selLocalidad" id="selLocalidad"
-							style="width: 233px;">
+							style="width: 233px;" required>
 
 								<c:if test="${editar}">
 									<option value="${paciente.localidad.id}">${paciente.localidad.nombre}</option>

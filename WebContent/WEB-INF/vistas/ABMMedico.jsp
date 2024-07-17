@@ -69,8 +69,8 @@
 					</tr>
 					<tr>
 						<td><label>Especialidad</label></td>
-						<td><select name="especialidad.id" style="width: 233px;">
-								<c:if test="${editar}">
+						<td><select name="especialidad.id" style="width: 233px;" required>
+								<c:if test="${especialidad.id != medico.especialidad.id}">
 									<option value="${medico.especialidad.id}">${medico.especialidad.nombre}</option>
 								</c:if>
 								<c:if test="${error}">
@@ -84,7 +84,7 @@
 					</tr>
 					<tr>
 						<td><label>Jornada</label></td>
-						<td><select name="jornada.id" style="width: 233px;">
+						<td><select name="jornada.id" style="width: 233px;" required>
 								<c:if test="${editar}">
 									<option value="${medico.jornada.id}">${medico.jornada.descripcion}</option>
 								</c:if>
