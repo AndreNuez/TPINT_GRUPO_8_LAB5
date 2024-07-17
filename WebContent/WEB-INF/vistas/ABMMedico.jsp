@@ -188,7 +188,7 @@
 					<tr>
 						<td><label>Usuario</label></td>
 						<td><input type="text" name="usuario.nombre" id="usuario"
-							value="${medico.usuario.nombre}" required></td>
+							value="${medico.usuario.nombre}" style="background-color: #f2f2f2" required readonly></td>
 					</tr>
 					<tr>
 						<td><label>Password</label></td>
