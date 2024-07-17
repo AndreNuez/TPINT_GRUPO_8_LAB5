@@ -28,7 +28,7 @@
 		</form>
 	</div>
 <% 
-    if(request.getSession().getAttribute("user") != null) {
+    if(request.getSession().getAttribute("user") == null) {
 %>
         ${cartelError}
 <% 

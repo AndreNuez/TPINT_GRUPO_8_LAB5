@@ -16,13 +16,13 @@
 <title>Medico</title>
 </head>
 <body>
-<%@ include file="Menu.jsp"%>
+	<%@ include file="Menu.jsp"%>
 
 	<%
 		if (request.getSession().getAttribute("user") != null
 				&& usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
 	%>
-	
+
 	<form id="formPpal" action="ABMMedico.do" method="post"
 		onsubmit="return validarFormulario()">
 		<h2 class="title">Alta y Modificacion de Medicos</h2>
@@ -30,11 +30,12 @@
 
 		<div class="formulario">
 			<div>
-			<div>
-				<c:if test="${error}">
-					<label class="error" id="errorLabel"> El Dni ingresado ya existe en la base datos.</label>
-				</c:if>
-			</div>
+				<div>
+					<c:if test="${error}">
+						<label class="error" id="errorLabel"> El Dni ingresado ya
+							existe en la base datos.</label>
+					</c:if>
+				</div>
 				<table>
 					<c:if test="${editar}">
 						<tr>
@@ -42,7 +43,7 @@
 								value="${medico.legajo}" readonly></td>
 						</tr>
 					</c:if>
-					
+
 					<tr>
 						<td><label>DNI</label></td>
 						<c:if test="${not editar}">
@@ -55,7 +56,7 @@
 								style="background-color: #f2f2f2" required readonly></td>
 						</c:if>
 					</tr>
-					
+
 					<tr>
 						<td><label>Nombre</label></td>
 						<td><input type="text" name="nombre" id="nombre"
@@ -132,7 +133,7 @@
 					<tr>
 						<td><label>Provincia</label></td>
 						<td><select name="selProvincia" id="selProvincia"
-							style="width: 233px;" onchange="filtrarLocalidades()">
+							style="width: 233px;" onchange="filtrarLocalidades()" required>
 								<c:if test="${editar}">
 									<option value="${medico.provincia.id}">${medico.provincia.nombre}</option>
 								</c:if>
@@ -148,7 +149,7 @@
 					<tr>
 						<td><label>Localidad</label></td>
 						<td><select name="selLocalidad" id="selLocalidad"
-							style="width: 233px;">
+							style="width: 233px;" required>
 								<c:if test="${editar}">
 									<option value="${medico.localidad.id}">${medico.localidad.nombre}</option>
 								</c:if>
@@ -208,8 +209,8 @@
 								oninput="check(this)"></td>
 						</c:if>
 						<c:if test="${editar}">
-							<td><input type="password" name="confirm_pass" id="confirm_pass"
-								value="${medico.usuario.password}" required
+							<td><input type="password" name="confirm_pass"
+								id="confirm_pass" value="${medico.usuario.password}" required
 								oninput="check(this)"></td>
 						</c:if>
 					</tr>
@@ -271,7 +272,7 @@
     </script>
 	<%
 		} else {
-			response.sendRedirect("Access.do");
+			response.sendRedirect("login.do");
 
 		}
 	%>

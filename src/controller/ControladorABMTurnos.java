@@ -44,87 +44,95 @@ public class ControladorABMTurnos {
 	@Autowired
 	@Qualifier("servicioPaciente")
 	private PacienteNegocio pacienteNg;
-	
+
 	@Autowired
 	private Turno turno;
-	
+
 	@RequestMapping("ABMTurno.do")
-	public ModelAndView eventoABMTurnos(@RequestParam(value = "id", required = false)Long id,HttpSession session, String dni, int legajo, int selHora,String selEstado,
-			String txtObservacion, String txtFechaReserva, String btnVolver, String btnGrabar, String btnActualizar) {
+	public ModelAndView eventoABMTurnos(@RequestParam(value = "id", required = false) Long id, HttpSession session,
+			String dni, Integer legajo, Integer selHora, String selEstado, String txtObservacion,
+			String txtFechaReserva, String btnVolver, String btnGrabar, String btnActualizar) {
+		if (session.getAttribute("user") != null) {
+			ModelAndView MV = new ModelAndView();
+			Medico medico = medicoNg.obtenerMedicoPorLegajo(legajo);
+			Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni);
+			Usuario user = (Usuario) session.getAttribute("user");
 
-		ModelAndView MV = new ModelAndView();
-		Medico medico = medicoNg.obtenerMedicoPorLegajo(legajo);
-		Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni);
-		Usuario user = (Usuario) session.getAttribute("user");
+			if (btnGrabar != null && btnGrabar.equals("Grabar")) {
 
-		if (btnGrabar != null && btnGrabar.equals("Grabar")) {
-			
-			turno.setEstado(EstadoTurno.PENDIENTE);
-			turno.setFecha(txtFechaReserva);
-			turno.setHora(selHora);
-			turno.setPaciente(paciente);
-			turno.setMedico(medico);
-			turno.setObservacion("");
-			boolean confirmacion = turnoNg.Add(turno, medicoNg, pacienteNg);
+				turno.setEstado(EstadoTurno.PENDIENTE);
+				turno.setFecha(txtFechaReserva);
+				turno.setHora(selHora);
+				turno.setPaciente(paciente);
+				turno.setMedico(medico);
+				turno.setObservacion("");
+				boolean confirmacion = turnoNg.Add(turno, medicoNg, pacienteNg);
 
-			List<Turno> turnos = turnoNg.ReadAll();
+				List<Turno> turnos = turnoNg.ReadAll();
 
-			MV.addObject("turnos", turnos);
-			MV.addObject("confirmacion", confirmacion);
-			MV.setViewName("ListarTurnos");
-		} else if (btnActualizar != null && btnActualizar.equals("Actualizar")) {
-			
-			Turno turno = (Turno) turnoNg.turnoPorId(id);
-			turno.setEstado(EstadoTurno.valueOf(selEstado));
-			turno.setFecha(txtFechaReserva);
-			turno.setHora(selHora);
-			turno.setPaciente(paciente);
-			turno.setMedico(medico);
-			turno.setObservacion(txtObservacion);
-			
-			boolean modificacion = turnoNg.Update(turno);
-			MV.addObject("modificacion", modificacion);
-			List<Turno> turnos = turnoNg.ReadAll();
-			turnos= turnoNg.filtrarTurnosPorMedico(turnos, user);
-			MV.addObject("turnos", turnos);
-			MV.setViewName("ListarTurnos");	
-		}else if(btnVolver!=null && btnVolver.equals("Volver")) {
-			List<Turno> turnos = turnoNg.ReadAll();
-			turnos= turnoNg.filtrarTurnosPorMedico(turnos, user);
-			MV.addObject("turnos", turnos);
-			MV.setViewName("ListarTurnos");	
+				MV.addObject("turnos", turnos);
+				MV.addObject("confirmacion", confirmacion);
+				MV.setViewName("ListarTurnos");
+			} else if (btnActualizar != null && btnActualizar.equals("Actualizar")) {
+
+				Turno turno = (Turno) turnoNg.turnoPorId(id);
+				turno.setEstado(EstadoTurno.valueOf(selEstado));
+				turno.setFecha(txtFechaReserva);
+				turno.setHora(selHora);
+				turno.setPaciente(paciente);
+				turno.setMedico(medico);
+				turno.setObservacion(txtObservacion);
+
+				boolean modificacion = turnoNg.Update(turno);
+				MV.addObject("modificacion", modificacion);
+				List<Turno> turnos = turnoNg.ReadAll();
+				turnos = turnoNg.filtrarTurnosPorMedico(turnos, user);
+				MV.addObject("turnos", turnos);
+				MV.setViewName("ListarTurnos");
+			} else if (btnVolver != null && btnVolver.equals("Volver")) {
+				List<Turno> turnos = turnoNg.ReadAll();
+				turnos = turnoNg.filtrarTurnosPorMedico(turnos, user);
+				MV.addObject("turnos", turnos);
+				MV.setViewName("ListarTurnos");
+			}
+			return MV;
 		}
-		return MV;
+		return new ModelAndView("redirect:/login.do");
+
 	}
 
-	@RequestMapping(value = "buscarPacientePorDni.do", method = RequestMethod.POST)
-	public ModelAndView buscarPacientePorDniPost(@RequestParam("dni") String dni, HttpSession session) {
-		ModelAndView MV = new ModelAndView("ABMTurno");
-		List<Especialidad> especialidades = especialidadNg.ReadAll();
+	@RequestMapping("buscarPacientePorDni.do")
+	public ModelAndView buscarPacientePorDniPost(@RequestParam(value = "dni", required = false) String dni,
+			HttpSession session) {
+		if (session.getAttribute("user") != null) {
+			ModelAndView MV = new ModelAndView("ABMTurno");
+			List<Especialidad> especialidades = especialidadNg.ReadAll();
 
-		if (dni != null && !dni.isEmpty()) {
-			Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni);
-			if (paciente != null) {
-				session.setAttribute("paciente", paciente);
-				MV.addObject("paciente", paciente);
-				MV.addObject("especialidades", especialidades);
-				MV.addObject("mostrarCampos", true);
+			if (dni != null && !dni.isEmpty()) {
+				Paciente paciente = pacienteNg.obtenerPacientePorDNI(dni);
+				if (paciente != null) {
+					session.setAttribute("paciente", paciente);
+					MV.addObject("paciente", paciente);
+					MV.addObject("especialidades", especialidades);
+					MV.addObject("mostrarCampos", true);
+				} else {
+					MV.addObject("error", "El dni " + dni + " no corresponde a un Paciente.");
+				}
 			} else {
-				MV.addObject("error", "El dni " + dni + " no corresponde a un Paciente.");
+				MV.addObject("error", "Ingrese un DNI");
 			}
-		} else {
-			MV.addObject("error", "Ingrese un DNI");
+
+			/*
+			 * List<Especialidad> especialidades = especialidadNg.ReadAll();
+			 * MV.addObject("especialidades", especialidades);
+			 */
+
+			List<Medico> medicos = medicoNg.ReadAll();
+			MV.addObject("medicos", medicos);
+			MV.addObject("hayTurno", false);
+			return MV;
 		}
-
-		/*
-		 * List<Especialidad> especialidades = especialidadNg.ReadAll();
-		 * MV.addObject("especialidades", especialidades);
-		 */
-
-		List<Medico> medicos = medicoNg.ReadAll();
-		MV.addObject("medicos", medicos);
-		MV.addObject("hayTurno", false);
-		return MV;
+		return new ModelAndView("redirect:/login.do");
 	}
 
 	@RequestMapping("buscarFecha.do")

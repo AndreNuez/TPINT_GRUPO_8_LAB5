@@ -14,7 +14,7 @@
 <title>Paciente</title>
 </head>
 <body>
-<%@ include file="Menu.jsp"%>
+	<%@ include file="Menu.jsp"%>
 
 	<%
 		if (request.getSession().getAttribute("user") != null
@@ -28,11 +28,12 @@
 
 		<div class="formulario">
 			<div>
-			<div>
-				<c:if test="${error}">
-					<label class="error" id="errorLabel"> El Dni ingresado ya existe en la base datos.</label>
-				</c:if>
-			</div>
+				<div>
+					<c:if test="${error}">
+						<label class="error" id="errorLabel"> El Dni ingresado ya
+							existe en la base datos.</label>
+					</c:if>
+				</div>
 				<table>
 					<tr>
 						<c:if test="${editar}">
@@ -77,18 +78,16 @@
 						<tr>
 							<td><label>Fecha Nacimiento</label></td>
 							<td><input type="date" name="fechaNacimiento"
-								max="<%= LocalDate.now().toString() %>"
-								value="${fecNacPac}" required
-								style="width: 233px;"></td>
+								max="<%= LocalDate.now().toString() %>" value="${fecNacPac}"
+								required style="width: 233px;"></td>
 						</tr>
 					</c:if>
 					<c:if test="${not editar}">
 						<tr>
 							<td><label>Fecha Nacimiento</label></td>
 							<td><input type="date" name="fechaNacimiento"
-								max="<%= LocalDate.now().toString() %>"
-								value="${fecNacPac}" required
-								style="width: 233px;"></td>
+								max="<%= LocalDate.now().toString() %>" value="${fecNacPac}"
+								required style="width: 233px;"></td>
 						</tr>
 					</c:if>
 					<tr>
@@ -189,7 +188,7 @@
 	</script>
 	<%
 		} else {
-			response.sendRedirect("Access.do");
+			response.sendRedirect("login.do");
 
 		}
 	%>

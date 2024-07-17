@@ -27,29 +27,38 @@
 	<div class="container-fluid">
 		<form action="navPages.do" method=post>
 			<input class="btn btn-primary" type=submit name="inicioJsp"
-				value=Inicio> 
-		<%
-			if (usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
-		%>
-				<input class="btn btn-primary" type=submit
-				name="medicosJsp" value=Medicos> <input
-				class="btn btn-primary" type=submit name="pacientesJsp"
-				value=Pacientes>
+				value=Inicio>
+			<%
+				if (request.getSession().getAttribute("user") != null
+						&& usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
+			%>
+			<input class="btn btn-primary" type=submit name="medicosJsp"
+				value=Medicos> <input class="btn btn-primary" type=submit
+				name="pacientesJsp" value=Pacientes>
 			<%
 				}
 			%>
-			<input class="btn btn-primary" type=submit
-				name="turnosJsp" value=Turnos>
+			<input class="btn btn-primary" type=submit name="turnosJsp"
+				value=Turnos>
 		</form>
 		<form action="navPages.do">
+			<%
+				if (request.getSession().getAttribute("user") != null
+						&& usuario.getPerfil() != PerfilUsuario.MEDICO.getPerfilUsuario()) {
+			%>
 			<div class="nav-item dropdown">
 				<a class="navbar-brand dropdown-toggle" href="#" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false"> Reportes </a>
 				<div class="dropdown-menu">
-					<input class="dropdown-item" type=submit name="reporteEspecialidadesJsp" value=ReporteEspecialidades>
-					<input class="dropdown-item" type=submit name="reporteTurnosJsp" value=ReporteTurnos>
+					<input class="dropdown-item" type=submit
+						name="reporteEspecialidadesJsp" value=ReporteEspecialidades>
+					<input class="dropdown-item" type=submit name="reporteTurnosJsp"
+						value=ReporteTurnos>
 				</div>
 			</div>
+			<%
+				}
+			%>
 		</form>
 
 		<form action="navLogOut.do" method=post>
@@ -65,6 +74,7 @@
 
 	</div>
 	</nav>
+
 
 </body>
 </html>

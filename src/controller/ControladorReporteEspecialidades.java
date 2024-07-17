@@ -21,65 +21,69 @@ import negocioImpl.TurnoNegocio;
 @Controller
 public class ControladorReporteEspecialidades {
 
-    @Autowired
-    @Qualifier("servicioTurno")
-    private TurnoNegocio turnoNg;
-    
+	@Autowired
+	@Qualifier("servicioTurno")
+	private TurnoNegocio turnoNg;
+
 	@Autowired
 	@Qualifier("servicioEspecialidad")
 	private EspecialidadNegocio especialidadNg;
 
 	@RequestMapping("reporteEspecialidades.do")
-    public ModelAndView eventoBuscarTurnos(HttpSession session, String txtFechaInicio, String txtFechaFin) {
-        ModelAndView MV = new ModelAndView();
+	public ModelAndView eventoBuscarTurnos(HttpSession session, String txtFechaInicio, String txtFechaFin) {
+		if (session.getAttribute("user") != null) {
+			ModelAndView MV = new ModelAndView();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String fechaInicioFormatted = LocalDate.parse(txtFechaInicio, formatter).format(formatter);
-        String fechaFinFormatted = LocalDate.parse(txtFechaFin, formatter).format(formatter);
-        
-		List<Turno> turnos = turnoNg.listadoTurnosPorFecha(fechaInicioFormatted, fechaFinFormatted);
-		
-        if (turnos == null || turnos.isEmpty()) {
-            MV.addObject("exito", false);
-            MV.addObject("fechaInicioFormatted", fechaInicioFormatted);
-            MV.addObject("fechaFinFormatted", fechaFinFormatted);
-            MV.setViewName("ReporteEspecialidades");
-            return MV;
-        }
-        
-		List<Especialidad> especialidades = especialidadNg.ReadAll();
-        Map<String, Integer> contadorEspecialidades = new HashMap<>();
-        int totalTurnos = turnos.size();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			String fechaInicioFormatted = LocalDate.parse(txtFechaInicio, formatter).format(formatter);
+			String fechaFinFormatted = LocalDate.parse(txtFechaFin, formatter).format(formatter);
 
-        if (turnos != null) {
-            for (Turno turno : turnos) {
-                String especialidadNombre = turno.getMedico().getEspecialidad().getNombre();
-                contadorEspecialidades.put(especialidadNombre, contadorEspecialidades.getOrDefault(especialidadNombre, 0) + 1);
-            }
-        }
+			List<Turno> turnos = turnoNg.listadoTurnosPorFecha(fechaInicioFormatted, fechaFinFormatted);
 
-        List<Map<String, Object>> turnosPorEspecialidad = new ArrayList<>();
+			if (turnos == null || turnos.isEmpty()) {
+				MV.addObject("exito", false);
+				MV.addObject("fechaInicioFormatted", fechaInicioFormatted);
+				MV.addObject("fechaFinFormatted", fechaFinFormatted);
+				MV.setViewName("ReporteEspecialidades");
+				return MV;
+			}
 
-        for (Especialidad especialidad : especialidades) {
-            String especialidadNombre = especialidad.getNombre();
-            int cantidadTurnos = contadorEspecialidades.getOrDefault(especialidadNombre, 0);
-            double porcentaje = (double) cantidadTurnos / totalTurnos * 100;
-            double porcentajeFormateado = Math.round(porcentaje * 100.0) / 100.0;
+			List<Especialidad> especialidades = especialidadNg.ReadAll();
+			Map<String, Integer> contadorEspecialidades = new HashMap<>();
+			int totalTurnos = turnos.size();
 
-            Map<String, Object> item = new HashMap<>();
-            item.put("especialidadNombre", especialidadNombre);
-            item.put("cantidadTurnos", cantidadTurnos);
-            item.put("porcentaje", porcentajeFormateado); 
-            turnosPorEspecialidad.add(item);
-        }
-                
-        MV.addObject("exito", true);
-        MV.addObject("turnosPorEspecialidad", turnosPorEspecialidad);
-        MV.addObject("fechaInicioFormatted", fechaInicioFormatted);
-        MV.addObject("fechaFinFormatted", fechaFinFormatted);
-        MV.addObject("total", totalTurnos);
-        
-        MV.setViewName("ReporteEspecialidades");
-        return MV;
-    }
+			if (turnos != null) {
+				for (Turno turno : turnos) {
+					String especialidadNombre = turno.getMedico().getEspecialidad().getNombre();
+					contadorEspecialidades.put(especialidadNombre,
+							contadorEspecialidades.getOrDefault(especialidadNombre, 0) + 1);
+				}
+			}
+
+			List<Map<String, Object>> turnosPorEspecialidad = new ArrayList<>();
+
+			for (Especialidad especialidad : especialidades) {
+				String especialidadNombre = especialidad.getNombre();
+				int cantidadTurnos = contadorEspecialidades.getOrDefault(especialidadNombre, 0);
+				double porcentaje = (double) cantidadTurnos / totalTurnos * 100;
+				double porcentajeFormateado = Math.round(porcentaje * 100.0) / 100.0;
+
+				Map<String, Object> item = new HashMap<>();
+				item.put("especialidadNombre", especialidadNombre);
+				item.put("cantidadTurnos", cantidadTurnos);
+				item.put("porcentaje", porcentajeFormateado);
+				turnosPorEspecialidad.add(item);
+			}
+
+			MV.addObject("exito", true);
+			MV.addObject("turnosPorEspecialidad", turnosPorEspecialidad);
+			MV.addObject("fechaInicioFormatted", fechaInicioFormatted);
+			MV.addObject("fechaFinFormatted", fechaFinFormatted);
+			MV.addObject("total", totalTurnos);
+
+			MV.setViewName("ReporteEspecialidades");
+			return MV;
+		}
+		return new ModelAndView("redirect:/login.do");
+	}
 }

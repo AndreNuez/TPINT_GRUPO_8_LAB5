@@ -18,8 +18,8 @@
 
 </head>
 
-<body> 
-<%@include file="Menu.jsp"%>
+<body>
+	<%@include file="Menu.jsp"%>
 	<%
 		if (request.getSession().getAttribute("user") != null) {
 	%>
@@ -43,7 +43,8 @@
 
 						<td>
 							<button type="submit" formaction="buscarPacientePorDni.do"
-								class="btn btn-outline-success" id="btnBuscarDNI">Buscar DNI</button>
+								class="btn btn-outline-success" id="btnBuscarDNI">Buscar
+								DNI</button>
 						</td>
 						<c:if test="${mostrarCampos}">
 				</tr>
@@ -151,7 +152,7 @@
 		</c:if>
 
 		<!-- Validacion para generacion de turnos que no permita grabar si no se completo todo -->
-<script>
+		<script>
 	function validarHoraSeleccionada() {
     // Obtener el valor de la hora seleccionada
     var hora = document.getElementsByName('selHora')[0].value;
@@ -380,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	<%
 		} else {
-			response.sendRedirect("Access.do");
+			response.sendRedirect("login.do");
 
 		}
 	%>

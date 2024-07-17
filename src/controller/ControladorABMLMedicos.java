@@ -42,71 +42,77 @@ public class ControladorABMLMedicos {
 	@Autowired
 	@Qualifier("servicioJornada")
 	private IJornadaNegocio jornadaNegocio;
-	
+
 	@Autowired
 	@Qualifier("servicioProvincia")
 	private ProvinciaNegocio provinciaNg;
-	
+
 	@Autowired
 	@Qualifier("servicioLocalidad")
 	private LocalidadNegocio localidadNg;
 
 	@RequestMapping("ABMMedico.do")
-	public ModelAndView eventoAMBMedico(Medico medico, int selProvincia, int selLocalidad, HttpSession session, String btnGrabar, String btnActualizar) {
-		ModelAndView MV = new ModelAndView();
-		boolean confirmacion = false;
-		Localidad localidad= localidadNg.getLocalidadById(selLocalidad);
-		Provincia provincia= provinciaNg.getProvinciaById(selProvincia);
+	public ModelAndView eventoAMBMedico(Medico medico, Integer selProvincia, Integer selLocalidad, HttpSession session,
+			String btnGrabar, String btnActualizar) {
 
-		if (btnGrabar != null && btnGrabar.equals("Grabar")) {
-			// primero se graba el usuario
-			if(medicoNg.obtenerMedicoPorDNI(medico.getDni()) == null) {
-			
-			Usuario userMed = medico.getUsuario();
-			userMed.setPerfil(PerfilUsuario.MEDICO.ordinal());
-			medico.setActivo(true);
-			userMed.setActivo(true);
-			medico.setUsuario(userMed);
-			medico.setProvincia(provincia);
-			medico.setLocalidad(localidad);
-			confirmacion = medicoNg.Add(medico);
-			
-			List<Medico> medicos = medicoNg.ReadAll();
-			MV.addObject("medicos", medicos);
+		if (session.getAttribute("user") != null) {
 
-			MV.addObject("confirmacion", confirmacion);
-			MV.setViewName("ListarMedicos");
-			
-			} else {
+			ModelAndView MV = new ModelAndView();
+			boolean confirmacion = false;
+			Localidad localidad = localidadNg.getLocalidadById(selLocalidad);
+			Provincia provincia = provinciaNg.getProvinciaById(selProvincia);
+
+			if (btnGrabar != null && btnGrabar.equals("Grabar")) {
+				// primero se graba el usuario
+				if (medicoNg.obtenerMedicoPorDNI(medico.getDni()) == null) {
+
+					Usuario userMed = medico.getUsuario();
+					userMed.setPerfil(PerfilUsuario.MEDICO.ordinal());
+					medico.setActivo(true);
+					userMed.setActivo(true);
+					medico.setUsuario(userMed);
+					medico.setProvincia(provincia);
+					medico.setLocalidad(localidad);
+					confirmacion = medicoNg.Add(medico);
+
+					List<Medico> medicos = medicoNg.ReadAll();
+					MV.addObject("medicos", medicos);
+
+					MV.addObject("confirmacion", confirmacion);
+					MV.setViewName("ListarMedicos");
+
+				} else {
+					medico.setProvincia(provincia);
+					medico.setLocalidad(localidad);
+
+					MV.addObject("error", true);
+					List<Provincia> provincias = provinciaNg.ReadAll();
+					List<Localidad> localidades = localidadNg.ReadAll();
+					List<Especialidad> especialidades = especialidadNegocio.ReadAll();
+					List<Jornada> jornadas = jornadaNegocio.ReadAll();
+					MV.addObject("provincias", provincias);
+					MV.addObject("localidades", localidades);
+					MV.addObject("especialidades", especialidades);
+					MV.addObject("jornadas", jornadas);
+				}
+
+			} else if (btnActualizar != null && btnActualizar.equals("Actualizar")) {
+
 				medico.setProvincia(provincia);
 				medico.setLocalidad(localidad);
+				boolean modificacion = medicoNg.Update(medico);
 
-				MV.addObject("error", true);
-				List<Provincia> provincias = provinciaNg.ReadAll();
-				List<Localidad> localidades = localidadNg.ReadAll();
-				List<Especialidad> especialidades = especialidadNegocio.ReadAll();
-				List<Jornada> jornadas = jornadaNegocio.ReadAll();
-				MV.addObject("provincias", provincias);
-				MV.addObject("localidades", localidades);
-				MV.addObject("especialidades", especialidades);
-				MV.addObject("jornadas", jornadas);
+				List<Medico> medicos = medicoNg.ReadAll();
+				MV.addObject("medicos", medicos);
+
+				MV.addObject("modificacion", modificacion);
+				MV.setViewName("ListarMedicos");
+
 			}
 
-		} else if (btnActualizar != null && btnActualizar.equals("Actualizar")) {
-			
-			medico.setProvincia(provincia);
-			medico.setLocalidad(localidad);
-			boolean modificacion = medicoNg.Update(medico);
-			
-			List<Medico> medicos = medicoNg.ReadAll();
-			MV.addObject("medicos", medicos);
-
-			MV.addObject("modificacion", modificacion);
-			MV.setViewName("ListarMedicos");
-
+			return MV;
 		}
-		
-		return MV;
+		return new ModelAndView("redirect:/login.do");
 	}
 
 }
